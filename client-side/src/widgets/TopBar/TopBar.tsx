@@ -22,7 +22,7 @@ export const TopBar = () => {
 				)}
 
 				<SignedOut>
-					<SingInOAuthButton />npm install --save mobx
+					<SingInOAuthButton />
 				</SignedOut>
 
 				<UserButton />
