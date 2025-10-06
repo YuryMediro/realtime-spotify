@@ -1,5 +1,11 @@
+import { TopBar } from '@/widgets/TopBar/TopBar'
+
 interface HomeProps {}
 
 export const Home = ({}: HomeProps) => {
-	return <div>Home</div>
+	return (
+		<main>
+			<TopBar />
+		</main>
+	)
 }

@@ -1,0 +1,32 @@
+import { buttonVariants } from '@/components/ui/button'
+import { SingInOAuthButton } from '@/features/SingInOAuthButton/SingInOAuthButton'
+import { cn } from '@/shared/lib/utils'
+import { SignedOut, UserButton } from '@clerk/clerk-react'
+import { LayoutDashboardIcon } from 'lucide-react'
+import { Link } from 'react-router-dom'
+
+export const TopBar = () => {
+	const isAdmin = false
+	return (
+		<div className={'flex items-center justify-between p-4 sticky top-0 bg-zinc-900/75 backdrop-blur-md z-10'}>
+			<div className={'flex items-center gap-2'}>
+				<img src='spotify.png' alt='Spotify logo' className={'size-8'} />
+				Spotify
+			</div>
+			<div className={'flex items-center gap-4'}>
+				{isAdmin && (
+					<Link to={'/admin'} className={cn(buttonVariants({ variant: "outline" }))}>
+						<LayoutDashboardIcon />
+						Admin Panel
+					</Link>
+				)}
+
+				<SignedOut>
+					<SingInOAuthButton />npm install --save mobx
+				</SignedOut>
+
+				<UserButton />
+			</div>
+		</div>
+	)
+}
