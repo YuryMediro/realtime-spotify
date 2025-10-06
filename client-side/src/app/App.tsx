@@ -1,15 +1,11 @@
-import {
-	SignInButton,
-	SignedIn,
-	SignedOut,
-	UserButton,
-} from '@clerk/clerk-react'
-import { Button } from './components/ui/button'
+import { AppRoute } from './AppRoute'
 
 function App() {
 	return (
 		<>
-			<header>
+			<AppRoute />
+
+			{/* <header>
 				<div className={'flex justify-center mt-6'}>
 					<SignedOut>
 						<SignInButton>
@@ -22,7 +18,7 @@ function App() {
 						<UserButton />
 					</SignedIn>
 				</div>
-			</header>
+			</header> */}
 		</>
 	)
 }
