@@ -12,7 +12,7 @@ export const LibraryPlaylists = () => {
 	}, [fetchAlbums])
 
 	return (
-		<div className='flex-1 rounded-lg bg-zinc-900 p-4'>
+		<div className='flex-1 rounded-lg bg-zinc-900 py-4 px-1'>
 			<div className='mb-4'>
 				<div className='flex items-center text-white px-2'>
 					<Library className='mr-2 size-5' />

@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 
 export const Nav = () => {
 	return (
-		<div className='rounded-lg bg-zinc-900 p-4'>
+		<div className='rounded-lg bg-zinc-900 py-4 px-1'>
 			<div className='space-y-2'>
 				<Link
 					to={'/'}
