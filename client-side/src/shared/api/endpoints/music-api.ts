@@ -1,4 +1,4 @@
-import type { IAlbums } from '@/shared/types/type'
+import type { IAlbums } from '@/entities/types/type'
 import { axiosInstance } from '../axios'
 
 export const musicApi = {

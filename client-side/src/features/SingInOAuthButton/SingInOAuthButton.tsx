@@ -1,4 +1,4 @@
-import { Button } from '@/components/ui/button'
+import { Button } from '@/components/kit/button'
 import { useSignIn } from '@clerk/clerk-react'
 import { FcGoogle } from 'react-icons/fc'
 

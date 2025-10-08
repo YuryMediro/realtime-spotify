@@ -1,7 +1,7 @@
 import { useAuth } from '@clerk/clerk-react'
 import { useEffect, useState } from 'react'
 import { Loader } from 'lucide-react'
-import { updateApiToken } from '../api/axios'
+import { updateApiToken } from '../shared/api/axios'
 
 const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 	const { getToken } = useAuth()

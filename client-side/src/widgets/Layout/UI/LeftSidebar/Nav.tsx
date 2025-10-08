@@ -1,4 +1,4 @@
-import { buttonVariants } from '@/components/ui/button'
+import { buttonVariants } from '@/components/kit/button'
 import { cn } from '@/shared/lib/utils'
 import { SignedIn } from '@clerk/clerk-react'
 import { HomeIcon, MessageCircle } from 'lucide-react'

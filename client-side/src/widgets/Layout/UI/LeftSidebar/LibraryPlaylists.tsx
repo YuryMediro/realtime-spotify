@@ -1,6 +1,6 @@
-import { ScrollArea } from '@/components/ui/scroll-area'
+import { ScrollArea } from '@/components/kit/scroll-area'
 import { PlayListSkeleton } from '@/shared/ui/skeleton/PlayListSkeleton'
-import { musicStore } from '@/store/music-store'
+import { musicStore } from '@/entities/store/music-store'
 import { Library } from 'lucide-react'
 import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
@@ -33,6 +33,7 @@ export const LibraryPlaylists = () => {
 							>
 								<img
 									src={album.imageUrl}
+									alt={'album img'}
 									className='size-12 rounded-md flex-shrink-0 object-cover'
 								/>
 								<div className='flex-1 min-w-0 hidden md:block'>

@@ -4,7 +4,7 @@ import './index.css'
 import { ClerkProvider } from '@clerk/clerk-react'
 import { BrowserRouter } from 'react-router-dom'
 import App from './App'
-import AuthProvider from '@/shared/providers/AuthProvider'
+import AuthProvider from '@/app/AuthProvider'
 
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY
 

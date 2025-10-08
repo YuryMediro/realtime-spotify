@@ -2,7 +2,7 @@ import {
 	ResizableHandle,
 	ResizablePanel,
 	ResizablePanelGroup,
-} from '@/components/ui/resizable'
+} from '@/components/kit/resizable'
 import { Outlet } from 'react-router-dom'
 import { LeftSidebar } from './UI/LeftSidebar/LeftSidebar'
 
