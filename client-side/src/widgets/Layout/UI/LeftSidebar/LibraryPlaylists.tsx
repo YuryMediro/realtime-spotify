@@ -6,11 +6,11 @@ import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
 export const LibraryPlaylists = () => {
-	// const isLoading = false
 	const { albums, isLoading, fetchAlbums } = musicStore
 	useEffect(() => {
 		fetchAlbums()
 	}, [fetchAlbums])
+
 	return (
 		<div className='flex-1 rounded-lg bg-zinc-900 p-4'>
 			<div className='mb-4'>
