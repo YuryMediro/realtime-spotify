@@ -1,9 +1,8 @@
 import { makeAutoObservable } from 'mobx'
-import type { IUser } from '../types/type'
-import { usersApi } from '@/entities/endpoints/chat-api'
+import { adminApi } from '../endpoints/admin-api'
 
-class ChatStore {
-	users: IUser[] = []
+class AdminStore {
+	isAdmin: boolean = false
 	isLoading: boolean = false
 	error: string | null = null
 
@@ -11,8 +10,8 @@ class ChatStore {
 		makeAutoObservable(this)
 	}
 
-	setUsers = (users: IUser[]): void => {
-		this.users = users
+	setAdmin = (status: boolean): void => {
+		this.isAdmin = status
 	}
 	setLoading = (loading: boolean): void => {
 		this.isLoading = loading
@@ -21,19 +20,26 @@ class ChatStore {
 		this.error = error
 	}
 
-	fetchUsers = async (): Promise<void> => {
+	checkAdminStatus = async (): Promise<void> => {
 		this.setLoading(true)
 		this.setError(null)
 
 		try {
-			const users = await usersApi.getUsers()
-			this.setUsers(users)
+			const isAdmin = await adminApi.getAdmin()
+			this.setAdmin(isAdmin.admin)
 		} catch (error: any) {
+			this.setAdmin(false)
 			this.setError(error.response?.data?.message || error.message)
 		} finally {
 			this.setLoading(false)
 		}
 	}
+
+	reset = (): void => {
+		this.setAdmin(false)
+		this.setLoading(false)
+		this.setError(null)
+	}
 }
 
-export const chatStore = new ChatStore()
+export const adminStore = new AdminStore()

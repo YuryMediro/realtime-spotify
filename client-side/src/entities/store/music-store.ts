@@ -5,29 +5,29 @@ import { makeAutoObservable } from 'mobx'
 class MusicStore {
 	albums: IAlbums[] = []
 	currentAlbum: IAlbums | null = null
-	isLoading = true
-	error = ''
+	isLoading: boolean = false
+	error: string | null = null
 
 	constructor() {
 		makeAutoObservable(this)
 	}
 
-	setAlbums = (albums: IAlbums[]) => {
+	setAlbums = (albums: IAlbums[]): void => {
 		this.albums = albums
 	}
-	setCurrentAlbum = (album: IAlbums) => {
+	setCurrentAlbum = (album: IAlbums): void => {
 		this.currentAlbum = album
 	}
-	setLoading = (loading: boolean) => {
+	setLoading = (loading: boolean): void => {
 		this.isLoading = loading
 	}
-	setError = (error: string) => {
+	setError = (error: string | null): void => {
 		this.error = error
 	}
 
-	fetchAlbums = async () => {
+	fetchAlbums = async (): Promise<void> => {
 		this.setLoading(true)
-		this.setError('')
+		this.setError(null)
 		try {
 			const albums = await musicApi.getALbums()
 			this.setAlbums(albums)
@@ -38,9 +38,9 @@ class MusicStore {
 		}
 	}
 
-	fetchAlbumsById = async (id: string) => {
+	fetchAlbumsById = async (id: string): Promise<void> => {
 		this.setLoading(true)
-		this.setError('')
+		this.setError(null)
 
 		try {
 			const album = await musicApi.getAlbumsById(id)
