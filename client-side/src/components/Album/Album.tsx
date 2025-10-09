@@ -3,17 +3,16 @@ import { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { ScrollArea } from '../kit/scroll-area'
 import { AlbumContent } from './AlbumContent/AlbumContent'
-
 import { PlayButton } from './AlbumContent/PlayButton'
-
 import { AlbumTable } from './AlbumContent/AlbumTable'
+import { observer } from 'mobx-react-lite'
 
-export const Album = () => {
+export const Album = observer(() => {
 	const { albumId } = useParams()
 	const { fetchAlbumsById, isLoading, currentAlbum } = musicStore
 	useEffect(() => {
 		if (albumId) fetchAlbumsById(albumId)
-	}, [fetchAlbumsById, albumId])
+	}, [albumId])
 
 	if (isLoading) return null
 
@@ -35,4 +34,4 @@ export const Album = () => {
 			</ScrollArea>
 		</div>
 	)
-}
+})

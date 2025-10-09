@@ -4,13 +4,14 @@ import { musicStore } from '@/entities/store/music-store'
 import { Library } from 'lucide-react'
 import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import { observer } from 'mobx-react-lite'
 
-export const LibraryPlaylists = () => {
-	const { albums, isLoading, fetchAlbums } = musicStore
+export const LibraryPlaylists = observer(() => {
+	const { albums, isLoading, fetchAlbums,  } = musicStore
 	useEffect(() => {
 		fetchAlbums()
-	}, [fetchAlbums])
-
+	}, [])
+console.log('rerender')
 	return (
 		<div className='flex-1 rounded-lg bg-zinc-900 py-4 px-1'>
 			<div className='mb-4'>
@@ -49,4 +50,4 @@ export const LibraryPlaylists = () => {
 			</ScrollArea>
 		</div>
 	)
-}
+})

@@ -28,7 +28,6 @@ class MusicStore {
 	fetchAlbums = async () => {
 		this.setLoading(true)
 		this.setError('')
-
 		try {
 			const albums = await musicApi.getALbums()
 			this.setAlbums(albums)

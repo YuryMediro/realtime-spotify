@@ -4,13 +4,14 @@ import { chatStore } from '@/entities/store/chat-store'
 import { useUser } from '@clerk/clerk-react'
 import { Music, User } from 'lucide-react'
 import { useEffect } from 'react'
+import { observer } from 'mobx-react-lite'
 
-export const FriendsSidebar = () => {
+export const FriendsSidebar = observer(() => {
 	const { users, fetchUsers } = chatStore
 	const { user } = useUser()
 	useEffect(() => {
 		if (user) fetchUsers()
-	}, [fetchUsers, user])
+	}, [user])
 
 	const isPlaying = true
 
@@ -75,4 +76,4 @@ export const FriendsSidebar = () => {
 			</ScrollArea>
 		</div>
 	)
-}
+})
