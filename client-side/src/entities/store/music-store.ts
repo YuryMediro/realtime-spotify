@@ -1,4 +1,4 @@
-import { musicApi } from '@/shared/api/endpoints/music-api'
+import { musicApi } from '@/entities/endpoints/music-api'
 import type { IAlbums } from '@/entities/types/type'
 import { makeAutoObservable } from 'mobx'
 

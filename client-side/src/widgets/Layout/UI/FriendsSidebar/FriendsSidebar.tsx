@@ -5,6 +5,7 @@ import { useUser } from '@clerk/clerk-react'
 import { Music, User } from 'lucide-react'
 import { useEffect } from 'react'
 import { observer } from 'mobx-react-lite'
+import { LoginMessage } from './LoginMessage'
 
 export const FriendsSidebar = observer(() => {
 	const { users, fetchUsers } = chatStore
@@ -23,6 +24,8 @@ export const FriendsSidebar = observer(() => {
 					<h2 className='font-semibold'>What they're listening to</h2>
 				</div>
 			</div>
+
+			{!user && <LoginMessage />}
 
 			<ScrollArea>
 				<div>

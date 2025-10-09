@@ -1,5 +1,5 @@
 import type { IAlbums } from '@/entities/types/type'
-import { axiosInstance } from '../axios'
+import { axiosInstance } from '../../shared/api/axios'
 
 export const musicApi = {
 	getALbums: (): Promise<IAlbums[]> =>
