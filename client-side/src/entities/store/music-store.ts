@@ -8,6 +8,8 @@ class MusicStore {
 	isLoading: boolean = false
 	error: string | null = null
 	featuredSongs: ISongs[] = []
+	madeForYouSongs: ISongs[] = []
+	trendingSongs: ISongs[] = []
 
 	constructor() {
 		makeAutoObservable(this)
@@ -27,6 +29,12 @@ class MusicStore {
 	}
 	setFeaturedSongs = (songs: ISongs[]): void => {
 		this.featuredSongs = songs
+	}
+	setMadeForYouSongs = (songs: ISongs[]): void => {
+		this.madeForYouSongs = songs
+	}
+	setTrendingSongs = (songs: ISongs[]): void => {
+		this.trendingSongs = songs
 	}
 
 	fetchAlbums = async (): Promise<void> => {
@@ -63,6 +71,34 @@ class MusicStore {
 		try {
 			const songs = await musicApi.getFeaturedSongs()
 			this.setFeaturedSongs(songs)
+		} catch (error: any) {
+			this.setError(error.response?.data?.message || error.message)
+		} finally {
+			this.setLoading(false)
+		}
+	}
+
+	fetchMadeForYouSongs = async (): Promise<void> => {
+		this.setLoading(true)
+		this.setError(null)
+
+		try {
+			const songs = await musicApi.getMadeForYouSongs()
+			this.setMadeForYouSongs(songs)
+		} catch (error: any) {
+			this.setError(error.response?.data?.message || error.message)
+		} finally {
+			this.setLoading(false)
+		}
+	}
+
+	fetchTrendingSongs = async (): Promise<void> => {
+		this.setLoading(true)
+		this.setError(null)
+
+		try {
+			const songs = await musicApi.getTrendingSongs()
+			this.setTrendingSongs(songs)
 		} catch (error: any) {
 			this.setError(error.response?.data?.message || error.message)
 		} finally {

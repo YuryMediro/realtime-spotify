@@ -12,4 +12,10 @@ export const musicApi = {
 	// Песни
 	getFeaturedSongs: (): Promise<ISongs[]> =>
 		axiosInstance.get<ISongs[]>('/songs/featured').then(res => res.data),
+
+	getMadeForYouSongs: (): Promise<ISongs[]> =>
+		axiosInstance.get<ISongs[]>('/songs/made-for-you').then(res => res.data),
+
+	getTrendingSongs: (): Promise<ISongs[]> =>
+		axiosInstance.get<ISongs[]>('/songs/trending').then(res => res.data),
 }

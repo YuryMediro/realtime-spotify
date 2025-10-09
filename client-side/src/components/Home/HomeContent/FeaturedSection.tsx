@@ -1,11 +1,17 @@
-import { musicStore } from '@/entities/store/music-store'
 import { FeaturedSkeleton } from '@/shared/ui/skeleton/FeaturedSkeleton'
-import { FeaturedPlayButton } from './FeaturedPlayButton'
+import type { ISongs } from '@/entities/types/type'
+import { PlayButtonSong } from './PlayButtonSong'
 
-export const FeaturedSection = () => {
-	const { featuredSongs, isLoading } = musicStore
+interface FeaturedSectionProps {
+	featuredSongs: ISongs[]
+	isLoading: boolean
+}
 
-    if (isLoading) return <FeaturedSkeleton/>
+export const FeaturedSection = ({
+	featuredSongs,
+	isLoading,
+}: FeaturedSectionProps) => {
+	if (isLoading) return <FeaturedSkeleton />
 
 	return (
 		<div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8'>
@@ -24,7 +30,7 @@ export const FeaturedSection = () => {
 						<p className='font-medium truncate'>{song.title}</p>
 						<p className='text-sm text-zinc-400 truncate'>{song.artist}</p>
 					</div>
-                    <FeaturedPlayButton/>
+					<PlayButtonSong />
 				</div>
 			))}
 		</div>

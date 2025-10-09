@@ -1,7 +1,7 @@
 import { Button } from '@/components/kit/button'
 import { Pause, Play } from 'lucide-react'
 
-export const FeaturedPlayButton = () => {
+export const PlayButtonSong = () => {
 	const isCurrentSong = true
 	const isPlaying = true
 	return (
