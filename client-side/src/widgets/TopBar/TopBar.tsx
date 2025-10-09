@@ -12,9 +12,9 @@ export const TopBar = observer(() => {
 	
 	return (
 		<div
-			className={
-				'flex items-center justify-between p-4 sticky top-0 bg-zinc-900 backdrop-blur-md z-10 rounded-lg'
-			}
+			className='flex items-center justify-between p-4 sticky top-0 bg-zinc-900/75 
+      backdrop-blur-md z-10
+    '
 		>
 			<div className={'flex items-center gap-2'}>
 				<img src='spotify.png' alt='Spotify logo' className={'size-8'} />
@@ -26,7 +26,7 @@ export const TopBar = observer(() => {
 						to={'/admin'}
 						className={cn(buttonVariants({ variant: 'outline' }))}
 					>
-						<LayoutDashboardIcon />
+						<LayoutDashboardIcon className='size-4  mr-2' />
 						Admin Panel
 					</Link>
 				)}

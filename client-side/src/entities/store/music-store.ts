@@ -1,5 +1,5 @@
 import { musicApi } from '@/entities/endpoints/music-api'
-import type { IAlbums } from '@/entities/types/type'
+import type { IAlbums, ISongs } from '@/entities/types/type'
 import { makeAutoObservable } from 'mobx'
 
 class MusicStore {
@@ -7,6 +7,7 @@ class MusicStore {
 	currentAlbum: IAlbums | null = null
 	isLoading: boolean = false
 	error: string | null = null
+	featuredSongs: ISongs[] = []
 
 	constructor() {
 		makeAutoObservable(this)
@@ -23,6 +24,9 @@ class MusicStore {
 	}
 	setError = (error: string | null): void => {
 		this.error = error
+	}
+	setFeaturedSongs = (songs: ISongs[]): void => {
+		this.featuredSongs = songs
 	}
 
 	fetchAlbums = async (): Promise<void> => {
@@ -45,6 +49,20 @@ class MusicStore {
 		try {
 			const album = await musicApi.getAlbumsById(id)
 			this.setCurrentAlbum(album)
+		} catch (error: any) {
+			this.setError(error.response?.data?.message || error.message)
+		} finally {
+			this.setLoading(false)
+		}
+	}
+
+	fetchFeaturedSongs = async (): Promise<void> => {
+		this.setLoading(true)
+		this.setError(null)
+
+		try {
+			const songs = await musicApi.getFeaturedSongs()
+			this.setFeaturedSongs(songs)
 		} catch (error: any) {
 			this.setError(error.response?.data?.message || error.message)
 		} finally {
