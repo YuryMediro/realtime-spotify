@@ -2,16 +2,22 @@ import { useAuth } from '@clerk/clerk-react'
 import { useEffect, useState } from 'react'
 import { Loader } from 'lucide-react'
 import { updateApiToken } from '../shared/api/axios'
+import { adminStore } from '@/entities/store/admin-store'
+import { observer } from 'mobx-react-lite'
 
-const AuthProvider = ({ children }: { children: React.ReactNode }) => {
+const AuthProvider = observer(({ children }: { children: React.ReactNode }) => {
 	const { getToken } = useAuth()
 	const [loading, setLoading] = useState(true)
+	const { checkAdminStatus } = adminStore
 
 	useEffect(() => {
 		const initAuth = async () => {
 			try {
 				const token = await getToken()
 				updateApiToken(token)
+				if (token) {
+					await checkAdminStatus()
+				}
 			} catch (error) {
 				updateApiToken(null)
 			} finally {
@@ -30,6 +36,6 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 		)
 
 	return <>{children}</>
-}
+})
 
 export default AuthProvider
