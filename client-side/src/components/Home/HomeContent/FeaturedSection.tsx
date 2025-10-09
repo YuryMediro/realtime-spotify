@@ -1,5 +1,6 @@
 import { musicStore } from '@/entities/store/music-store'
 import { FeaturedSkeleton } from '@/shared/ui/skeleton/FeaturedSkeleton'
+import { FeaturedPlayButton } from './FeaturedPlayButton'
 
 export const FeaturedSection = () => {
 	const { featuredSongs, isLoading } = musicStore
@@ -23,6 +24,7 @@ export const FeaturedSection = () => {
 						<p className='font-medium truncate'>{song.title}</p>
 						<p className='text-sm text-zinc-400 truncate'>{song.artist}</p>
 					</div>
+                    <FeaturedPlayButton/>
 				</div>
 			))}
 		</div>
