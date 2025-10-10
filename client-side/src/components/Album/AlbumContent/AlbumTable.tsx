@@ -8,9 +8,10 @@ import {
 	TableRow,
 } from '../../kit/table'
 import { formatDuration } from '@/shared/lib/format/formatDuration'
-import type { IAlbums, ISongs } from '@/entities/types/type'
+import type { IAlbums } from '@/entities/types/type'
 import { observer } from 'mobx-react-lite'
 import { playerStore } from '@/entities/store/player-store'
+import { usePlayTrackAlbum } from '@/shared/hooks/usePlaySong'
 
 interface AlbumTableProps {
 	currentAlbum: IAlbums | null
@@ -18,15 +19,8 @@ interface AlbumTableProps {
 
 export const AlbumTable = observer(({ currentAlbum }: AlbumTableProps) => {
 	const { currentSong, isPlaying } = playerStore
-
-	const handlePlayTrack = (song: ISongs) => {
-		if (currentSong?._id === song._id) {
-			playerStore.togglePlay()
-		} else {
-			playerStore.initializeQueue(currentAlbum!.songs)
-			playerStore.setCurrentSong(song)
-		}
-	}
+	const { handlePlayTrack } = usePlayTrackAlbum()
+	
 	return (
 		<Table>
 			<TableHeader>
@@ -44,7 +38,7 @@ export const AlbumTable = observer(({ currentAlbum }: AlbumTableProps) => {
 					const isCurrentSong = currentSong?._id === song._id
 					return (
 						<TableRow
-							onClick={() => handlePlayTrack(song)}
+							onClick={() => handlePlayTrack(song, currentAlbum.songs)}
 							key={song._id}
 							className={`group cursor-pointer text-sm 
                       text-zinc-400 hover:bg-white/5 ${

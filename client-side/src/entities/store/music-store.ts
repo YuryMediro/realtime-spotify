@@ -28,7 +28,7 @@ class MusicStore {
 		this.error = error
 	}
 	setFeaturedSongs = (songs: ISongs[]): void => {
-		this.featuredSongs = songs
+		this.featuredSongs = songs	
 	}
 	setMadeForYouSongs = (songs: ISongs[]): void => {
 		this.madeForYouSongs = songs
