@@ -30,7 +30,7 @@ export const FeaturedSection = ({
 						<p className='font-medium truncate'>{song.title}</p>
 						<p className='text-sm text-zinc-400 truncate'>{song.artist}</p>
 					</div>
-					<PlayButtonSong />
+					<PlayButtonSong song={song} />
 				</div>
 			))}
 		</div>

@@ -6,13 +6,24 @@ import {
 import { Outlet } from 'react-router-dom'
 import { LeftSidebar } from './UI/LeftSidebar/LeftSidebar'
 import { FriendsSidebar } from './UI/FriendsSidebar/FriendsSidebar'
+import { AudioFooter } from './UI/AudioFooter/AudioFooter'
+import { AudioPlayer } from '@/features/AudioPlayer/AudioPlayer'
 
 export const Layout = () => {
 	return (
 		<div className='h-screen bg-black text-white flex flex-col'>
-			<ResizablePanelGroup direction='horizontal' className='flex-1 flex h-full overflow-hidden p-2' >
+			<ResizablePanelGroup
+				direction='horizontal'
+				className='flex-1 flex h-full overflow-hidden p-2'
+			>
+				<AudioPlayer />
 
-				<ResizablePanel defaultSize={20} maxSize={30} minSize={10} className='hidden md:block'>
+				<ResizablePanel
+					defaultSize={20}
+					maxSize={30}
+					minSize={10}
+					className='hidden md:block'
+				>
 					<LeftSidebar />
 				</ResizablePanel>
 
@@ -31,9 +42,11 @@ export const Layout = () => {
 					collapsedSize={0}
 					className='hidden md:block'
 				>
-					<FriendsSidebar/>
+					<FriendsSidebar />
 				</ResizablePanel>
 			</ResizablePanelGroup>
+
+			<AudioFooter />
 		</div>
 	)
 }

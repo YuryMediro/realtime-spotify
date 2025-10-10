@@ -5,6 +5,7 @@ import { musicStore } from '@/entities/store/music-store'
 import { useEffect } from 'react'
 import { observer } from 'mobx-react-lite'
 import { SectionSongs } from './HomeContent/SectionSongs'
+import { playerStore } from '@/entities/store/player-store'
 
 export const Home = observer(() => {
 	const {
@@ -16,9 +17,22 @@ export const Home = observer(() => {
 		trendingSongs,
 		isLoading,
 	} = musicStore
+
+	const { initializeQueue } = playerStore
 	useEffect(() => {
 		fetchFeaturedSongs(), fetchMadeForYouSongs(), fetchTrendingSongs()
 	}, [])
+	useEffect(() => {
+		if (
+			madeForYouSongs.length > 0 &&
+			trendingSongs.length > 0 &&
+			featuredSongs.length > 0
+		) {
+			const allSongs = [...madeForYouSongs, ...trendingSongs, ...featuredSongs]
+
+			initializeQueue(allSongs)
+		}
+	}, [initializeQueue, madeForYouSongs, trendingSongs, featuredSongs])
 	return (
 		<main className='rounded-md overflow-hidden h-full bg-gradient-to-b from-zinc-800 to-zinc-900'>
 			<TopBar />

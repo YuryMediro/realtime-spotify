@@ -3,11 +3,12 @@ import { PlayListSkeleton } from '@/shared/ui/skeleton/PlayListSkeleton'
 import { musicStore } from '@/entities/store/music-store'
 import { Library } from 'lucide-react'
 import { useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { observer } from 'mobx-react-lite'
 
 export const LibraryPlaylists = observer(() => {
 	const { albums, isLoading, fetchAlbums } = musicStore
+	const location = useLocation()
 	useEffect(() => {
 		fetchAlbums()
 	}, [])
@@ -25,25 +26,30 @@ export const LibraryPlaylists = observer(() => {
 					{isLoading ? (
 						<PlayListSkeleton />
 					) : (
-						albums.map(album => (
-							<Link
-								to={`/albums/${album._id}`}
-								key={album._id}
-								className='p-2 hover:bg-zinc-800 rounded-md flex items-center gap-3 group cursor-pointer'
-							>
-								<img
-									src={album.imageUrl}
-									alt={'album img'}
-									className='size-12 rounded-md flex-shrink-0 object-cover'
-								/>
-								<div className='flex-1 min-w-0 hidden md:block'>
-									<p className='font-medium truncate'>{album.title}</p>
-									<p className='text-sm text-zinc-400 truncate'>
-										Album • {album.artist}
-									</p>
-								</div>
-							</Link>
-						))
+						albums.map(album => {
+							const isActive = location.pathname === `/albums/${album._id}`
+							return (
+								<Link
+									to={`/albums/${album._id}`}
+									key={album._id}
+									className={`p-2 hover:bg-zinc-800 rounded-md flex items-center gap-3 group cursor-pointer ${
+										isActive ? 'bg-white/10' : ''
+									} `}
+								>
+									<img
+										src={album.imageUrl}
+										alt={'album img'}
+										className='size-12 rounded-md flex-shrink-0 object-cover'
+									/>
+									<div className='flex-1 min-w-0 hidden md:block'>
+										<p className='font-medium truncate'>{album.title}</p>
+										<p className='text-sm text-zinc-400 truncate'>
+											Album • {album.artist}
+										</p>
+									</div>
+								</Link>
+							)
+						})
 					)}
 				</div>
 			</ScrollArea>
