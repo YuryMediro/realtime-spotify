@@ -1,3 +1,4 @@
+import { AdminPage } from '@/pages/AdminPage/AdminPage'
 import { AlbumPage } from '@/pages/AlbumPage/AlbumPage'
 import { AuthCallbackPage } from '@/pages/AuthCallbackPage/AuthCallbackPage'
 import { HomePage } from '@/pages/HomePage/HomePage'
@@ -22,6 +23,8 @@ export const AppRoute = () => {
 				<Route path={'/'} element={<HomePage />} />
 				<Route path={'/albums/:albumId'} element={<AlbumPage />} />
 			</Route>
+
+			<Route path={'/admin'} element={<AdminPage />} />
 		</Routes>
 	)
 }
