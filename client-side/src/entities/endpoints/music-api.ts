@@ -9,6 +9,9 @@ export const musicApi = {
 	getAlbumsById: (id: string): Promise<IAlbums> =>
 		axiosInstance.get<IAlbums>(`/albums/${id}`).then(res => res.data),
 
+	deleteAlbumById: (id: string): Promise<IAlbums> =>
+		axiosInstance.delete<IAlbums>(`/admin/albums/${id}`).then(res => res.data),
+		
 	// Песни
 	getFeaturedSongs: (): Promise<ISongs[]> =>
 		axiosInstance.get<ISongs[]>('/songs/featured').then(res => res.data),

@@ -1,4 +1,5 @@
 import { Button } from '@/components/kit/button'
+import { ConfirmModal } from '@/components/kit/modals/ConfirmModal'
 import {
 	Table,
 	TableBody,
@@ -12,7 +13,7 @@ import { Calendar, Music, Trash2 } from 'lucide-react'
 import { observer } from 'mobx-react-lite'
 
 export const AlbumsTable = observer(() => {
-	const { albums } = musicStore
+	const { albums, deleteAlbumById, isLoading } = musicStore
 	return (
 		<Table>
 			<TableHeader>
@@ -50,13 +51,16 @@ export const AlbumsTable = observer(() => {
 							</span>
 						</TableCell>
 						<TableCell className='text-right'>
-							<Button
-								variant={'ghost'}
-								size={'sm'}
-								className='text-red-400 hover:text-red-300 hover:bg-red-400/10'
-							>
-								<Trash2 className='size-4' />
-							</Button>
+							<ConfirmModal handleClick={() => deleteAlbumById(album._id)}>
+								<Button
+									variant={'ghost'}
+									size={'sm'}
+                                    disabled={isLoading}
+									className='text-red-400 hover:text-red-300 hover:bg-red-400/10'
+								>
+									<Trash2 className='size-4' />
+								</Button>
+							</ConfirmModal>
 						</TableCell>
 					</TableRow>
 				))}

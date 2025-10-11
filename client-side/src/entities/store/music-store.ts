@@ -157,11 +157,30 @@ class MusicStore {
 			this.songs = this.songs.filter(song => song._id !== id)
 
 			await this.fetchStatistics()
-			
+
 			toast.success('Song deleted successfully')
 		} catch (error: any) {
 			this.setError(error.response?.data?.message || error.message)
 			toast.error(error.message || 'Error deleting song')
+		} finally {
+			this.setLoading(false)
+		}
+	}
+
+	deleteAlbumById = async (id: string): Promise<void> => {
+		this.setLoading(true)
+		this.setError(null)
+
+		try {
+			await musicApi.deleteAlbumById(id)
+			this.albums = this.albums.filter(album => album._id !== id)
+
+			await this.fetchStatistics()
+
+			toast.success('Album deleted successfully')
+		} catch (error: any) {
+			this.setError(error.response?.data?.message || error.message)
+			toast.error(error.message || 'Error deleting album')
 		} finally {
 			this.setLoading(false)
 		}
