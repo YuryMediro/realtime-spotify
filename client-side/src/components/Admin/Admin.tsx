@@ -4,14 +4,15 @@ import { observer } from 'mobx-react-lite'
 import { Statistics } from './Statistics/Statistics'
 import { musicStore } from '@/entities/store/music-store'
 import { useEffect } from 'react'
+import { TabsAdmin } from './TabsAdmin/TabsAdmin'
 
 export const Admin = observer(() => {
 	const { isAdmin, isLoading } = adminStore
-	const {fetchStatistics} = musicStore
+	const { fetchStatistics,  } = musicStore
 
 	useEffect(() => {
-	  fetchStatistics()
-	}, []);
+		fetchStatistics()
+	}, [])
 
 	if (!isAdmin && !isLoading) return <div>You are not admin</div>
 	return (
@@ -20,8 +21,8 @@ export const Admin = observer(() => {
    to-black text-zinc-100 p-8'
 		>
 			<HeaderAdmin />
-
-            <Statistics/>
+			<Statistics />
+			<TabsAdmin />
 		</div>
 	)
 })
