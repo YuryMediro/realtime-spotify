@@ -25,3 +25,10 @@ export interface IUser {
 	imageUrl: string
 	clerkId: string
 }
+
+export interface IStatistics {
+	totalAlbums: number
+	totalSongs: number
+	totalUsers: number
+	totalArtists: number
+}

@@ -1,4 +1,4 @@
-import type { IAlbums, ISongs } from '@/entities/types/type'
+import type { IAlbums, ISongs, IStatistics } from '@/entities/types/type'
 import { axiosInstance } from '../../shared/api/axios'
 
 export const musicApi = {
@@ -18,4 +18,6 @@ export const musicApi = {
 
 	getTrendingSongs: (): Promise<ISongs[]> =>
 		axiosInstance.get<ISongs[]>('/songs/trending').then(res => res.data),
+
+		getStatistics: (): Promise<IStatistics> => axiosInstance.get<IStatistics>('/stats').then(res => res.data) 
 }
