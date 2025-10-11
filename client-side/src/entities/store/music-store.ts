@@ -3,6 +3,7 @@ import type { IAlbums, ISongs, IStatistics } from '@/entities/types/type'
 import { makeAutoObservable } from 'mobx'
 
 class MusicStore {
+	songs: ISongs[] = []
 	albums: IAlbums[] = []
 	currentAlbum: IAlbums | null = null
 	isLoading: boolean = false
@@ -21,6 +22,9 @@ class MusicStore {
 		makeAutoObservable(this)
 	}
 
+	setSongs = (songs: ISongs[]): void => {
+		this.songs = songs
+	}
 	setAlbums = (albums: IAlbums[]): void => {
 		this.albums = albums
 	}
@@ -67,6 +71,20 @@ class MusicStore {
 			const album = await musicApi.getAlbumsById(id)
 			this.setCurrentAlbum(album)
 		} catch (error: any) {
+			this.setError(error.response?.data?.message || error.message)
+		} finally {
+			this.setLoading(false)
+		}
+	}
+
+	fetchSongs = async (): Promise<void> => {
+		this.setLoading(true)
+		this.setError(null)
+
+		try {
+			const songs = await musicApi.getSongs()
+				this.setSongs(songs)
+		}catch (error: any) {
 			this.setError(error.response?.data?.message || error.message)
 		} finally {
 			this.setLoading(false)

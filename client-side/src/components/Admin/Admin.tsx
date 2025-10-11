@@ -8,10 +8,12 @@ import { TabsAdmin } from './TabsAdmin/TabsAdmin'
 
 export const Admin = observer(() => {
 	const { isAdmin, isLoading } = adminStore
-	const { fetchStatistics,  } = musicStore
+	const { fetchStatistics, fetchSongs, fetchAlbums } = musicStore
 
 	useEffect(() => {
 		fetchStatistics()
+		fetchSongs()
+		fetchAlbums()
 	}, [])
 
 	if (!isAdmin && !isLoading) return <div>You are not admin</div>

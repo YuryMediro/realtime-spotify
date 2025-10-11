@@ -18,7 +18,11 @@ export const musicApi = {
 
 	getTrendingSongs: (): Promise<ISongs[]> =>
 		axiosInstance.get<ISongs[]>('/songs/trending').then(res => res.data),
+		
+	getSongs: (): Promise<ISongs[]> =>
+		axiosInstance.get<ISongs[]>('/songs').then(res => res.data),
 
-		// Статистика
-		getStatistics: (): Promise<IStatistics> => axiosInstance.get<IStatistics>('/stats').then(res => res.data) 
+	// Статистика
+	getStatistics: (): Promise<IStatistics> =>
+		axiosInstance.get<IStatistics>('/stats').then(res => res.data),
 }
