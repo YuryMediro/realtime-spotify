@@ -1,6 +1,7 @@
 import { musicApi } from '@/entities/endpoints/music-api'
 import type { IAlbums, ISongs, IStatistics } from '@/entities/types/type'
 import { makeAutoObservable } from 'mobx'
+import toast from 'react-hot-toast'
 
 class MusicStore {
 	songs: ISongs[] = []
@@ -83,8 +84,8 @@ class MusicStore {
 
 		try {
 			const songs = await musicApi.getSongs()
-				this.setSongs(songs)
-		}catch (error: any) {
+			this.setSongs(songs)
+		} catch (error: any) {
 			this.setError(error.response?.data?.message || error.message)
 		} finally {
 			this.setLoading(false)
@@ -142,6 +143,25 @@ class MusicStore {
 			this.setStatistics(stats)
 		} catch (error: any) {
 			this.setError(error.response?.data?.message || error.message)
+		} finally {
+			this.setLoading(false)
+		}
+	}
+
+	deleteSong = async (id: string): Promise<void> => {
+		this.setLoading(true)
+		this.setError(null)
+
+		try {
+			await musicApi.deleteSong(id)
+			this.songs = this.songs.filter(song => song._id !== id)
+
+			await this.fetchStatistics()
+			
+			toast.success('Song deleted successfully')
+		} catch (error: any) {
+			this.setError(error.response?.data?.message || error.message)
+			toast.error(error.message || 'Error deleting song')
 		} finally {
 			this.setLoading(false)
 		}

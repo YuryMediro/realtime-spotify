@@ -18,9 +18,12 @@ export const musicApi = {
 
 	getTrendingSongs: (): Promise<ISongs[]> =>
 		axiosInstance.get<ISongs[]>('/songs/trending').then(res => res.data),
-		
+
 	getSongs: (): Promise<ISongs[]> =>
 		axiosInstance.get<ISongs[]>('/songs').then(res => res.data),
+
+	deleteSong: (id: string): Promise<ISongs[]> =>
+		axiosInstance.delete<ISongs[]>(`/admin/songs/${id}`).then(res => res.data),
 
 	// Статистика
 	getStatistics: (): Promise<IStatistics> =>
