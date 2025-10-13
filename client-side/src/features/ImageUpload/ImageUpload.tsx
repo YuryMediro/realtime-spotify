@@ -57,6 +57,7 @@ export const ImageUpload = ({
 							Upload album artwork
 						</div>
 						<Button
+						type='button'
 							variant='outline'
 							size='sm'
 							className='text-xs'

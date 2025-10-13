@@ -22,7 +22,7 @@ interface AlbumCreateFormProps {
 
 export const AlbumCreateForm = observer(({ onClose }: AlbumCreateFormProps) => {
 	const { isLoading, createAlbum } = musicStore
-	const fileUpload = useImageUpload()
+	const imageUpload = useImageUpload()
 
 	const form = useForm<z.infer<typeof AlbumCreateSchema>>({
 		resolver: zodResolver(AlbumCreateSchema),
@@ -36,7 +36,7 @@ export const AlbumCreateForm = observer(({ onClose }: AlbumCreateFormProps) => {
 	})
 
 	const onSubmit = async (data: z.infer<typeof AlbumCreateSchema>) => {
-		if (!fileUpload.selectedFile) {
+		if (!imageUpload.selectedFile) {
 			toast.error('Image is required')
 			return
 		}
@@ -45,7 +45,7 @@ export const AlbumCreateForm = observer(({ onClose }: AlbumCreateFormProps) => {
 		formData.append('title', data.title)
 		formData.append('artist', data.artist)
 		formData.append('releaseYear', data.releaseYear.toString())
-		formData.append('imageFile', fileUpload.selectedFile)
+		formData.append('imageFile', imageUpload.selectedFile)
 
 		try {
 			await createAlbum(formData)
@@ -56,14 +56,14 @@ export const AlbumCreateForm = observer(({ onClose }: AlbumCreateFormProps) => {
 				releaseYear: new Date().getFullYear(),
 				imageFile: null,
 			})
-			fileUpload.removeImage()
+			imageUpload.removeImage()
 		} catch (error) {}
 	}
 	return (
 		<form onSubmit={form.handleSubmit(onSubmit)}>
 			<FieldGroup>
 				<div className='space-y-4 py-4'>
-					<ImageUpload isLoading={isLoading} uploadState={fileUpload} />
+					<ImageUpload isLoading={isLoading} uploadState={imageUpload} />
 				</div>
 				<Controller
 					name='title'
