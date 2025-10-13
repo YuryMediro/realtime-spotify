@@ -11,7 +11,14 @@ export const musicApi = {
 
 	deleteAlbumById: (id: string): Promise<IAlbums> =>
 		axiosInstance.delete<IAlbums>(`/admin/albums/${id}`).then(res => res.data),
-		
+
+	createAlbum: (formData: FormData): Promise<IAlbums> =>
+		axiosInstance
+			.post<IAlbums>('/admin/albums', formData, {
+				headers: { 'Content-Type': 'multipart/form-data' },
+			})
+			.then(res => res.data),
+
 	// Песни
 	getFeaturedSongs: (): Promise<ISongs[]> =>
 		axiosInstance.get<ISongs[]>('/songs/featured').then(res => res.data),

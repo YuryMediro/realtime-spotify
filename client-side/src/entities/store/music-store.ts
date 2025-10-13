@@ -185,6 +185,25 @@ class MusicStore {
 			this.setLoading(false)
 		}
 	}
+
+	createAlbum = async (formData: FormData): Promise<void> => {
+		this.setLoading(true)
+		this.setError(null)
+
+		try {
+			await musicApi.createAlbum(formData)
+
+			await this.fetchAlbums()
+			await this.fetchStatistics()
+
+			toast.success('Album created successfully')
+		} catch (error: any) {
+			this.setError(error.response?.data?.message || error.message)
+			toast.error(error.message || 'Error creating album')
+		} finally {
+			this.setLoading(false)
+		}
+	}
 }
 
 export const musicStore = new MusicStore()

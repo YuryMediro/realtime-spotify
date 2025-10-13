@@ -7,8 +7,9 @@ import {
 	CardContent,
 	CardAction,
 } from '@/components/kit/card'
-import { Library } from 'lucide-react'
+import { Library, Plus } from 'lucide-react'
 import { AlbumsTable } from '../../TableContent/AlbumsTable'
+import { CreateAlbumSongModal } from '@/components/kit/modals/CreateAlbumSongModal'
 
 export const AlbumsTabContent = () => {
 	return (
@@ -20,7 +21,12 @@ export const AlbumsTabContent = () => {
 				</CardTitle>
 				<CardDescription>Manage your album collection</CardDescription>
 				<CardAction>
-					<Button variant='link'>Add Album</Button>
+					<CreateAlbumSongModal title='Add New Album' subTitle='Add a new album to your collection'>
+						<Button className='bg-violet-500 hover:bg-violet-600 text-white'>
+							<Plus className='mr-2 h-4 w-4' />
+							Add Album
+						</Button>
+					</CreateAlbumSongModal>
 				</CardAction>
 			</CardHeader>
 			<CardContent className='grid gap-6'>
