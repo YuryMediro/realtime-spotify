@@ -8,16 +8,19 @@ import {
 	DialogTrigger,
 } from '../dialog'
 import { AlbumCreateForm } from '@/components/Admin/TabsAdmin/CreateForm/AlbumCreateForm'
+import { SongCreateForm } from '@/components/Admin/TabsAdmin/CreateForm/SongCreateForm'
 
 interface CreateAlbumSongModalProps {
 	title: string
 	subTitle: string
+	type: 'song' | 'album'
 }
 
 export const CreateAlbumSongModal = ({
 	children,
 	title,
 	subTitle,
+	type,
 }: PropsWithChildren<CreateAlbumSongModalProps>) => {
 	const [isOpen, setIsOpen] = useState(false)
 
@@ -30,7 +33,11 @@ export const CreateAlbumSongModal = ({
 					<DialogDescription>{subTitle}</DialogDescription>
 				</DialogHeader>
 
-				<AlbumCreateForm onClose={() => setIsOpen(false)} />
+				{type === 'album' ? (
+					<AlbumCreateForm onClose={() => setIsOpen(false)} />
+				) : (
+					<SongCreateForm onClose={() => setIsOpen(false)} />
+				)}
 			</DialogContent>
 		</Dialog>
 	)

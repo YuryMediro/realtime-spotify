@@ -35,6 +35,13 @@ export const musicApi = {
 	deleteSong: (id: string): Promise<ISongs[]> =>
 		axiosInstance.delete<ISongs[]>(`/admin/songs/${id}`).then(res => res.data),
 
+	createSong: (formData: FormData): Promise<ISongs> =>
+		axiosInstance
+			.post<ISongs>('/admin/songs', formData, {
+				headers: { 'Content-Type': 'multipart/form-data' },
+			})
+			.then(res => res.data),
+
 	// Статистика
 	getStatistics: (): Promise<IStatistics> =>
 		axiosInstance.get<IStatistics>('/stats').then(res => res.data),

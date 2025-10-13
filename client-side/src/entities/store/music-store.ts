@@ -204,6 +204,25 @@ class MusicStore {
 			this.setLoading(false)
 		}
 	}
+
+	createSong = async (formData: FormData): Promise<void> => {
+		this.setLoading(true)
+		this.setError(null)
+
+		try {
+			await musicApi.createSong(formData)
+
+			await this.fetchSongs()
+			await this.fetchStatistics()
+
+			toast.success('Song created successfully')
+		} catch (error: any) {
+			this.setError(error.response?.data?.message || error.message)
+			toast.error(error.message || 'Error creating song')
+		} finally {
+			this.setLoading(false)
+		}
+	}
 }
 
 export const musicStore = new MusicStore()

@@ -21,7 +21,7 @@ export const AlbumsTabContent = () => {
 				</CardTitle>
 				<CardDescription>Manage your album collection</CardDescription>
 				<CardAction>
-					<CreateAlbumSongModal title='Add New Album' subTitle='Add a new album to your collection'>
+					<CreateAlbumSongModal title='Add New Album' subTitle='Add a new album to your collection' type='album'>
 						<Button className='bg-violet-500 hover:bg-violet-600 text-white'>
 							<Plus className='mr-2 h-4 w-4' />
 							Add Album

@@ -7,8 +7,9 @@ import {
 	CardContent,
 	CardAction,
 } from '@/components/kit/card'
-import { Music } from 'lucide-react'
+import { Music, Plus } from 'lucide-react'
 import { SongsTable } from '../../TableContent/SongsTable'
+import { CreateAlbumSongModal } from '@/components/kit/modals/CreateAlbumSongModal'
 
 export const SongsTabContent = () => {
 	return (
@@ -20,12 +21,21 @@ export const SongsTabContent = () => {
 				</CardTitle>
 				<CardDescription>Manage your music tracks</CardDescription>
 				<CardAction>
-					<Button variant='link'>Add Song</Button>
+					<CreateAlbumSongModal
+						title='Add New Song'
+						subTitle='Add a new song to your music library'
+						type='song'
+					>
+						<Button className='bg-emerald-500 hover:bg-emerald-600 text-black'>
+							<Plus className='mr-2 h-4 w-4' />
+							Add Song
+						</Button>
+					</CreateAlbumSongModal>
 				</CardAction>
 			</CardHeader>
 			<CardContent className='grid gap-6'>
-                <SongsTable/>
-            </CardContent>
+				<SongsTable />
+			</CardContent>
 		</Card>
 	)
 }
