@@ -4,11 +4,14 @@ import { Loader } from 'lucide-react'
 import { updateApiToken } from '../shared/api/axios'
 import { adminStore } from '@/entities/store/admin-store'
 import { observer } from 'mobx-react-lite'
+import { chatStore } from '@/entities/store/chat-store'
+import { playerStore } from '@/entities/store/player-store'
 
 const AuthProvider = observer(({ children }: { children: React.ReactNode }) => {
-	const { getToken } = useAuth()
+	const { getToken, userId } = useAuth()
 	const [loading, setLoading] = useState(true)
 	const { checkAdminStatus } = adminStore
+	const {initSocket, disconnectSocket} = chatStore
 
 	useEffect(() => {
 		const initAuth = async () => {
@@ -17,6 +20,8 @@ const AuthProvider = observer(({ children }: { children: React.ReactNode }) => {
 				updateApiToken(token)
 				if (token) {
 					await checkAdminStatus()
+					if(userId) initSocket(userId)
+					// if(userId) playerStore.setUserId(userId)
 				}
 			} catch (error) {
 				updateApiToken(null)
@@ -26,7 +31,9 @@ const AuthProvider = observer(({ children }: { children: React.ReactNode }) => {
 		}
 
 		initAuth()
-	}, [getToken])
+
+		return () => disconnectSocket()
+	}, [getToken, userId, checkAdminStatus, initSocket, disconnectSocket])
 
 	if (loading)
 		return (
