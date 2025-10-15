@@ -6,7 +6,7 @@ export const ChatHeader = observer(() => {
   const { selectedUser, isUserOnline } = chatStore;
 
   if (!selectedUser) return null;
-  
+
   const isOnline = isUserOnline(selectedUser.clerkId);
 
   return (
