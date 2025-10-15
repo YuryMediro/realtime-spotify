@@ -1,4 +1,3 @@
-// src/widgets/friends-sidebar/ui/friends-sidebar.tsx
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/kit/avatar";
 import { ScrollArea } from "@/components/kit/scroll-area";
 import { chatStore } from "@/entities/store/chat-store";
@@ -28,26 +27,23 @@ export const FriendsSidebar = observer(() => {
       {!user && <LoginMessage />}
 
       <ScrollArea className="flex-1">
-        <div className="p-4 space-y-4">
-          {users.map((friend) => {
-            const isOnline = isUserOnline(friend.clerkId);
-            const activity = getUserActivity(friend.clerkId);
+        <div className="space-y-4">
+          {users.map((user) => {
+            const isOnline = isUserOnline(user.clerkId);
+            const activity = getUserActivity(user.clerkId);
             const isPlaying = activity && activity !== "Idle";
 
             return (
               <div
-                key={friend._id}
+                key={user._id}
                 className="cursor-pointer hover:bg-zinc-800/50 p-3 rounded-md transition-colors group"
               >
                 <div className="flex items-start gap-3">
                   <div className="relative">
                     <Avatar className="size-10 border border-zinc-800">
-                      <AvatarImage
-                        src={friend.imageUrl}
-                        alt={friend.fullName}
-                      />
+                      <AvatarImage src={user.imageUrl} alt={user.fullName} />
                       <AvatarFallback className="bg-zinc-800 text-zinc-300">
-                        {friend.fullName[0]?.toUpperCase()}
+                        {user.fullName[0]}
                       </AvatarFallback>
                     </Avatar>
                     <div
@@ -60,7 +56,7 @@ export const FriendsSidebar = observer(() => {
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2">
                       <span className="font-medium text-sm text-white truncate">
-                        {friend.fullName}
+                        {user.fullName}
                       </span>
                       {isPlaying && (
                         <Music className="size-3.5 text-emerald-400 shrink-0" />
