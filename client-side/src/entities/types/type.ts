@@ -1,43 +1,43 @@
 export interface ISongs {
-	_id: string
-	title: string
-	artist: string
-	imageUrl: string
-	audioUrl: string
-	duration: number
-	createdAt: string
-	updatedAt: string
-	albumId: string | null
+  _id: string;
+  title: string;
+  artist: string;
+  imageUrl: string;
+  audioUrl: string;
+  duration: number;
+  createdAt: string;
+  updatedAt: string;
+  albumId: string | null;
 }
 
 export interface IAlbums {
-	_id: string
-	title: string
-	artist: string
-	imageUrl: string
-	releaseYear: number
-	songs: ISongs[]
+  _id: string;
+  title: string;
+  artist: string;
+  imageUrl: string;
+  releaseYear: number;
+  songs: ISongs[];
 }
 
 export interface IUser {
-	_id: string
-	fullName: string
-	imageUrl: string
-	clerkId: string
+  _id: string;
+  fullName: string;
+  imageUrl: string;
+  clerkId: string;
 }
 
 export interface IStatistics {
-	totalAlbums: number
-	totalSongs: number
-	totalUsers: number
-	totalArtists: number
+  totalAlbums: number;
+  totalSongs: number;
+  totalUsers: number;
+  totalArtists: number;
 }
 
 export interface IMessage {
-	_id: string
-	senderId: string;
-	receiverId: string;
-	content: string;
-	createdAt: string;
-	updatedAt: string;
+  _id: string;
+  senderId: string;
+  receiverId: string;
+  content: string;
+  createdAt: string;
+  updatedAt: string;
 }

@@ -1,5 +1,5 @@
-import { Album } from '@/components/Album/Album'
+import { Album } from "@/components/Album/Album";
 
 export const AlbumPage = () => {
-	return <Album />
-}
+  return <Album />;
+};
