@@ -21,7 +21,7 @@ const AuthProvider = observer(({ children }: { children: React.ReactNode }) => {
         if (token) {
           await checkAdminStatus();
           if (userId) initSocket(userId);
-          // if(userId) playerStore.setUserId(userId)
+          if (userId) playerStore.setUserId(userId);
         }
       } catch (error) {
         updateApiToken(null);

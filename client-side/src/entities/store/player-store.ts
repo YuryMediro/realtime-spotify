@@ -1,5 +1,6 @@
 import { makeAutoObservable, reaction } from "mobx";
 import type { ISongs } from "../types/type";
+import { chatStore } from "./chat-store";
 
 class PlayerStore {
   currentSong: ISongs | null = null;
@@ -9,6 +10,7 @@ class PlayerStore {
   volume: number = 75;
   currentTime: number = 0;
   duration: number = 0;
+  userId: string | null = null;
 
   private audio: HTMLAudioElement | null = null;
 
@@ -21,7 +23,28 @@ class PlayerStore {
         if (this.audio) this.audio.volume = volume / 100;
       },
     );
+
+    reaction(
+      () => ({
+        currentSong: this.currentSong,
+        isPlaying: this.isPlaying,
+        userId: this.userId,
+      }),
+      ({ currentSong, isPlaying, userId }) => {
+        if (userId && chatStore.socket) {
+          let activity = "Idle";
+          if (isPlaying && currentSong) {
+            activity = `Playing ${currentSong.title} by ${currentSong.artist}`;
+          }
+          chatStore.updateActivity(userId, activity);
+        }
+      },
+    );
   }
+
+  setUserId = (userId: string) => {
+    this.userId = userId;
+  };
 
   setAudio = (audio: HTMLAudioElement) => {
     this.audio = audio;
