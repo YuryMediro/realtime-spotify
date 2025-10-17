@@ -1,9 +1,7 @@
 import { chatStore } from "@/entities/store/chat-store";
-import { TopBar } from "@/widgets/TopBar/TopBar";
 import { useUser } from "@clerk/clerk-react";
 import { observer } from "mobx-react-lite";
 import { useEffect, useRef } from "react";
-
 import { UserList } from "./ui/UserList";
 import { NoSelectedUser } from "./ui/NoSelectedUser";
 import { ScrollArea } from "../kit/scroll-area";
@@ -35,8 +33,6 @@ export const Chat = observer(() => {
 
   return (
     <div className="h-full rounded-lg bg-gradient-to-b from-zinc-800 to-zinc-900 overflow-hidden">
-      <TopBar />
-
       <div className="grid lg:grid-cols-[250px_1fr] grid-cols-[80px_1fr] h-[calc(100vh-180px)]">
         <UserList />
 
