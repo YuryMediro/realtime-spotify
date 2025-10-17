@@ -18,7 +18,7 @@ export const Layout = () => {
         </div>
         {/* <AudioFooter /> */}
       </SidebarInset>
-      <FriendsSidebar/>
+      <FriendsSidebar />
     </SidebarProvider>
   );
 };

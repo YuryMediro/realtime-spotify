@@ -24,6 +24,9 @@ export const SectionSongs = observer(
         playerStore.setCurrentSong(song);
       }
     };
+
+    if (songs.length === 0) return null;
+
     return (
       <div className="mb-8">
         <div className="flex items-center justify-between mb-4">
@@ -36,7 +39,7 @@ export const SectionSongs = observer(
           </Button>
         </div>
 
-        <div className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {songs.map((song) => (
             <div
               key={song._id}

@@ -17,7 +17,10 @@ export const FriendsSidebar = observer(() => {
   }, [user]);
 
   return (
-    <Sidebar collapsible="none" className="h-svh hidden lg:flex rounded-lg bg-zinc-900">
+    <Sidebar
+      collapsible="none"
+      className="h-svh hidden lg:flex rounded-lg bg-zinc-900"
+    >
       <div className=" bg-zinc-900 flex flex-col">
         <div className="p-4 flex justify-between items-center border-b border-zinc-800">
           <div className="flex items-center gap-2">
