@@ -3,7 +3,7 @@ import { adminStore } from "@/entities/store/admin-store";
 import { SingInOAuthButton } from "@/features/SingInOAuthButton/SingInOAuthButton";
 import { cn } from "@/shared/lib/utils";
 import { SignedOut, UserButton } from "@clerk/clerk-react";
-import { LayoutDashboardIcon } from "lucide-react";
+import { DotIcon, LayoutDashboardIcon } from "lucide-react";
 import { observer } from "mobx-react-lite";
 import { Link } from "react-router-dom";
 

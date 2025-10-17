@@ -1,52 +1,55 @@
-import {
-  ResizableHandle,
-  ResizablePanel,
-  ResizablePanelGroup,
-} from "@/components/kit/resizable";
 import { Outlet } from "react-router-dom";
-import { LeftSidebar } from "./UI/LeftSidebar/LeftSidebar";
-import { FriendsSidebar } from "./UI/FriendsSidebar/FriendsSidebar";
 import { AudioFooter } from "./UI/AudioFooter/AudioFooter";
 import { AudioPlayer } from "@/features/AudioPlayer/AudioPlayer";
+import {
+  SidebarInset,
+  SidebarProvider,
+  SidebarTrigger,
+} from "@/components/kit/sidebar";
+import {
+  Breadcrumb,
+  BreadcrumbList,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbSeparator,
+  BreadcrumbPage,
+} from "@/components/kit/breadcrumb";
+import { Separator } from "@/components/kit/separator";
+import { LeftSidebar } from "@/widgets/Layout/UI/LeftSidebar/LeftSidebar";
 
 export const Layout = () => {
   return (
-    <div className="h-screen bg-black text-white flex flex-col">
-      <ResizablePanelGroup
-        direction="horizontal"
-        className="flex-1 flex h-full overflow-hidden p-2"
-      >
+    <SidebarProvider>
+      <LeftSidebar />
+      <SidebarInset>
         <AudioPlayer />
-
-        <ResizablePanel
-          defaultSize={20}
-          maxSize={30}
-          minSize={10}
-          className="hidden md:block"
-        >
-          <LeftSidebar />
-        </ResizablePanel>
-
-        <ResizableHandle className="w-2 bg-black rounded-lg transition-colors hidden md:block" />
-
-        <ResizablePanel defaultSize={80} className="md:default-size-60">
+        <header className="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12">
+          <div className="flex items-center gap-2 px-4">
+            <SidebarTrigger className="-ml-1" />
+            <Separator
+              orientation="vertical"
+              className="mr-2 data-[orientation=vertical]:h-4"
+            />
+            <Breadcrumb>
+              <BreadcrumbList>
+                <BreadcrumbItem className="hidden md:block">
+                  <BreadcrumbLink href="#">
+                    Building Your Application
+                  </BreadcrumbLink>
+                </BreadcrumbItem>
+                <BreadcrumbSeparator className="hidden md:block" />
+                <BreadcrumbItem>
+                  <BreadcrumbPage>Data Fetching</BreadcrumbPage>
+                </BreadcrumbItem>
+              </BreadcrumbList>
+            </Breadcrumb>
+          </div>
+        </header>
+        <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
           <Outlet />
-        </ResizablePanel>
-
-        <ResizableHandle className="w-2 bg-black rounded-lg transition-colors hidden md:block" />
-
-        <ResizablePanel
-          defaultSize={20}
-          minSize={0}
-          maxSize={25}
-          collapsedSize={0}
-          className="hidden md:block"
-        >
-          <FriendsSidebar />
-        </ResizablePanel>
-      </ResizablePanelGroup>
-
-      <AudioFooter />
-    </div>
+        </div>
+        <AudioFooter />
+      </SidebarInset>
+    </SidebarProvider>
   );
 };
