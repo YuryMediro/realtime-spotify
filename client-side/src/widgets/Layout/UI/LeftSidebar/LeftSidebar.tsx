@@ -41,7 +41,7 @@ export function LeftSidebar({
 }: React.ComponentProps<typeof Sidebar>) {
   return (
     <Sidebar collapsible="icon" {...props} className="border-none">
-      <SidebarContent className={"flex flex-col gap-3 bg-black"}>
+      <SidebarContent className="flex flex-col gap-3 bg-black">
         <Nav nav={data.nav} />
         <NavPlaylist items={data.navMain} />
       </SidebarContent>

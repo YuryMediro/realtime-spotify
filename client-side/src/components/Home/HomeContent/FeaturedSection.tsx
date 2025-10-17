@@ -24,7 +24,7 @@ export const FeaturedSection = observer(
     };
 
     return (
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
+      <div className="grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] sm:grid-cols-[repeat(auto-fit,minmax(380px,1fr))] gap-4 mb-8">
         {featuredSongs.map((song) => (
           <div
             key={song._id}

@@ -26,12 +26,12 @@ export const Nav = observer(
     const location = useLocation();
 
     return (
-      <SidebarGroup className="rounded-lg bg-zinc-900 py-4 px-1">
+      <SidebarGroup className="rounded-lg bg-zinc-900 py-4">
         <SidebarMenu className={"gap-3"}>
           {nav.map((item) => {
             const isActive = location.pathname === item.url;
             return (
-              <SidebarMenuItem>
+              <SidebarMenuItem key={item.title}>
                 <Link
                   to={item.url}
                   className={`hover:bg-zinc-800 rounded-md flex items-center${
