@@ -19,6 +19,7 @@ import {
   PopoverTrigger,
 } from "@/components/kit/popover";
 import { MobileSheetFooter } from "./MobileSheetFooter";
+import { useDominantColor } from "@/shared/hooks/useDominantColor";
 
 export const AudioFooter = observer(() => {
   const {
@@ -37,10 +38,16 @@ export const AudioFooter = observer(() => {
   } = playerStore;
 
   const [isHoverTime, setIsHoverTime] = useState(false);
-
+  const dominantColor = useDominantColor(currentSong?.imageUrl);
   return (
     <>
-      <footer className="hidden sm:block h-20 bg-zinc-900 px-4 relative mx-4 rounded-lg">
+      <footer
+        className="hidden sm:block h-20 px-4 relative mx-4 rounded-lg"
+        style={{
+          backgroundColor: dominantColor,
+          backgroundImage: `linear-gradient(135deg, ${dominantColor} 0%, rgba(24, 24, 27, 0.9) 100%)`,
+        }}
+      >
         <div className="absolute -top-13 left-0 right-0 flex justify-between text-md text-zinc-400 px-2">
           {isHoverTime && (
             <>
@@ -84,7 +91,7 @@ export const AudioFooter = observer(() => {
                   <div className="font-medium truncate hover:underline cursor-pointer">
                     {currentSong.title}
                   </div>
-                  <div className="text-sm text-zinc-400 truncate hover:underline cursor-pointer">
+                  <div className="text-sm font-medium text-zinc-400 truncate hover:underline cursor-pointer">
                     {currentSong.artist}
                   </div>
                 </div>
@@ -96,7 +103,7 @@ export const AudioFooter = observer(() => {
             <Button
               size="icon"
               variant="ghost"
-              className="inline-flex hover:text-white text-zinc-400"
+              className="inline-flex hover:text-white text-zinc-400 cursor-not-allowed"
             >
               <Shuffle className="h-4 w-4" />
             </Button>
@@ -137,7 +144,7 @@ export const AudioFooter = observer(() => {
             <Button
               size="icon"
               variant="ghost"
-              className="inline-flex hover:text-white text-zinc-400"
+              className="inline-flex hover:text-white text-zinc-400 cursor-not-allowed"
             >
               <Repeat className="h-4 w-4" />
             </Button>

@@ -118,6 +118,7 @@ export const AlbumCreateForm = observer(({ onClose }: AlbumCreateFormProps) => {
                 placeholder="Enter release year"
                 onChange={(e) => field.onChange(parseInt(e.target.value))}
                 disabled={isLoading}
+                className="[appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
               />
               {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
             </Field>

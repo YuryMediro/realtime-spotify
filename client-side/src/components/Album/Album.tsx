@@ -6,10 +6,12 @@ import { AlbumContent } from "./AlbumContent/AlbumContent";
 import { PlayButton } from "./AlbumContent/PlayButton";
 import { AlbumTable } from "./AlbumContent/AlbumTable";
 import { observer } from "mobx-react-lite";
+import { useDominantColor } from "@/shared/hooks/useDominantColor";
 
 export const Album = observer(() => {
   const { albumId } = useParams();
   const { fetchAlbumsById, isLoading, currentAlbum } = musicStore;
+  const dominantColor = useDominantColor(currentAlbum?.imageUrl);
   useEffect(() => {
     if (albumId) fetchAlbumsById(albumId);
   }, [albumId]);
@@ -17,13 +19,15 @@ export const Album = observer(() => {
   if (isLoading) return null;
 
   return (
-    <div className={"h-full"}>
-      <ScrollArea className={"h-full rounded-md"}>
-        <div className={"min-h-full"}>
+    <div className="h-full">
+      <ScrollArea className="h-full">
+        <div className="min-h-full ">
           <div
-            className={
-              "absolute inset-0 bg-gradient-to-b from-[#5038a0]/80 via-zinc-900/80 to-zinc-900 pointer-events-none"
-            }
+            className={"absolute inset-0 pointer-events-none rounded-md"}
+            style={{
+              backgroundColor: dominantColor,
+              backgroundImage: `linear-gradient(135deg, ${dominantColor} 0%, rgba(24, 24, 27, 0.9) 100%)`,
+            }}
             aria-hidden="true"
           />
           <AlbumContent currentAlbum={currentAlbum} />

@@ -15,11 +15,13 @@ export const AlbumContent = ({ currentAlbum }: AlbumContentProps) => {
         />
         <div className="flex flex-col truncate gap-4 items-center lg:items-start ">
           <p className="text-sm font-medium">Album</p>
-          <h1 className="text-4xl font-bold truncate">{currentAlbum?.title}</h1>
-          <span className="font-medium text-white truncate">
+          <h1 className="text-lg sm:text-4xl font-bold truncate">
+            {currentAlbum?.title}
+          </h1>
+          <span className="font-medium text-zinc-400 truncate">
             {currentAlbum?.artist}
           </span>
-          <div className="flex items-center gap-2 text-sm text-zinc-100 truncate">
+          <div className="flex items-center gap-2 text-sm text-zinc-400 truncate">
             <span className="truncate">
               • {currentAlbum?.songs.length} songs
             </span>

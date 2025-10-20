@@ -2,6 +2,7 @@ import { Button } from "@/components/kit/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/kit/sheet";
 import { Slider } from "@/components/kit/slider";
 import { playerStore } from "@/entities/store/player-store";
+import { useDominantColor } from "@/shared/hooks/useDominantColor";
 import { formatDuration } from "@/shared/lib/format/formatDuration";
 import {
   Pause,
@@ -28,10 +29,17 @@ export const MobileSheetFooter = observer(() => {
     canGoPrev,
   } = playerStore;
   const [isHoverTime, setIsHoverTime] = useState(false);
+  const dominantColor = useDominantColor(currentSong?.imageUrl);
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <footer className="sm:hidden h-20 bg-zinc-900 px-4 relative mx-4 rounded-lg">
+        <footer
+          className="sm:hidden h-20 px-4 relative mx-4 rounded-lg"
+          style={{
+            backgroundColor: dominantColor,
+            backgroundImage: `linear-gradient(135deg, ${dominantColor} 0%, rgba(24, 24, 27, 0.9) 100%)`,
+          }}
+        >
           <div className="absolute -top-13 left-0 right-0 flex justify-between text-md text-zinc-400 px-2">
             {isHoverTime && (
               <>
@@ -104,7 +112,13 @@ export const MobileSheetFooter = observer(() => {
         side="bottom"
         className="h-full bg-zinc-900 border-zinc-800 rounded-t-2xl"
       >
-        <div className="flex flex-col h-full items-center pt-15 mx-7">
+        <div
+          className="flex flex-col h-full items-center pt-15 px-7"
+          style={{
+            backgroundColor: dominantColor,
+            backgroundImage: `linear-gradient(135deg, ${dominantColor} 0%, rgba(24, 24, 27, 0.9) 100%)`,
+          }}
+        >
           <div className="flex flex-col">
             {currentSong && (
               <>
