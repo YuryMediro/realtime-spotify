@@ -8,6 +8,7 @@ import { SignedOut, UserButton } from "@clerk/clerk-react";
 import { LayoutDashboardIcon } from "lucide-react";
 import { observer } from "mobx-react-lite";
 import { Link } from "react-router-dom";
+import { FaSpotify } from "react-icons/fa6";
 
 export const MainHeader = observer(() => {
   const { isAdmin } = adminStore;
@@ -23,8 +24,8 @@ export const MainHeader = observer(() => {
         <div className="flex items-center justify-between w-full">
           <div className="flex items-center gap-2">
             <Link to={"/"} className="flex items-center gap-2">
-              <img src="spotify.png" alt="Spotify logo" className={"size-8"} />
-              Spotify
+              <FaSpotify className="size-8 text-green-500" />
+              <span className="hidden sm:block"> Spotify</span>
             </Link>
           </div>
           <div className="flex items-center gap-4">
