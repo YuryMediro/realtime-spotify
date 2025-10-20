@@ -13,6 +13,11 @@ import {
 } from "lucide-react";
 import { observer } from "mobx-react-lite";
 import { useState } from "react";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/kit/popover";
 
 export const AudioFooter = observer(() => {
   const {
@@ -31,7 +36,6 @@ export const AudioFooter = observer(() => {
   } = playerStore;
 
   const [isHoverTime, setIsHoverTime] = useState(false);
-  const [isHoverVolume, setIsHoverVolume] = useState(false);
 
   return (
     <footer className="h-20 bg-zinc-900 px-4 relative mx-4 rounded-lg">
@@ -61,12 +65,12 @@ export const AudioFooter = observer(() => {
           className="w-full h-full hover:cursor-grab active:cursor-grabbing"
           trackClassName="h-1 bg-zinc-600"
           rangeClassName="bg-green-500"
-          thumbClassName="w-3 h-3 bg-green-500"
+          thumbClassName="w-3 h-3 bg-green-500 border-none"
         />
       </div>
 
-      <div className="flex justify-center sm:justify-between items-center h-full mx-auto">
-        <div className="hidden sm:flex items-center gap-4">
+      <div className="flex justify-between items-center h-full mx-auto">
+        <div className="flex items-center gap-4">
           {currentSong && (
             <>
               <img
@@ -98,7 +102,7 @@ export const AudioFooter = observer(() => {
             <Button
               size="icon"
               variant="ghost"
-              className="hover:text-white text-zinc-400"
+              className="hover:text-white text-zinc-400 hidden sm:flex"
               onClick={playPrev}
               disabled={!canGoPrev}
             >
@@ -121,7 +125,7 @@ export const AudioFooter = observer(() => {
             <Button
               size="icon"
               variant="ghost"
-              className="hover:text-white text-zinc-400"
+              className="hover:text-white text-zinc-400 hidden sm:flex"
               onClick={playNext}
               disabled={!canGoNext}
             >
@@ -137,45 +141,34 @@ export const AudioFooter = observer(() => {
           </Button>
         </div>
 
-        <div className="hidden sm:flex items-center gap-2 relative">
-          <div
-            className="relative group"
-            onMouseEnter={() => setIsHoverVolume(true)}
-            onMouseLeave={() => setTimeout(() => setIsHoverVolume(false), 2000)}
-          >
-            <Button
-              size="icon"
-              variant="ghost"
-              className="hover:text-white text-zinc-400"
-            >
-              <Volume1 className="h-7 w-7" />
-            </Button>
-
-            {isHoverVolume && (
-              <div
-                className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-3 bg-zinc-800 rounded-lg p-3 shadow-lg border border-zinc-700"
-                onMouseEnter={() => setIsHoverVolume(true)}
-                onMouseLeave={() =>
-                  setTimeout(() => setIsHoverVolume(false), 2000)
-                }
+        <div className="hidden sm:flex items-center gap-2">
+          <Popover>
+            <PopoverTrigger asChild>
+              <Button
+                size="icon"
+                variant="ghost"
+                className="hover:text-white text-zinc-400"
               >
-                <Slider
-                  className="h-32 hover:cursor-grab active:cursor-grabbing"
-                  orientation="vertical"
-                  step={1}
-                  max={100}
-                  value={[volume]}
-                  onValueChange={(value) => setVolume(value[0])}
-                  trackClassName="w-1 bg-zinc-600"
-                  rangeClassName="bg-white"
-                  thumbClassName="w-3 h-3 bg-white"
-                />
-                <div className="text-xs text-white text-center mt-2">
-                  {volume}%
-                </div>
+                <Volume1 className="h-7 w-7" />
+              </Button>
+            </PopoverTrigger>
+            <PopoverContent className="w-auto p-3 bg-zinc-800 border-zinc-700">
+              <Slider
+                className="h-32 hover:cursor-grab active:cursor-grabbing text-green-500"
+                orientation="vertical"
+                step={1}
+                max={100}
+                value={[volume]}
+                onValueChange={(value) => setVolume(value[0])}
+                trackClassName="w-1 bg-zinc-600"
+                rangeClassName=" bg-green-500"
+                thumbClassName="w-3 h-3 bg-white bg-green-500 border-none"
+              />
+              <div className="text-xs text-white text-center mt-2">
+                {volume}%
               </div>
-            )}
-          </div>
+            </PopoverContent>
+          </Popover>
         </div>
       </div>
     </footer>
