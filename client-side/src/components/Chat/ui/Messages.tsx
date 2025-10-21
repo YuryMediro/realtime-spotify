@@ -8,7 +8,7 @@ import { MessageInput } from "./MessageInput";
 import { ScrollArea } from "@/components/kit/scroll-area";
 import { Avatar, AvatarImage } from "@/components/kit/avatar";
 
-export const ChatId = observer(() => {
+export const Messages = observer(() => {
   const { user } = useUser();
   const { fetchUsers, fetchMessage, selectedUser, messages } = chatStore;
 

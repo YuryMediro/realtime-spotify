@@ -10,7 +10,7 @@ export const UserList = observer(() => {
     chatStore;
 
   return (
-    <div className="border-r border-zinc-800 sm:flex hidden">
+    <div className="border-r border-zinc-800 md:block hidden">
       <div className="flex flex-col h-full">
         <ScrollArea className="h-[calc(100vh-180px)] ">
           <div className="space-y-2">
@@ -21,9 +21,12 @@ export const UserList = observer(() => {
                 const isOnline = isUserOnline(user.clerkId);
                 return (
                   <>
-                    <Link to={`/chat/${user.clerkId}`} className="flex gap-2">
+                    <Link
+                      to={`/chat/${user.clerkId}`}
+                      key={user._id}
+                      className="flex gap-2"
+                    >
                       <div
-                        key={user._id}
                         onClick={() => setSelectedUser(user)}
                         className={`flex items-center max-w-[280px] justify-center lg:justify-start gap-3 p-3
 										rounded-lg cursor-pointer transition-colors ${selectedUser?.clerkId === user.clerkId ? "bg-zinc-600" : "hover:bg-zinc-700"}`}

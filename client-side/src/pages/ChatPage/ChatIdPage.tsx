@@ -1,5 +1,5 @@
-import { Chat } from "@/components/Chat/Chat";
+import { ChatId } from "@/components/Chat/ChatId";
 
 export const ChatIdPage = () => {
-  return <Chat />;
+  return <ChatId />;
 };

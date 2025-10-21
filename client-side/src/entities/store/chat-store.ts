@@ -60,6 +60,19 @@ class ChatStore {
     this.userActivities.set(userId, activity);
   };
 
+  getLastMessageForUser = (userId: string): IMessage | null => {
+    const userMessages = this.messages.filter(
+      (message) => message.senderId === userId || message.receiverId === userId,
+    );
+
+    if (userMessages.length === 0) return null;
+
+    return userMessages.sort(
+      (a, b) =>
+        new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
+    )[0];
+  };
+
   fetchUsers = async (): Promise<void> => {
     this.setLoading(true);
     this.setError(null);
