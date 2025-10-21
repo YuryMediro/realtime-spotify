@@ -2,7 +2,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/kit/avatar";
 import { ScrollArea } from "@/components/kit/scroll-area";
 import { chatStore } from "@/entities/store/chat-store";
 import { formatTimeChat } from "@/shared/lib/format/formatTimeChat";
-import { UserListSkeleton } from "@/shared/ui/skeleton/UserListSkeleton";
+import { UserListMobileSkeleton } from "@/shared/ui/skeleton/UserListMobileSkeleton";
 import { observer } from "mobx-react-lite";
 import { Link } from "react-router-dom";
 
@@ -15,13 +15,12 @@ export const UserListMobile = observer(() => {
     setSelectedUser,
     getLastMessageForUser,
   } = chatStore;
-
   return (
     <div className="flex flex-col h-full w-full">
       <ScrollArea className="h-[calc(100vh-180px)] ">
         <div className="space-y-2">
           {isLoading ? (
-            <UserListSkeleton />
+            <UserListMobileSkeleton />
           ) : (
             users.map((user) => {
               const isOnline = isUserOnline(user.clerkId);
