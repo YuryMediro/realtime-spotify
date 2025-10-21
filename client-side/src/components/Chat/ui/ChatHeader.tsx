@@ -1,6 +1,9 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/kit/avatar";
+import { Button } from "@/components/kit/button";
 import { chatStore } from "@/entities/store/chat-store";
+import { ArrowLeft } from "lucide-react";
 import { observer } from "mobx-react-lite";
+import { Link } from "react-router-dom";
 
 export const ChatHeader = observer(() => {
   const { selectedUser, isUserOnline } = chatStore;
@@ -10,8 +13,13 @@ export const ChatHeader = observer(() => {
   const isOnline = isUserOnline(selectedUser.clerkId);
 
   return (
-    <div className="p-4 border-b border-zinc-800">
+    <div className="py-2.5 px-4 border-b border-zinc-800 bg-zinc-600 rounded-lg">
       <div className="flex items-center gap-3">
+        <Link to={"/chat"}>
+          <Button variant="ghost">
+            <ArrowLeft />
+          </Button>
+        </Link>
         <Avatar className="size-10 border border-zinc-800">
           <AvatarImage
             src={selectedUser.imageUrl}
@@ -23,7 +31,7 @@ export const ChatHeader = observer(() => {
         </Avatar>
         <div>
           <h2 className="font-medium">{selectedUser.fullName}</h2>
-          <p className="text-sm text-zinc-400">
+          <p className="text-sm text-zinc-300">
             {isOnline ? "Online" : "Offline"}
           </p>
         </div>

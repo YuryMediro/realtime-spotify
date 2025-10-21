@@ -1,6 +1,7 @@
 import { AdminPage } from "@/pages/AdminPage/AdminPage";
 import { AlbumPage } from "@/pages/AlbumPage/AlbumPage";
 import { AuthCallbackPage } from "@/pages/AuthCallbackPage/AuthCallbackPage";
+import { ChatIdPage } from "@/pages/ChatPage/ChatIdPage";
 import { ChatPage } from "@/pages/ChatPage/ChatPage";
 import { HomePage } from "@/pages/HomePage/HomePage";
 import { NotFoundPage } from "@/pages/NotFoundPage/NotFoundPage";
@@ -27,6 +28,7 @@ export const AppRoute = () => {
         <Route path={"/"} element={<HomePage />} />
         <Route path={"/albums/:albumId"} element={<AlbumPage />} />
         <Route path={"/chat"} element={<ChatPage />} />
+        <Route path={"/chat/:userId"} element={<ChatIdPage />} />
       </Route>
     </Routes>
   );

@@ -1,6 +1,6 @@
 export const NoSelectedUser = () => {
   return (
-    <div className="flex flex-col items-center justify-center h-full space-y-6">
+    <div className="flex flex-col items-center justify-center w-full h-full space-y-6">
       <img
         src="/spotify.png"
         alt="Spotify"

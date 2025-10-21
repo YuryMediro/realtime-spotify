@@ -13,7 +13,7 @@ export const NavUser = ({}) => {
     return (
       <SidebarMenu>
         <SidebarMenuItem>
-          <SidebarMenuButton size="lg" disabled>
+          <SidebarMenuButton size="lg">
             <SignedOut>
               <SingInOAuthButton />
             </SignedOut>
