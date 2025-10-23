@@ -22,12 +22,14 @@ export const Messages = observer(() => {
     if (selectedUser) fetchMessage(selectedUser.clerkId);
   }, [selectedUser, fetchMessage]);
 
-  useEffect(() => {
-    scrollToBottom();
-  }, [messages]);
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView();
   };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages, scrollToBottom]);
+  
   return (
     <div className="flex flex-col h-full w-full flex-1 min-w-0">
       <ChatHeader />

@@ -21,8 +21,19 @@ class ChatStore {
 
   constructor() {
     makeAutoObservable(this);
+    this.loadSelectedUserFromStorage();
   }
-
+  loadSelectedUserFromStorage = (): void => {
+      const savedUser = localStorage.getItem("selectedUser");
+      if (savedUser) {
+        try {
+          this.selectedUser = JSON.parse(savedUser);
+        } catch (error) {
+          console.error(error);
+        }
+      }
+    
+  };
   setUsers = (users: IUser[]): void => {
     this.users = users;
   };
@@ -34,6 +45,12 @@ class ChatStore {
   };
   setSelectedUser = (selectedUser: IUser | null): void => {
     this.selectedUser = selectedUser;
+
+      if (selectedUser) {
+        localStorage.setItem("selectedUser", JSON.stringify(selectedUser));
+      } else {
+        localStorage.removeItem("selectedUser");
+      }
   };
   setMessage = (messages: IMessage[]): void => {
     this.messages = messages;
@@ -87,12 +104,12 @@ class ChatStore {
     }
   };
 
-  fetchMessage = async (useId: string): Promise<void> => {
+  fetchMessage = async (userId: string): Promise<void> => {
     this.setLoading(true);
     this.setError(null);
 
     try {
-      const message = await chatApi.getMessages(useId);
+      const message = await chatApi.getMessages(userId);
       this.setMessage(message);
     } catch (error: any) {
       this.setError(error.response?.data?.message || error.message);
