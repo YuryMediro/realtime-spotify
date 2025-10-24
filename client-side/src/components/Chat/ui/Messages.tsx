@@ -7,6 +7,8 @@ import { ChatHeader } from "./ChatHeader";
 import { MessageInput } from "./MessageInput";
 import { ScrollArea } from "@/components/kit/scroll-area";
 import { Avatar, AvatarImage } from "@/components/kit/avatar";
+import { Button } from "@/components/kit/button";
+import { ArrowDown } from "lucide-react";
 
 export const Messages = observer(() => {
   const { user } = useUser();
@@ -29,7 +31,7 @@ export const Messages = observer(() => {
   useEffect(() => {
     scrollToBottom();
   }, [messages, scrollToBottom]);
-  
+
   return (
     <div className="flex flex-col h-full w-full flex-1 min-w-0">
       <ChatHeader />
@@ -63,8 +65,17 @@ export const Messages = observer(() => {
             </div>
           ))}
         </div>
+        <Button
+          type="button"
+          size="icon"
+          className="absolute bottom-4 right-4 size-10 rounded-full p-2 shadow-lg bg-zinc-700/90 hover:bg-zinc-600/90 z-10"
+          onClick={scrollToBottom}
+        >
+          <ArrowDown className="text-white" />
+        </Button>
         <div ref={messagesEndRef} />
       </ScrollArea>
+
       <MessageInput />
     </div>
   );
