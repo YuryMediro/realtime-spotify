@@ -4,15 +4,17 @@ import { PlayButtonSong } from "./PlayButtonSong";
 import { SectionSongsSkeleton } from "@/shared/ui/skeleton/SectionSongsSkeleton";
 import { playerStore } from "@/entities/store/player-store";
 import { observer } from "mobx-react-lite";
+import { Link } from "react-router-dom";
 
 interface SectionSongsProps {
   title: string;
   songs: ISongs[];
   isLoading: boolean;
+  link: string;
 }
 
 export const SectionSongs = observer(
-  ({ isLoading, songs, title }: SectionSongsProps) => {
+  ({ isLoading, songs, title, link }: SectionSongsProps) => {
     if (isLoading) return <SectionSongsSkeleton />;
 
     const { currentSong } = playerStore;
@@ -31,16 +33,17 @@ export const SectionSongs = observer(
       <div className="mb-8">
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-xl sm:text-2xl font-bold">{title}</h2>
-          <Button
-            variant="link"
-            className="text-sm text-zinc-400 hover:text-white"
-          >
-            Show all
-          </Button>
+          <Link to={link}>
+            <Button
+              variant="link"
+              className="text-sm text-zinc-400 hover:text-white"
+            >
+              Show all
+            </Button>
+          </Link>
         </div>
-
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {songs.map((song) => (
+          {songs.slice(0, 4).map((song) => (
             <div
               key={song._id}
               onClick={() => handlePlayTrack(song)}

@@ -26,7 +26,6 @@ export const UserListMobile = observer(() => {
               const isOnline = isUserOnline(user.clerkId);
               const lastMessage = getLastMessageForUser(user.clerkId);
               return (
-                <>
                   <Link
                     to={`/chat/${user.clerkId}`}
                     key={user._id}
@@ -71,7 +70,6 @@ export const UserListMobile = observer(() => {
                       </div>
                     </div>
                   </Link>
-                </>
               );
             })
           )}

@@ -133,6 +133,33 @@ class MusicStore {
       this.setLoading(false);
     }
   };
+  fetchMadeForYouSongsAll = async (): Promise<void> => {
+    this.setLoading(true);
+    this.setError(null);
+
+    try {
+      const songs = await musicApi.getMadeForYouSongsAll();
+      this.setMadeForYouSongs(songs);
+    } catch (error: any) {
+      this.setError(error.response?.data?.message || error.message);
+    } finally {
+      this.setLoading(false);
+    }
+  };
+
+  fetchTrendingSongsAll = async (): Promise<void> => {
+    this.setLoading(true);
+    this.setError(null);
+
+    try {
+      const songs = await musicApi.getTrendingSongsAll();
+      this.setTrendingSongs(songs);
+    } catch (error: any) {
+      this.setError(error.response?.data?.message || error.message);
+    } finally {
+      this.setLoading(false);
+    }
+  };
 
   fetchStatistics = async (): Promise<void> => {
     this.setLoading(true);

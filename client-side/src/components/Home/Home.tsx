@@ -32,6 +32,7 @@ export const Home = observer(() => {
       initializeQueue(allSongs);
     }
   }, [initializeQueue, madeForYouSongs, trendingSongs, featuredSongs]);
+
   return (
     <main className="rounded-md overflow-hidden h-full bg-gradient-to-b from-zinc-800 to-zinc-900">
       <ScrollArea className="h-[calc(100vh-180px)]">
@@ -48,11 +49,13 @@ export const Home = observer(() => {
               songs={madeForYouSongs}
               title={"Made For You"}
               isLoading={isLoading}
+              link={"/made-fo-you-songs"}
             />
             <SectionSongs
               songs={trendingSongs}
               title={"Trending"}
               isLoading={isLoading}
+              link={"/trending-songs"}
             />
           </div>
         </div>

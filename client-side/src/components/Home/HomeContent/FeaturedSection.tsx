@@ -31,7 +31,7 @@ export const FeaturedSection = observer(
     if (featuredSongs.length === 0) {
       return (
         <div className="flex flex-col items-center justify-center py-12 px-4 text-center mb-8">
-          <div className="relative  mb-8">
+          <div className="relative mb-8">
             <div
               className="absolute -inset-1 bg-gradient-to-r from-emerald-500 to-sky-500 rounded-full blur-lg
        opacity-75 animate-pulse"
@@ -59,7 +59,7 @@ export const FeaturedSection = observer(
       );
     }
     return (
-      <div className="grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] sm:grid-cols-[repeat(auto-fit,minmax(380px,1fr))] gap-4 mb-8">
+      <div className="grid grid-cols-[repeat(auto-fit,minmax(260px,1fr))] sm:grid-cols-[repeat(auto-fit,minmax(380px,1fr))] gap-4 mb-8">
         {featuredSongs.map((song) => (
           <div
             key={song._id}

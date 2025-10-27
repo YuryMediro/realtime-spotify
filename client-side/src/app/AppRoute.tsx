@@ -5,6 +5,8 @@ import { ChatIdPage } from "@/pages/ChatPage/ChatIdPage";
 import { ChatPage } from "@/pages/ChatPage/ChatPage";
 import { HomePage } from "@/pages/HomePage/HomePage";
 import { NotFoundPage } from "@/pages/NotFoundPage/NotFoundPage";
+import { MadeForYouSongsPage } from "@/pages/SongsPage/MadeForYouSongsPage";
+import { TrendingSongsPage } from "@/pages/SongsPage/TrendingSongsPage";
 import { Layout } from "@/widgets/Layout/Layout";
 import { AuthenticateWithRedirectCallback } from "@clerk/clerk-react";
 import { Route, Routes } from "react-router-dom";
@@ -29,6 +31,8 @@ export const AppRoute = () => {
         <Route path={"/albums/:albumId"} element={<AlbumPage />} />
         <Route path={"/chat"} element={<ChatPage />} />
         <Route path={"/chat/:userId"} element={<ChatIdPage />} />
+        <Route path={"/made-fo-you-songs"} element={<MadeForYouSongsPage />} />
+        <Route path={"/trending-songs"} element={<TrendingSongsPage />} />
       </Route>
     </Routes>
   );

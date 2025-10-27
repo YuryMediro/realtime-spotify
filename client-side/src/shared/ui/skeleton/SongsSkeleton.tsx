@@ -1,0 +1,26 @@
+import { Skeleton } from "@/components/kit/skeleton";
+
+export const SongsSkeleton = () => {
+  return (
+    <div className="mb-8">
+      <div className="flex items-center justify-between mb-4">
+        <Skeleton className="bg-zinc-700 rounded w-20 h-8 mb-2" />
+        <Skeleton className="h-8 bg-zinc-700 rounded w-1/6 mb-2" />
+      </div>
+      <div className="grid grid-cols-[repeat(auto-fit,minmax(260px,1fr))] sm:grid-cols-[repeat(auto-fit,minmax(380px,1fr))] gap-4 mb-8">
+        {Array.from({ length: 18 }).map((_, index) => (
+          <div
+            key={index}
+            className="flex items-center bg-zinc-800/50 rounded-md overflow-hidden animate-pulse"
+          >
+            <Skeleton className="w-16 sm:w-20 h-16 sm:h-20 bg-zinc-700 flex-shrink-0" />
+            <div className="flex-1 p-4">
+              <Skeleton className="h-4 bg-zinc-700 rounded w-1/2 mb-2" />
+              <Skeleton className="h-4 bg-zinc-700 rounded w-3/4 mb-2" />
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
