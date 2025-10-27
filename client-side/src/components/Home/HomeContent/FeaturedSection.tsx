@@ -65,7 +65,7 @@ export const FeaturedSection = observer(
             key={song._id}
             onClick={() => handlePlayTrack(song)}
             className="flex items-center bg-zinc-800/50 rounded-md overflow-hidden
-         hover:bg-zinc-700/50 transition-colors group cursor-pointer relative"
+         hover:bg-zinc-700/50 transition-colors group cursor-pointer relative border"
           >
             <img
               src={song.imageUrl}

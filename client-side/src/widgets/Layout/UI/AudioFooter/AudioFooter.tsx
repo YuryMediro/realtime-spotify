@@ -20,6 +20,11 @@ import {
 } from "@/components/kit/popover";
 import { MobileSheetFooter } from "./MobileSheetFooter";
 import { useDominantColor } from "@/shared/hooks/useDominantColor";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/kit/tooltip";
 
 export const AudioFooter = observer(() => {
   const {
@@ -100,23 +105,33 @@ export const AudioFooter = observer(() => {
           </div>
 
           <div className="flex items-center gap-4">
-            <Button
-              size="icon"
-              variant="ghost"
-              className="inline-flex hover:text-white text-zinc-400 cursor-not-allowed"
-            >
-              <Shuffle className="h-4 w-4" />
-            </Button>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button
+                  size="icon"
+                  variant="ghost"
+                  className="inline-flex hover:text-white text-zinc-400 cursor-not-allowed"
+                >
+                  <Shuffle className="h-4 w-4" />
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent>Shuffle</TooltipContent>
+            </Tooltip>
             <div className="flex items-center gap-2">
-              <Button
-                size="icon"
-                variant="ghost"
-                className="hover:text-white text-zinc-400 flex"
-                onClick={playPrev}
-                disabled={!canGoPrev}
-              >
-                <SkipBack className="h-4 w-4" />
-              </Button>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button
+                    size="icon"
+                    variant="ghost"
+                    className="hover:text-white text-zinc-400 flex"
+                    onClick={playPrev}
+                    disabled={!canGoPrev}
+                  >
+                    <SkipBack className="h-4 w-4" />
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent>Previous</TooltipContent>
+              </Tooltip>
 
               <Button
                 size="icon"
@@ -130,24 +145,33 @@ export const AudioFooter = observer(() => {
                   <Play className="h-5 w-5" />
                 )}
               </Button>
-
-              <Button
-                size="icon"
-                variant="ghost"
-                className="hover:text-white text-zinc-400 flex"
-                onClick={playNext}
-                disabled={!canGoNext}
-              >
-                <SkipForward className="h-4 w-4" />
-              </Button>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button
+                    size="icon"
+                    variant="ghost"
+                    className="hover:text-white text-zinc-400 flex"
+                    onClick={playNext}
+                    disabled={!canGoNext}
+                  >
+                    <SkipForward className="h-4 w-4" />
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent>Next</TooltipContent>
+              </Tooltip>
             </div>
-            <Button
-              size="icon"
-              variant="ghost"
-              className="inline-flex hover:text-white text-zinc-400 cursor-not-allowed"
-            >
-              <Repeat className="h-4 w-4" />
-            </Button>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button
+                  size="icon"
+                  variant="ghost"
+                  className="inline-flex hover:text-white text-zinc-400 cursor-not-allowed"
+                >
+                  <Repeat className="h-4 w-4" />
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent>Repeat</TooltipContent>
+            </Tooltip>
           </div>
 
           <div className="flex items-center gap-2">
