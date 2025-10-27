@@ -1,10 +1,9 @@
 import { Button } from "@/components/kit/button";
-import { useSignIn } from "@clerk/clerk-react";
 import { FcGoogle } from "react-icons/fc";
+import { useSignIn } from "@clerk/clerk-react";
 
 export const SingInOAuthButton = () => {
   const { signIn, isLoaded } = useSignIn();
-
   const handleSignIn = () => {
     if (!isLoaded) return;
 
@@ -14,7 +13,6 @@ export const SingInOAuthButton = () => {
       redirectUrlComplete: "/auth-callback",
     });
   };
-
   return (
     <Button
       onClick={handleSignIn}

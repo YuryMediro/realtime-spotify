@@ -7,7 +7,6 @@ import { NavUser } from "@/widgets/Layout/UI/LeftSidebar/NavUser";
 import {
   Sidebar,
   SidebarContent,
-  SidebarFooter,
   SidebarRail,
 } from "@/components/kit/sidebar";
 import { Nav } from "./Nav";
@@ -44,10 +43,8 @@ export function LeftSidebar({
       <SidebarContent className="flex flex-col gap-3 bg-black">
         <Nav nav={data.nav} />
         <NavPlaylist items={data.navMain} />
-      </SidebarContent>
-      <SidebarFooter>
         <NavUser />
-      </SidebarFooter>
+      </SidebarContent>
       <SidebarRail />
     </Sidebar>
   );

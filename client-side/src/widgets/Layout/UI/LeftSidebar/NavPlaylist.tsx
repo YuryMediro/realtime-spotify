@@ -39,7 +39,7 @@ export const NavPlaylist = observer(
       fetchAlbums();
     }, []);
     return (
-      <SidebarGroup className="rounded-lg bg-zinc-900 py-4 h-full mb-3">
+      <SidebarGroup className="rounded-lg bg-zinc-900 py-4 h-full ">
         <SidebarMenu>
           {items.map((item) => (
             <Collapsible
