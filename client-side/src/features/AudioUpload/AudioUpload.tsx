@@ -1,7 +1,6 @@
 import { Button } from "@/components/kit/button";
 import { Label } from "@/components/kit/label";
 import type { useAudioUpload } from "@/shared/hooks/useAudioUpload";
-import { formatDuration } from "@/shared/lib/format/formatDuration";
 
 interface AudioUploadProps {
   isLoading?: boolean;
@@ -17,7 +16,6 @@ export const AudioUpload = ({
     selectedFile,
     removeAudio,
     fileInputRef,
-    duration,
   } = uploadState;
   return (
     <>
@@ -64,11 +62,6 @@ export const AudioUpload = ({
             </Button>
           )}
         </div>
-        {duration > 0 && (
-          <div className="text-xs text-zinc-400">
-            Duration: {formatDuration(duration)}
-          </div>
-        )}
       </div>
     </>
   );

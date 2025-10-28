@@ -1,4 +1,4 @@
-import { makeAutoObservable, reaction } from "mobx";
+import { action, makeAutoObservable, reaction } from "mobx";
 import type { ISongs } from "../types/type";
 import { chatStore } from "./chat-store";
 
@@ -54,17 +54,30 @@ class PlayerStore {
   private setUpAudioEvents = () => {
     if (!this.audio) return;
 
-    this.audio.addEventListener("timeupdate", () => {
-      this.currentTime = this.audio!.currentTime;
-    });
+    this.audio.addEventListener(
+      "timeupdate",
+      action(() => {
+        if (this.audio) {
+          this.currentTime = this.audio.currentTime;
+        }
+      }),
+    );
 
-    this.audio.addEventListener("loadedmetadata", () => {
-      this.duration = this.audio!.duration;
-    });
+    this.audio.addEventListener(
+      "loadedmetadata",
+      action(() => {
+        if (this.audio) {
+          this.duration = this.audio.duration;
+        }
+      }),
+    );
 
     this.audio.addEventListener("ended", () => {
-      this.playNext();
+      this.handleTrackEnd();
     });
+  };
+  private handleTrackEnd = () => {
+    this.playNext();
   };
 
   initializeQueue = (songs: ISongs[]) => {
@@ -86,6 +99,7 @@ class PlayerStore {
 
   setCurrentSong = (song: ISongs) => {
     const index = this.queue.findIndex((s) => s._id === song._id);
+    if (index === -1) return;
     this.currentSong = song;
     this.currentIndex = index;
     this.isPlaying = true;
@@ -95,7 +109,26 @@ class PlayerStore {
   togglePlay = () => {
     this.isPlaying = !this.isPlaying;
     if (this.audio) {
-      this.isPlaying ? this.audio.play() : this.audio.pause();
+      if (this.isPlaying) {
+        this.playAudio();
+      } else {
+        this.audio.pause();
+      }
+    } else {
+      if (this.queue.length > 0) {
+        this.setCurrentSong(this.queue[0]);
+      }
+    }
+  };
+  private playAudio = async () => {
+    if (!this.audio) return;
+
+    try {
+      await this.audio.play();
+    } catch (error) {
+      if (this.isPlaying) {
+        this.isPlaying = false;
+      }
     }
   };
 
@@ -122,10 +155,12 @@ class PlayerStore {
       this.isPlaying = false;
     }
   };
-  private loadAndPlay = () => {
-    if (this.audio && this.currentSong) {
-      this.audio.src = this.currentSong.audioUrl;
-      if (this.isPlaying) this.audio.play();
+  private loadAndPlay = async () => {
+    if (!this.audio || !this.currentSong) return;
+    this.audio.pause();
+    this.audio.src = this.currentSong.audioUrl;
+    if (this.isPlaying) {
+      this.playAudio();
     }
   };
 

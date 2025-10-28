@@ -14,69 +14,20 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/kit/select";
-import { musicStore } from "@/entities/store/music-store";
 import { AudioUpload } from "@/features/AudioUpload/AudioUpload";
 import { ImageUpload } from "@/features/ImageUpload/ImageUpload";
-import { SongCreateSchema } from "@/features/ValidateSchema/SongCreateSchema";
-import { useAudioUpload } from "@/shared/hooks/useAudioUpload";
-import { useImageUpload } from "@/shared/hooks/useImageUpload";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { useSongCreateForm } from "@/shared/hooks/useForm/useSongCreateForm";
+import { formatDuration } from "@/shared/lib/format/formatDuration";
 import { observer } from "mobx-react-lite";
-import { Controller, useForm } from "react-hook-form";
-import toast from "react-hot-toast";
-import * as z from "zod";
+import { Controller } from "react-hook-form";
 
 interface SongCreateFormProps {
   onClose: () => void;
 }
 
 export const SongCreateForm = observer(({ onClose }: SongCreateFormProps) => {
-  const { isLoading, createSong, albums } = musicStore;
-  const imageUpload = useImageUpload();
-  const audioUpload = useAudioUpload();
-
-  const form = useForm<z.infer<typeof SongCreateSchema>>({
-    resolver: zodResolver(SongCreateSchema),
-    mode: "onChange",
-    values: {
-      title: "",
-      artist: "",
-      albumId: "",
-      duration: "0",
-      imageFile: null,
-      audioFile: null,
-    },
-  });
-
-  const onSubmit = async (data: z.infer<typeof SongCreateSchema>) => {
-    if (!imageUpload.selectedFile || !audioUpload.selectedFile) {
-      toast.error("Please upload both audio and image files");
-      return;
-    }
-
-    const formData = new FormData();
-    formData.append("title", data.title);
-    formData.append("artist", data.artist);
-    formData.append("duration", data.duration);
-    if (data.albumId) formData.append("albumId", data.albumId);
-    formData.append("imageFile", imageUpload.selectedFile);
-    formData.append("audioFile", audioUpload.selectedFile);
-
-    try {
-      await createSong(formData);
-      onClose();
-      form.reset({
-        title: "",
-        artist: "",
-        albumId: "",
-        duration: "0",
-        audioFile: null,
-        imageFile: null,
-      });
-      imageUpload.removeImage();
-      audioUpload.removeAudio();
-    } catch (error) {}
-  };
+  const { albums, audioUpload, form, imageUpload, isLoading, onSubmit } =
+    useSongCreateForm(onClose);
 
   return (
     <form onSubmit={form.handleSubmit(onSubmit)}>
@@ -124,6 +75,25 @@ export const SongCreateForm = observer(({ onClose }: SongCreateFormProps) => {
           )}
         />
         <Controller
+          name="duration"
+          control={form.control}
+          render={({ field, fieldState }) => (
+            <Field data-invalid={fieldState.invalid}>
+              <FieldLabel htmlFor="duration">Duration</FieldLabel>
+              <Input
+                {...field}
+                id="duration"
+                aria-invalid={fieldState.invalid}
+                type="string"
+                placeholder="Duration will be set automatically"
+                disabled={true}
+                value={formatDuration(audioUpload.duration)}
+              />
+              {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
+            </Field>
+          )}
+        />
+        <Controller
           name="albumId"
           control={form.control}
           render={({ field, fieldState }) => (
@@ -134,14 +104,24 @@ export const SongCreateForm = observer(({ onClose }: SongCreateFormProps) => {
                 disabled={isLoading}
                 onValueChange={field.onChange}
               >
-                <SelectTrigger id="albumId" aria-invalid={fieldState.invalid}>
+                <SelectTrigger
+                  className="cursor-pointer"
+                  id="albumId"
+                  aria-invalid={fieldState.invalid}
+                >
                   <SelectValue placeholder="Select album" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="auto">No Album (Single)</SelectItem>
+                  <SelectItem value="auto" className="cursor-pointer">
+                    No Album (Single)
+                  </SelectItem>
                   <SelectSeparator />
                   {albums.map((album) => (
-                    <SelectItem key={album._id} value={album._id}>
+                    <SelectItem
+                      key={album._id}
+                      value={album._id}
+                      className="cursor-pointer"
+                    >
                       {album.title}
                     </SelectItem>
                   ))}

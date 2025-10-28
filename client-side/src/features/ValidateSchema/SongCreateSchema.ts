@@ -18,5 +18,5 @@ export const SongCreateSchema = z.object({
   imageFile: z.instanceof(File).nullable(),
   audioFile: z.instanceof(File).nullable(),
   albumId: z.string().optional(),
-  duration: z.string(),
+  duration: z.number()
 });
