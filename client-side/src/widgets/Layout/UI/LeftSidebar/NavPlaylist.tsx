@@ -17,6 +17,7 @@ import { observer } from "mobx-react-lite";
 import { musicStore } from "@/entities/store/music-store";
 import { Link, useLocation } from "react-router-dom";
 import { useEffect } from "react";
+import { ScrollArea } from "@/components/kit/scroll-area";
 
 export const NavPlaylist = observer(
   ({
@@ -56,37 +57,41 @@ export const NavPlaylist = observer(
                     <ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
                   </SidebarMenuButton>
                 </CollapsibleTrigger>
-                <CollapsibleContent className={"flex flex-col gap-3 mt-1"}>
-                  {albums.map((album) => {
-                    const isActive =
-                      location.pathname === `/albums/${album._id}`;
-                    return (
-                      <SidebarMenuSubItem key={album._id}>
-                        <SidebarMenuSubButton asChild>
-                          <Link
-                            to={`/albums/${album._id}`}
-                            className={`p-6.5 hover:bg-zinc-800 rounded-md flex items-center gap-3 group cursor-pointer ${
-                              isActive ? "bg-white/10" : ""
-                            } `}
-                          >
-                            <img
-                              src={album.imageUrl}
-                              alt={"album img"}
-                              className="size-12 rounded-md flex-shrink-0 object-cover"
-                            />
-                            <div className="flex-1 min-w-0">
-                              <p className="font-medium truncate">
-                                {album.title}
-                              </p>
-                              <p className="text-sm text-zinc-400 truncate">
-                                Album • {album.artist}
-                              </p>
-                            </div>
-                          </Link>
-                        </SidebarMenuSubButton>
-                      </SidebarMenuSubItem>
-                    );
-                  })}
+                <CollapsibleContent>
+                  <ScrollArea className="h-[calc(100vh-280px)]">
+                    <SidebarMenu className="flex flex-col gap-3 mt-1 pr-2.5">
+                      {albums.map((album) => {
+                        const isActive =
+                          location.pathname === `/albums/${album._id}`;
+                        return (
+                          <SidebarMenuSubItem key={album._id}>
+                            <SidebarMenuSubButton asChild>
+                              <Link
+                                to={`/albums/${album._id}`}
+                                className={`p-6.5 hover:bg-zinc-800 rounded-md flex items-center gap-3 group cursor-pointer ${
+                                  isActive ? "bg-white/10" : ""
+                                } `}
+                              >
+                                <img
+                                  src={album.imageUrl}
+                                  alt={"album img"}
+                                  className="size-12 rounded-md flex-shrink-0 object-cover"
+                                />
+                                <div className="flex-1 min-w-0">
+                                  <p className="font-medium truncate">
+                                    {album.title}
+                                  </p>
+                                  <p className="text-sm text-zinc-400 truncate">
+                                    Album • {album.artist}
+                                  </p>
+                                </div>
+                              </Link>
+                            </SidebarMenuSubButton>
+                          </SidebarMenuSubItem>
+                        );
+                      })}
+                    </SidebarMenu>
+                  </ScrollArea>
                 </CollapsibleContent>
               </SidebarMenuItem>
             </Collapsible>
