@@ -181,7 +181,7 @@ class MusicStore {
 
     try {
       await musicApi.deleteSong(id);
-      this.songs = this.songs.filter((song) => song._id !== id);
+      this.setSongs(this.songs.filter((song) => song._id !== id));
 
       await this.fetchStatistics();
 
@@ -200,7 +200,7 @@ class MusicStore {
 
     try {
       await musicApi.deleteAlbumById(id);
-      this.albums = this.albums.filter((album) => album._id !== id);
+      this.setAlbums(this.albums.filter((album) => album._id !== id));
 
       await this.fetchStatistics();
 
