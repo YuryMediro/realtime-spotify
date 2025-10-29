@@ -1,0 +1,22 @@
+{
+	"name": "realtime-spotify",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"build": "npm install --prefix server-side && npm install --prefix client-side && npm run build --prefix client-side",
+		"start": "npm start --prefix server-side"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/YuryMediro/realtime-spotify.git"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"type": "commonjs",
+	"bugs": {
+		"url": "https://github.com/YuryMediro/realtime-spotify/issues"
+	},
+	"homepage": "https://github.com/YuryMediro/realtime-spotify#readme"
+}
