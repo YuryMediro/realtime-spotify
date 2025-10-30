@@ -15,7 +15,6 @@ export const UserList = observer(() => {
     setSelectedUser,
     getLastMessageForUser,
   } = chatStore;
-
   return (
     <div className="border-r border-zinc-800 md:block hidden">
       <div className="flex flex-col h-full">
@@ -29,13 +28,13 @@ export const UserList = observer(() => {
                 const lastMessage = getLastMessageForUser(user.clerkId);
                 return (
                   <Link
-                    to={`/chat/${user.clerkId}`}
+                    to={`/chat/${user._id}`}
                     key={user._id}
                     className="flex gap-2"
                   >
                     <div
                       onClick={() => setSelectedUser(user)}
-                      className={`flex border items-center max-w-[210px] justify-center lg:justify-start gap-3 p-2.5
+                      className={`flex border items-center max-w-[210px] lg:w-[210px] justify-center lg:justify-start gap-3 p-2.5
 										rounded-lg cursor-pointer transition-colors ${selectedUser?.clerkId === user.clerkId ? "bg-zinc-600" : "hover:bg-zinc-700"}`}
                     >
                       <div className="relative">

@@ -18,6 +18,7 @@ export const AuthCallbackPage = () => {
           firstName: user.firstName,
           lastName: user.lastName,
           imageUrl: user.imageUrl,
+          email: user.primaryEmailAddress?.emailAddress,
         });
       } catch (error) {
         console.log("Error auth callback", error);

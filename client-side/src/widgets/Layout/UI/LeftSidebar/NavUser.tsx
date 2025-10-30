@@ -7,7 +7,7 @@ import {
 import { SignedOut, UserButton, useSignIn, useUser } from "@clerk/clerk-react";
 import { FcGoogle } from "react-icons/fc";
 
-export const NavUser = ({}) => {
+export const NavUser = () => {
   const { user } = useUser();
   const { signIn, isLoaded } = useSignIn();
   const handleSignIn = () => {
@@ -61,4 +61,4 @@ export const NavUser = ({}) => {
       </SidebarMenu>
     </SidebarGroup>
   );
-};
+}
