@@ -2,7 +2,7 @@ import { Button } from "@/components/kit/button";
 import { LogIn } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
-export const SingInOAuthButton = () => {
+export const SingInButton = () => {
   const navigate = useNavigate();
 
   return (

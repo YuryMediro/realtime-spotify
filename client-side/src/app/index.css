@@ -109,8 +109,14 @@
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
 }
-.cl-footerAction {
+.cl-footerAction,
+.cl-socialButtonsBlockButton,
+.cl-dividerRow,
+.cl-formFieldHintText {
   display: none;
+}
+.cl-card {
+  gap: 0;
 }
 @layer base {
   * {

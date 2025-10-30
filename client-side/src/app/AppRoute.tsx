@@ -1,10 +1,19 @@
 import { AuthCallbackPage } from "@/pages/AuthCallbackPage/AuthCallbackPage";
 import { NotFoundPage } from "@/pages/NotFoundPage/NotFoundPage";
 import { Layout } from "@/widgets/Layout/Layout";
-import { AuthenticateWithRedirectCallback } from "@clerk/clerk-react";
-import { Suspense} from "react";
-import { Route, Routes } from "react-router-dom";
-import { AdminPage, AlbumPage, ChatIdPage, ChatPage, HomePage, MadeForYouSongsPage, PageLoader, TrendingSongsPage } from "./LazyRoute";
+import { AuthenticateWithRedirectCallback, Protect } from "@clerk/clerk-react";
+import { Suspense } from "react";
+import { Navigate, Route, Routes } from "react-router-dom";
+import {
+  AdminPage,
+  AlbumPage,
+  ChatIdPage,
+  ChatPage,
+  HomePage,
+  MadeForYouSongsPage,
+  PageLoader,
+  TrendingSongsPage,
+} from "./LazyRoute";
 import { AuthPage } from "@/pages/AuthPage/AuthPage";
 
 export const AppRoute = () => {
@@ -47,7 +56,9 @@ export const AppRoute = () => {
           path="/chat"
           element={
             <Suspense fallback={<PageLoader />}>
-              <ChatPage />
+              <Protect fallback={<Navigate to="/auth" />}>
+                <ChatPage />
+              </Protect>
             </Suspense>
           }
         />
@@ -55,7 +66,9 @@ export const AppRoute = () => {
           path="/chat/:userId"
           element={
             <Suspense fallback={<PageLoader />}>
-              <ChatIdPage />
+              <Protect fallback={<Navigate to="/auth" />}>
+                <ChatIdPage />
+              </Protect>
             </Suspense>
           }
         />

@@ -2,13 +2,13 @@ import { buttonVariants } from "@/components/kit/button";
 import { Separator } from "@/components/kit/separator";
 import { SidebarTrigger } from "@/components/kit/sidebar";
 import { adminStore } from "@/entities/store/admin-store";
-import { SingInOAuthButton } from "@/features/SingInOAuthButton/SingInOAuthButton";
 import { cn } from "@/shared/lib/utils";
 import { SignedOut, UserButton } from "@clerk/clerk-react";
 import { LayoutDashboardIcon } from "lucide-react";
 import { observer } from "mobx-react-lite";
 import { Link } from "react-router-dom";
 import { FaSpotify } from "react-icons/fa6";
+import { SingInButton } from "@/features/SingInButton/SingInButton";
 
 export const MainHeader = observer(() => {
   const { isAdmin } = adminStore;
@@ -40,7 +40,7 @@ export const MainHeader = observer(() => {
             )}
 
             <SignedOut>
-              <SingInOAuthButton />
+              <SingInButton />
             </SignedOut>
 
             <UserButton />
@@ -50,5 +50,3 @@ export const MainHeader = observer(() => {
     </header>
   );
 });
-
-// className="flex h-16 sticky shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12">
