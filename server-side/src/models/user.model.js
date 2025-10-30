@@ -15,8 +15,12 @@ const userSchema = new mongoose.Schema(
 			required: true,
 			unique: true,
 		},
+		email: {
+			type: String,
+			required: false,
+		},
 	},
 	{ timestamps: true } //  createdAt, updatedAt
-);
+)
 
 export const User = mongoose.model("User", userSchema);
