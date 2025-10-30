@@ -5,7 +5,7 @@ import { AuthenticateWithRedirectCallback } from "@clerk/clerk-react";
 import { Suspense} from "react";
 import { Route, Routes } from "react-router-dom";
 import { AdminPage, AlbumPage, ChatIdPage, ChatPage, HomePage, MadeForYouSongsPage, PageLoader, TrendingSongsPage } from "./LazyRoute";
-import { SignInPage } from "@/pages/SignInPage/SignInPage";
+import { AuthPage } from "@/pages/AuthPage/AuthPage";
 
 export const AppRoute = () => {
   return (
@@ -25,7 +25,7 @@ export const AppRoute = () => {
           </Suspense>
         }
       />
-      <Route path="/auth" element={<SignInPage />} />
+      <Route path="/auth" element={<AuthPage />} />
       <Route element={<Layout />}>
         <Route
           path="/"

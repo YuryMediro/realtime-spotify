@@ -23,7 +23,7 @@ export const NavUser = () => {
             >
               <SignedOut>
                 <LogIn />
-                <span className="text-sm font-medium">Sign up</span>
+                <span className="text-sm font-medium">Sign in</span>
               </SignedOut>
             </SidebarMenuButton>
           </SidebarMenuItem>

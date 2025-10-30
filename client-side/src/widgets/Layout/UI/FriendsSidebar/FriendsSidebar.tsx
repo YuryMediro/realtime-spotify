@@ -7,9 +7,10 @@ import { useEffect } from "react";
 import { observer } from "mobx-react-lite";
 import { LoginMessage } from "./LoginMessage";
 import { Sidebar } from "@/components/kit/sidebar";
+import { Link } from "react-router-dom";
 
 export const FriendsSidebar = observer(() => {
-  const { users, fetchUsers, isUserOnline, getUserActivity } = chatStore;
+  const { users, fetchUsers, isUserOnline, getUserActivity, setSelectedUser } = chatStore;
   const { user } = useUser();
 
   useEffect(() => {
@@ -36,9 +37,11 @@ export const FriendsSidebar = observer(() => {
             const isPlaying = activity && activity !== "Idle";
 
             return (
-              <div
+              <Link
+                to={`/chat/${user.clerkId}`}
                 key={user._id}
                 className="hover:bg-zinc-800/50 p-3 rounded-md transition-colors flex flex-col gap-4"
+                onClick={() => setSelectedUser(user)}
               >
                 <div className="flex items-start gap-3">
                   <div className="relative">
@@ -81,7 +84,7 @@ export const FriendsSidebar = observer(() => {
                     )}
                   </div>
                 </div>
-              </div>
+              </Link>
             );
           })}
         </ScrollArea>

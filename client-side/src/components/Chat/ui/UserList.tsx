@@ -28,7 +28,7 @@ export const UserList = observer(() => {
                 const lastMessage = getLastMessageForUser(user.clerkId);
                 return (
                   <Link
-                    to={`/chat/${user._id}`}
+                    to={`/chat/${user.clerkId}`}
                     key={user._id}
                     className="flex gap-2"
                   >

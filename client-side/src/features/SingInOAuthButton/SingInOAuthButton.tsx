@@ -13,7 +13,7 @@ export const SingInOAuthButton = () => {
         className="w-full h-11"
       >
         <LogIn/>
-        Sign up
+        Sign in
       </Button>
     </div>
   );
