@@ -25,7 +25,7 @@ export const AppRoute = () => {
           </Suspense>
         }
       />
-      <Route path="/sign-up" element={<SignInPage />} />
+      <Route path="/auth" element={<SignInPage />} />
       <Route element={<Layout />}>
         <Route
           path="/"

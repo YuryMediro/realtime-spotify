@@ -4,21 +4,14 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/kit/sidebar";
-import { SignedOut, UserButton, useSignIn, useUser } from "@clerk/clerk-react";
-import { FcGoogle } from "react-icons/fc";
+import { SignedOut, UserButton, useUser } from "@clerk/clerk-react";
+import { LogIn } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 export const NavUser = () => {
   const { user } = useUser();
-  const { signIn, isLoaded } = useSignIn();
-  const handleSignIn = () => {
-    if (!isLoaded) return;
+ const navigate = useNavigate();
 
-    signIn.authenticateWithRedirect({
-      strategy: "oauth_google",
-      redirectUrl: "/sso-callback",
-      redirectUrlComplete: "/auth-callback",
-    });
-  };
   if (!user) {
     return (
       <SidebarGroup className="rounded-lg bg-zinc-900 py-4">
@@ -26,13 +19,11 @@ export const NavUser = () => {
           <SidebarMenuItem>
             <SidebarMenuButton
               className="w-full h-11 cursor-pointer"
-              onClick={handleSignIn}
+              onClick={() => navigate("/auth")}
             >
               <SignedOut>
-                <FcGoogle />
-                <span className="text-sm font-medium">
-                  Continue with Google
-                </span>
+                <LogIn />
+                <span className="text-sm font-medium">Sign up</span>
               </SignedOut>
             </SidebarMenuButton>
           </SidebarMenuItem>
