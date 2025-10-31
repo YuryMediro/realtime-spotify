@@ -20,7 +20,7 @@ export const FriendsSidebar = observer(() => {
   return (
     <Sidebar
       collapsible="none"
-      className="h-svh hidden xl:flex rounded-lg bg-zinc-900"
+      className="h-svh hidden xl:flex bg-zinc-900"
     >
       <div className=" bg-zinc-900 flex flex-col">
         <div className="p-4 flex justify-between items-center border-b border-zinc-800">

@@ -14,7 +14,7 @@ export const NavUser = () => {
 
   if (!user) {
     return (
-      <SidebarGroup className="rounded-lg bg-zinc-900 py-4">
+      <SidebarGroup className="rounded-t-lg bg-zinc-900 py-4">
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton
