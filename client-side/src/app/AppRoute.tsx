@@ -23,7 +23,10 @@ export const AppRoute = () => {
       <Route
         path="/sso-callback"
         element={
-          <AuthenticateWithRedirectCallback signUpForceRedirectUrl="/auth-callback" signInForceRedirectUrl="/auth-callback"/>
+          <AuthenticateWithRedirectCallback
+            signUpForceRedirectUrl="/auth-callback"
+            signInForceRedirectUrl="/auth-callback"
+          />
         }
       />
       <Route path="/auth-callback" element={<AuthCallbackPage />} />
@@ -31,7 +34,9 @@ export const AppRoute = () => {
         path="/admin"
         element={
           <Suspense fallback={<PageLoader />}>
-            <AdminPage />
+            <Protect fallback={<Navigate to="/sign-in" />}>
+              <AdminPage />
+            </Protect>
           </Suspense>
         }
       />
@@ -58,7 +63,7 @@ export const AppRoute = () => {
           path="/chat"
           element={
             <Suspense fallback={<PageLoader />}>
-              <Protect fallback={<Navigate to="/auth" />}>
+              <Protect fallback={<Navigate to="/sign-in" />}>
                 <ChatPage />
               </Protect>
             </Suspense>
@@ -68,7 +73,7 @@ export const AppRoute = () => {
           path="/chat/:userId"
           element={
             <Suspense fallback={<PageLoader />}>
-              <Protect fallback={<Navigate to="/auth" />}>
+              <Protect fallback={<Navigate to="/sign-in" />}>
                 <ChatIdPage />
               </Protect>
             </Suspense>

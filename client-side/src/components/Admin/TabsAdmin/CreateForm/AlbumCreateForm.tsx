@@ -22,8 +22,8 @@ export const AlbumCreateForm = observer(({ onClose }: AlbumCreateFormProps) => {
 
   return (
     <form onSubmit={form.handleSubmit(onSubmit)}>
-      <ScrollArea className="h-[calc(100vh-190px)]">
-        <FieldGroup className="px-3 mb-3">
+      <ScrollArea className="h-[calc(100vh-457px)] mb-4">
+        <FieldGroup className="px-3 gap-4">
           <ImageUpload isLoading={isLoading} uploadState={imageUpload} />
           <Controller
             name="title"
@@ -90,6 +90,8 @@ export const AlbumCreateForm = observer(({ onClose }: AlbumCreateFormProps) => {
               </Field>
             )}
           />
+        </FieldGroup>
+      </ScrollArea>
           <div className={"flex justify-end gap-3"}>
             <Button
               type="button"
@@ -107,8 +109,6 @@ export const AlbumCreateForm = observer(({ onClose }: AlbumCreateFormProps) => {
               {isLoading ? "Creating..." : "Save changes"}
             </Button>
           </div>
-        </FieldGroup>
-      </ScrollArea>
     </form>
   );
 });
