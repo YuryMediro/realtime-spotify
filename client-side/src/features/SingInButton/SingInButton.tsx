@@ -8,7 +8,7 @@ export const SingInButton = () => {
   return (
     <div className="flex flex-col gap-2 w-full">
       <Button
-        onClick={() => navigate("/auth")}
+        onClick={() => navigate("/sign-in")}
         variant={"outline"}
         className="w-full h-11"
       >

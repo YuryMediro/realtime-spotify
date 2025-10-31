@@ -14,7 +14,8 @@ import {
   PageLoader,
   TrendingSongsPage,
 } from "./LazyRoute";
-import { AuthPage } from "@/pages/AuthPage/AuthPage";
+import { SignInPage } from "@/pages/AuthPage/SignInPage";
+import { SignUpPage } from "@/pages/AuthPage/SignUpPage";
 
 export const AppRoute = () => {
   return (
@@ -34,7 +35,8 @@ export const AppRoute = () => {
           </Suspense>
         }
       />
-      <Route path="/auth" element={<AuthPage />} />
+      <Route path="/sign-in" element={<SignInPage />} />
+      <Route path="/sign-up" element={<SignUpPage />} />
       <Route element={<Layout />}>
         <Route
           path="/"

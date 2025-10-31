@@ -109,7 +109,6 @@
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
 }
-.cl-footerAction,
 .cl-socialButtonsBlockButton,
 .cl-dividerRow,
 .cl-formFieldHintText {
@@ -117,6 +116,12 @@
 }
 .cl-card {
   gap: 0;
+}
+.cl-footerActionLink {
+  color: var(--color-emerald-500);
+}
+.cl-footerActionLink:hover {
+  color: var(--color-emerald-400);
 }
 @layer base {
   * {

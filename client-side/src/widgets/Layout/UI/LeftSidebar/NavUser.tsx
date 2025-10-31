@@ -19,7 +19,7 @@ export const NavUser = () => {
           <SidebarMenuItem>
             <SidebarMenuButton
               className="w-full h-11 cursor-pointer"
-              onClick={() => navigate("/auth")}
+              onClick={() => navigate("/sign-in")}
             >
               <SignedOut>
                 <LogIn />
