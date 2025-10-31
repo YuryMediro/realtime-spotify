@@ -34,7 +34,7 @@ export const MobileSheetFooter = observer(() => {
     <Sheet>
       <SheetTrigger asChild>
         <footer
-          className="sm:hidden h-20 px-4 relative mx-4 rounded-t-lg"
+          className="sm:hidden h-20 px-4 relative mx-2 rounded-t-lg"
           style={{
             backgroundColor: dominantColor,
             backgroundImage: `linear-gradient(135deg, ${dominantColor} 0%, rgba(24, 24, 27, 0.9) 100%)`,

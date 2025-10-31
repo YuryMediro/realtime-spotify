@@ -47,7 +47,7 @@ export const AudioFooter = observer(() => {
   return (
     <>
       <footer
-        className="hidden sm:block h-20 px-4 relative mx-4 rounded-t-lg"
+        className="hidden sm:block h-20 px-4 relative mx-2 lg:mx-4 rounded-t-lg"
         style={{
           backgroundColor: dominantColor,
           backgroundImage: `linear-gradient(135deg, ${dominantColor} 0%, rgba(24, 24, 27, 0.9) 100%)`,
