@@ -1,4 +1,3 @@
-import { UserButton } from "@clerk/clerk-react";
 import { Link } from "react-router-dom";
 
 export const HeaderAdmin = () => {
@@ -17,7 +16,6 @@ export const HeaderAdmin = () => {
           <p className="text-zinc-400 mt-1">Manage your music catalog</p>
         </div>
       </div>
-      <UserButton />
     </header>
   );
 };
