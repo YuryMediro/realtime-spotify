@@ -10,18 +10,28 @@ import { Sidebar } from "@/components/kit/sidebar";
 import { Link } from "react-router-dom";
 
 export const FriendsSidebar = observer(() => {
-  const { users, fetchUsers, isUserOnline, getUserActivity, setSelectedUser } = chatStore;
+  const { users, fetchUsers, isUserOnline, getUserActivity, setSelectedUser } =
+    chatStore;
   const { user } = useUser();
 
   useEffect(() => {
     if (user) fetchUsers();
   }, [user, fetchUsers]);
 
-  return (
-    <Sidebar
-      collapsible="none"
-      className="h-svh hidden xl:flex bg-zinc-900"
-    >
+  return !user ? (
+    <Sidebar collapsible="none" className="h-svh hidden xl:flex bg-zinc-900">
+      <div className=" bg-zinc-900 flex flex-col">
+        <div className="p-4 flex justify-between items-center border-b border-zinc-800">
+          <div className="flex items-center gap-2">
+            <User className="size-5 shrink-0" />
+            <h2 className="font-semibold">What they're listening to</h2>
+          </div>
+        </div>
+      </div>
+      <LoginMessage />
+    </Sidebar>
+  ) : (
+    <Sidebar collapsible="none" className="h-svh hidden xl:flex bg-zinc-900">
       <div className=" bg-zinc-900 flex flex-col">
         <div className="p-4 flex justify-between items-center border-b border-zinc-800">
           <div className="flex items-center gap-2">
@@ -30,7 +40,6 @@ export const FriendsSidebar = observer(() => {
           </div>
         </div>
         <ScrollArea className="h-[calc(100vh-70px)]">
-          {!user && <LoginMessage />}
           {users.map((user) => {
             const isOnline = isUserOnline(user.clerkId);
             const activity = getUserActivity(user.clerkId);
