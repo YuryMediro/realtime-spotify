@@ -23,7 +23,7 @@ export const AppRoute = () => {
       <Route
         path="/sso-callback"
         element={
-          <AuthenticateWithRedirectCallback signUpForceRedirectUrl="/auth-callback" />
+          <AuthenticateWithRedirectCallback signUpForceRedirectUrl="/auth-callback" signInForceRedirectUrl="/auth-callback"/>
         }
       />
       <Route path="/auth-callback" element={<AuthCallbackPage />} />

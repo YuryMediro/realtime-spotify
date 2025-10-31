@@ -109,13 +109,11 @@
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
 }
-.cl-socialButtonsBlockButton,
-.cl-dividerRow,
 .cl-formFieldHintText {
   display: none;
 }
 .cl-card {
-  gap: 0;
+  gap: 3;
 }
 .cl-footerActionLink {
   color: var(--color-emerald-500);
