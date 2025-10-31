@@ -14,7 +14,7 @@ export const Layout = () => {
         <SidebarInset>
           <AudioPlayer />
           <MainHeader />
-          <div className="flex flex-1 flex-col gap-4 p-2 lg:p-4 pt-0">
+          <div className="flex flex-1 flex-col gap-4 mx-2 lg:mx-4 mb-2 lg:mb-3">
             <Outlet />
           </div>
           <AudioFooter />

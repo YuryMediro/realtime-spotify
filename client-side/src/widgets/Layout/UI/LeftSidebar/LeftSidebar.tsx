@@ -7,7 +7,6 @@ import { NavUser } from "@/widgets/Layout/UI/LeftSidebar/NavUser";
 import {
   Sidebar,
   SidebarContent,
-  SidebarRail,
 } from "@/components/kit/sidebar";
 import { Nav } from "./Nav";
 import { NavPlaylist } from "./NavPlaylist";
@@ -45,7 +44,6 @@ export function LeftSidebar({
         <NavPlaylist items={data.navMain} />
         <NavUser />
       </SidebarContent>
-      <SidebarRail />
     </Sidebar>
   );
 }

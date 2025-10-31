@@ -9,14 +9,20 @@ import { observer } from "mobx-react-lite";
 import { Link } from "react-router-dom";
 import { FaSpotify } from "react-icons/fa6";
 import { SingInButton } from "@/features/SingInButton/SingInButton";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/kit/tooltip";
 
 export const MainHeader = observer(() => {
   const { isAdmin } = adminStore;
 
   return (
-    <header className="sticky top-0 z-50 flex w-full items-center h-18 rounded-md p-4 ">
+    <header className="sticky top-0 z-50 flex w-full items-center h-13 lg:h-18 rounded-md p-2">
       <div className="flex items-center gap-2 px-4 w-full">
-        <SidebarTrigger className="-ml-1" />
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <SidebarTrigger className="-ml-1" />
+          </TooltipTrigger>
+          <TooltipContent>Toggle Sidebar</TooltipContent>
+        </Tooltip>
         <Separator
           orientation="vertical"
           className="mr-2 data-[orientation=vertical]:h-4"
@@ -34,8 +40,8 @@ export const MainHeader = observer(() => {
                 to={"/admin"}
                 className={cn(buttonVariants({ variant: "outline" }))}
               >
-                <LayoutDashboardIcon className="size-4  mr-2" />
-                Admin Panel
+                <LayoutDashboardIcon className="size-4 sm:mr-2" />
+                <p className='sm:block hidden'>Admin Panel</p>
               </Link>
             )}
 
