@@ -1,10 +1,5 @@
-import { ChevronRight, type LucideIcon } from "lucide-react";
-
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from "@/components/kit/collapsible";
+import { type LucideIcon } from "lucide-react";
+import { Collapsible } from "@/components/kit/collapsible";
 import {
   SidebarGroup,
   SidebarMenu,
@@ -50,49 +45,44 @@ export const NavPlaylist = observer(
               className="group/collapsible"
             >
               <SidebarMenuItem>
-                <CollapsibleTrigger asChild className="cursor-pointer">
-                  <SidebarMenuButton tooltip={item.title}>
-                    {item.icon && <item.icon />}
-                    <span>{item.title}</span>
-                    <ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
-                  </SidebarMenuButton>
-                </CollapsibleTrigger>
-                <CollapsibleContent>
-                  <ScrollArea className="h-[calc(100vh-280px)]">
-                    <SidebarMenu className="flex flex-col gap-3 mt-1 pr-2.5">
-                      {albums.map((album) => {
-                        const isActive =
-                          location.pathname === `/albums/${album._id}`;
-                        return (
-                          <SidebarMenuSubItem key={album._id}>
-                            <SidebarMenuSubButton asChild>
-                              <Link
-                                to={`/albums/${album._id}`}
-                                className={`p-6.5 hover:bg-zinc-800 rounded-md flex items-center gap-3 group cursor-pointer ${
-                                  isActive ? "bg-white/10" : ""
-                                } `}
-                              >
-                                <img
-                                  src={album.imageUrl}
-                                  alt={"album img"}
-                                  className="size-12 rounded-md flex-shrink-0 object-cover"
-                                />
-                                <div className="flex-1 min-w-0">
-                                  <p className="font-medium truncate">
-                                    {album.title}
-                                  </p>
-                                  <p className="text-sm text-zinc-400 truncate">
-                                    Album • {album.artist}
-                                  </p>
-                                </div>
-                              </Link>
-                            </SidebarMenuSubButton>
-                          </SidebarMenuSubItem>
-                        );
-                      })}
-                    </SidebarMenu>
-                  </ScrollArea>
-                </CollapsibleContent>
+                <SidebarMenuButton tooltip={item.title} disabled={true}>
+                  {item.icon && <item.icon />}
+                  <span>{item.title}</span>
+                </SidebarMenuButton>
+                <ScrollArea className="h-[calc(100vh-280px)]">
+                  <SidebarMenu className="flex flex-col gap-3 mt-1 ">
+                    {albums.map((album) => {
+                      const isActive =
+                        location.pathname === `/albums/${album._id}`;
+                      return (
+                        <SidebarMenuSubItem key={album._id}>
+                          <SidebarMenuSubButton asChild>
+                            <Link
+                              to={`/albums/${album._id}`}
+                              className={`p-6 pl-0 hover:bg-zinc-800 rounded-md flex items-center gap-3 group cursor-pointer ${
+                                isActive ? "bg-white/10" : ""
+                              } `}
+                            >
+                              <img
+                                src={album.imageUrl}
+                                alt={"album img"}
+                                className="size-12 rounded-md flex-shrink-0 object-cover"
+                              />
+                              <div className="flex-1 min-w-0">
+                                <p className="font-medium truncate">
+                                  {album.title}
+                                </p>
+                                <p className="text-sm text-zinc-400 truncate">
+                                  Album • {album.artist}
+                                </p>
+                              </div>
+                            </Link>
+                          </SidebarMenuSubButton>
+                        </SidebarMenuSubItem>
+                      );
+                    })}
+                  </SidebarMenu>
+                </ScrollArea>
               </SidebarMenuItem>
             </Collapsible>
           ))}

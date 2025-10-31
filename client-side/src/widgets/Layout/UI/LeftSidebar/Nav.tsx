@@ -27,7 +27,7 @@ export const Nav = observer(
 
     return (
       <SidebarGroup className="rounded-b-lg bg-zinc-900 py-4">
-        <SidebarMenu className={"gap-3"}>
+        <SidebarMenu className="gap-3">
           {nav.map((item) => {
             const isActive = location.pathname === item.url;
             return (
