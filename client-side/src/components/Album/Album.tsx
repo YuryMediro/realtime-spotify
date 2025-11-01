@@ -23,7 +23,7 @@ export const Album = observer(() => {
       <ScrollArea className="lg:h-[calc(100vh-160px)] h-[calc(100vh-140px)]">
         <div className="min-h-full ">
           <div
-            className={"absolute inset-0 pointer-events-none rounded-md"}
+            className="absolute inset-0 pointer-events-none rounded-md"
             style={{
               backgroundColor: dominantColor,
               backgroundImage: `linear-gradient(135deg, ${dominantColor} 0%, rgba(24, 24, 27, 0.9) 100%)`,
