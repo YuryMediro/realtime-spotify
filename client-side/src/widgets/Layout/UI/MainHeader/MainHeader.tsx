@@ -15,7 +15,7 @@ export const MainHeader = observer(() => {
   const { isAdmin } = adminStore;
 
   return (
-    <header className="sticky top-0 z-50 flex w-full items-center h-13 lg:h-18 rounded-md p-2">
+    <header className="sticky top-0 z-50 flex w-full items-center h-13 lg:h-18 rounded-md p-2 bg-background/70 backdrop-blur-md">
       <div className="flex items-center gap-2 px-4 w-full">
         <Tooltip>
           <TooltipTrigger asChild>
@@ -41,7 +41,7 @@ export const MainHeader = observer(() => {
                 className={cn(buttonVariants({ variant: "outline" }))}
               >
                 <LayoutDashboardIcon className="size-4 sm:mr-2" />
-                <p className='sm:block hidden'>Admin Panel</p>
+                <p className="sm:block hidden">Admin Panel</p>
               </Link>
             )}
 

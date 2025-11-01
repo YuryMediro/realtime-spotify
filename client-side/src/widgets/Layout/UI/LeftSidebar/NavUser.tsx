@@ -14,7 +14,7 @@ export const NavUser = () => {
 
   if (!user) {
     return (
-      <SidebarGroup className="rounded-t-lg bg-zinc-900">
+      <SidebarGroup className="rounded-t-xl bg-zinc-900">
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton
@@ -33,7 +33,7 @@ export const NavUser = () => {
   }
 
   return (
-    <SidebarGroup className="rounded-t-lg bg-zinc-900">
+    <SidebarGroup className="rounded-t-xl bg-zinc-900">
       <SidebarMenu>
         <SidebarMenuItem>
           <SidebarMenuButton

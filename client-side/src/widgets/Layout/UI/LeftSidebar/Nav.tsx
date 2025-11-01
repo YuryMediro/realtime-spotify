@@ -26,7 +26,7 @@ export const Nav = observer(
     const location = useLocation();
 
     return (
-      <SidebarGroup className=" bg-zinc-900 rounded-b-lg">
+      <SidebarGroup className=" bg-zinc-900 rounded-b-xl">
         <SidebarMenu className="gap-3">
           {nav.map((item) => {
             const isActive = location.pathname === item.url;

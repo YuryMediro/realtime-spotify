@@ -47,7 +47,7 @@ export const AudioFooter = observer(() => {
   return (
     <>
       <footer
-        className="hidden relative sm:block h-20 px-4 mx-2 lg:mx-4 rounded-t-lg "
+        className="hidden relative sm:block h-17 px-4 mx-0 lg:mx-4"
         style={{
           backgroundColor: dominantColor,
           backgroundImage: `linear-gradient(135deg, ${dominantColor} 0%, rgba(24, 24, 27, 0.9) 100%)`,
@@ -83,14 +83,14 @@ export const AudioFooter = observer(() => {
           />
         </div>
 
-        <div className="flex justify-between items-center h-full mx-auto">
+        <div className="flex justify-between items-center h-full mx-auto pt-1">
           <div className="flex items-center gap-4">
             {currentSong && (
               <>
                 <img
                   src={currentSong.imageUrl}
                   alt={currentSong.title}
-                  className="w-14 h-14 object-cover rounded-md"
+                  className="w-13 h-13 object-cover rounded-md"
                 />
                 <div className="flex-1 min-w-0">
                   <div className="font-medium truncate hover:underline cursor-pointer">

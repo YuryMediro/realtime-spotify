@@ -34,9 +34,9 @@ export const Home = observer(() => {
   }, [initializeQueue, madeForYouSongs, trendingSongs, featuredSongs]);
 
   return (
-    <main className="rounded-md overflow-hidden h-full bg-gradient-to-b from-zinc-800 to-zinc-900">
-      <ScrollArea className="h-[calc(100vh-180px)]">
-        <div className="p-4 sm:p-6">
+    <main className="rounded-xl overflow-hidden h-full bg-gradient-to-b from-zinc-800 to-zinc-900">
+      <ScrollArea className="xl:h-[calc(100vh-165px)] h-full">
+        <div className="p-4 sm:p-6 ">
           <h1 className="text-2xl sm:text-3xl font-bold mb-6">
             Good afternoon
           </h1>

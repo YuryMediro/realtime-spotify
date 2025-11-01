@@ -22,7 +22,7 @@ export const AlbumTable = observer(({ currentAlbum }: AlbumTableProps) => {
   const { handlePlayTrack } = usePlayTrackAlbum();
 
   return (
-    <Table>
+    <Table className='mb-2'>
       <TableHeader>
         <TableRow className="hover:bg-transparent">
           <TableHead className="text-sm text-zinc-400">#</TableHead>

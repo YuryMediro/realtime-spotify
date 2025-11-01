@@ -44,7 +44,7 @@ export function LeftSidebar({
       <SidebarHeader className="bg-background p-0 pb-3">
         <Nav nav={data.nav} />
       </SidebarHeader>
-      <SidebarContent className="bg-zinc-900 rounded-lg">
+      <SidebarContent className="bg-zinc-900">
         <NavPlaylist items={data.navMain} />
       </SidebarContent>
       <SidebarFooter className="bg-background p-0 pt-3">
