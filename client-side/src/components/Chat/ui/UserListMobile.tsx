@@ -15,8 +15,7 @@ export const UserListMobile = observer(() => {
     getLastMessageForUser,
   } = chatStore;
   return (
-    <div className="flex flex-col  w-full">
-      {/* <ScrollArea className="h-[calc(100vh-130px)] "> */}
+    <div className="flex flex-col w-full">
         <div className="space-y-2">
           {isLoading ? (
             <UserListMobileSkeleton />
@@ -73,7 +72,6 @@ export const UserListMobile = observer(() => {
             })
           )}
         </div>
-      {/* </ScrollArea> */}
     </div>
   );
 });

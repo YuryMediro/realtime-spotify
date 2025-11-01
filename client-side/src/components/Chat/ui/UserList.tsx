@@ -16,9 +16,9 @@ export const UserList = observer(() => {
     getLastMessageForUser,
   } = chatStore;
   return (
-    <div className="border-r border-zinc-800 md:block hidden">
+    <div className="border-r border-zinc-800 lg:block hidden">
       <div className="flex flex-col h-full">
-        <ScrollArea className="h-[calc(100vh-160px)] ">
+        <ScrollArea className="h-[calc(100vh-130px)] ">
           <div className="space-y-2">
             {isLoading ? (
               <UserListSkeleton />
@@ -53,7 +53,7 @@ export const UserList = observer(() => {
                         />
                       </div>
 
-                      <div className="flex-1 min-w-0 lg:flex flex-col hidden truncate">
+                      <div className="flex-1 min-w-0 flex flex-col  truncate">
                         <div className="flex justify-between items-center gap-1 mb-1">
                           <span className="font-medium truncate text-sm flex-1">
                             {user.fullName}
