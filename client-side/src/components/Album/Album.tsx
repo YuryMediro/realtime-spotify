@@ -20,7 +20,7 @@ export const Album = observer(() => {
 
   return (
     <div className="h-full">
-      <ScrollArea className="xl:h-[calc(100vh-152px)] ">
+      <ScrollArea className="xl:h-[calc(100vh-152px)] h-full">
         <div className="min-h-full ">
           <div
             className="absolute inset-0 pointer-events-none rounded-xl"
