@@ -1,7 +1,10 @@
 import { Outlet } from "react-router-dom";
 import { AudioFooter } from "./UI/AudioFooter/AudioFooter";
 import { AudioPlayer } from "@/features/AudioPlayer/AudioPlayer";
-import { SidebarInset, SidebarProvider } from "@/components/kit/sidebar";
+import {
+  SidebarInset,
+  SidebarProvider,
+} from "@/components/kit/sidebar";
 import { LeftSidebar } from "@/widgets/Layout/UI/LeftSidebar/LeftSidebar";
 import { MainHeader } from "./UI/MainHeader/MainHeader";
 import { FriendsSidebar } from "./UI/FriendsSidebar/FriendsSidebar";
