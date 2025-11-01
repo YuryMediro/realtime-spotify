@@ -1,5 +1,4 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/kit/avatar";
-import { ScrollArea } from "@/components/kit/scroll-area";
 import { chatStore } from "@/entities/store/chat-store";
 import { formatTimeChat } from "@/shared/lib/format/formatTimeChat";
 import { UserListMobileSkeleton } from "@/shared/ui/skeleton/UserListMobileSkeleton";
