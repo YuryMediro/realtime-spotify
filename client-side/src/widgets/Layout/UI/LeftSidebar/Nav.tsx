@@ -4,6 +4,7 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  useSidebar,
 } from "@/components/kit/sidebar";
 import { observer } from "mobx-react-lite";
 import { Link, useLocation } from "react-router-dom";
@@ -24,7 +25,13 @@ export const Nav = observer(
     }[];
   }) => {
     const location = useLocation();
+    const { setOpenMobile, isMobile } = useSidebar();
 
+    const handleClose = () => {
+      if (isMobile) {
+        setOpenMobile(false);
+      }
+    };
     return (
       <SidebarGroup className=" bg-zinc-900 rounded-b-xl">
         <SidebarMenu className="gap-3">
@@ -37,6 +44,7 @@ export const Nav = observer(
                   className={`hover:bg-zinc-800 rounded-md flex items-center${
                     isActive ? "bg-white/10" : ""
                   } `}
+                  onClick={handleClose}
                 >
                   <SidebarMenuButton
                     tooltip={item.title}

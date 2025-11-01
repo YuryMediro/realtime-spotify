@@ -7,6 +7,7 @@ import {
   SidebarMenuItem,
   SidebarMenuSubButton,
   SidebarMenuSubItem,
+  useSidebar,
 } from "@/components/kit/sidebar";
 import { observer } from "mobx-react-lite";
 import { musicStore } from "@/entities/store/music-store";
@@ -30,9 +31,17 @@ export const NavPlaylist = observer(
   }) => {
     const { albums, fetchAlbums } = musicStore;
     const location = useLocation();
+    const { setOpenMobile, isMobile } = useSidebar();
+
     useEffect(() => {
       fetchAlbums();
     }, []);
+    
+    const handleClose = () => {
+      if (isMobile) {
+        setOpenMobile(false);
+      }
+    };
     return (
       <SidebarGroup>
         <SidebarMenu>
@@ -48,38 +57,39 @@ export const NavPlaylist = observer(
                   {item.icon && <item.icon />}
                   <span>{item.title}</span>
                 </SidebarMenuButton>
-                  <SidebarMenu className="flex flex-col gap-3 mt-1">
-                    {albums.map((album) => {
-                      const isActive =
-                        location.pathname === `/albums/${album._id}`;
-                      return (
-                        <SidebarMenuSubItem key={album._id}>
-                          <SidebarMenuSubButton asChild>
-                            <Link
-                              to={`/albums/${album._id}`}
-                              className={`p-6 pl-0 hover:bg-zinc-800 rounded-md flex items-center gap-3 group cursor-pointer ${
-                                isActive ? "bg-white/10" : ""
-                              } `}
-                            >
-                              <img
-                                src={album.imageUrl}
-                                alt={"album img"}
-                                className="size-12 rounded-md flex-shrink-0 object-cover"
-                              />
-                              <div className="flex-1 min-w-0">
-                                <p className="font-medium truncate">
-                                  {album.title}
-                                </p>
-                                <p className="text-sm text-zinc-400 truncate">
-                                  Album • {album.artist}
-                                </p>
-                              </div>
-                            </Link>
-                          </SidebarMenuSubButton>   
-                        </SidebarMenuSubItem>
-                      );
-                    })}
-                  </SidebarMenu>
+                <SidebarMenu className="flex flex-col gap-3 mt-1">
+                  {albums.map((album) => {
+                    const isActive =
+                      location.pathname === `/albums/${album._id}`;
+                    return (
+                      <SidebarMenuSubItem key={album._id}>
+                        <SidebarMenuSubButton asChild>
+                          <Link
+                            to={`/albums/${album._id}`}
+                            className={`p-6 pl-0 hover:bg-zinc-800 rounded-md flex items-center gap-3 group cursor-pointer ${
+                              isActive ? "bg-white/10" : ""
+                            } `}
+                            onClick={handleClose}
+                          >
+                            <img
+                              src={album.imageUrl}
+                              alt={"album img"}
+                              className="size-12 rounded-md flex-shrink-0 object-cover"
+                            />
+                            <div className="flex-1 min-w-0">
+                              <p className="font-medium truncate">
+                                {album.title}
+                              </p>
+                              <p className="text-sm text-zinc-400 truncate">
+                                Album • {album.artist}
+                              </p>
+                            </div>
+                          </Link>
+                        </SidebarMenuSubButton>
+                      </SidebarMenuSubItem>
+                    );
+                  })}
+                </SidebarMenu>
               </SidebarMenuItem>
             </Collapsible>
           ))}
