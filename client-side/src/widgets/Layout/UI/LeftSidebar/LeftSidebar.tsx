@@ -7,6 +7,8 @@ import { NavUser } from "@/widgets/Layout/UI/LeftSidebar/NavUser";
 import {
   Sidebar,
   SidebarContent,
+  SidebarFooter,
+  SidebarHeader,
 } from "@/components/kit/sidebar";
 import { Nav } from "./Nav";
 import { NavPlaylist } from "./NavPlaylist";
@@ -39,11 +41,15 @@ export function LeftSidebar({
 }: React.ComponentProps<typeof Sidebar>) {
   return (
     <Sidebar collapsible="icon" {...props} className="border-none">
-      <SidebarContent className="flex flex-col gap-3 bg-background">
+      <SidebarHeader className="bg-background p-0 pb-3">
         <Nav nav={data.nav} />
+      </SidebarHeader>
+      <SidebarContent className="bg-zinc-900 rounded-lg">
         <NavPlaylist items={data.navMain} />
-        <NavUser />
       </SidebarContent>
+      <SidebarFooter className="bg-background p-0 pt-3">
+        <NavUser />
+      </SidebarFooter>
     </Sidebar>
   );
 }

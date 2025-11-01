@@ -10,11 +10,11 @@ import { useNavigate } from "react-router-dom";
 
 export const NavUser = () => {
   const { user } = useUser();
- const navigate = useNavigate();
+  const navigate = useNavigate();
 
   if (!user) {
     return (
-      <SidebarGroup className="rounded-t-lg bg-zinc-900 py-4">
+      <SidebarGroup className="rounded-t-lg bg-zinc-900">
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton
@@ -33,23 +33,25 @@ export const NavUser = () => {
   }
 
   return (
-    <SidebarGroup className="rounded-t-lg bg-zinc-900 py-4">
+    <SidebarGroup className="rounded-t-lg bg-zinc-900">
       <SidebarMenu>
         <SidebarMenuItem>
           <SidebarMenuButton
             size="lg"
             className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
           >
-            <UserButton />
-            <div className="grid flex-1 text-left text-sm leading-tight">
-              <span className="truncate font-medium">{user.fullName}</span>
-              <span className="truncate text-xs">
-                {user.primaryEmailAddress?.emailAddress}
-              </span>
+            <div className="flex items-center gap-2 pl-0.5">
+              <UserButton />
+              <div className="grid flex-1 text-left text-sm leading-tight">
+                <span className="truncate font-medium">{user.fullName}</span>
+                <span className="truncate text-xs">
+                  {user.primaryEmailAddress?.emailAddress}
+                </span>
+              </div>
             </div>
           </SidebarMenuButton>
         </SidebarMenuItem>
       </SidebarMenu>
     </SidebarGroup>
   );
-}
+};

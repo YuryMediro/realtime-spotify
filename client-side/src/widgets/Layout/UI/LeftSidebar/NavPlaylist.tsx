@@ -12,7 +12,6 @@ import { observer } from "mobx-react-lite";
 import { musicStore } from "@/entities/store/music-store";
 import { Link, useLocation } from "react-router-dom";
 import { useEffect } from "react";
-import { ScrollArea } from "@/components/kit/scroll-area";
 
 export const NavPlaylist = observer(
   ({
@@ -35,7 +34,7 @@ export const NavPlaylist = observer(
       fetchAlbums();
     }, []);
     return (
-      <SidebarGroup className="rounded-lg bg-zinc-900 py-4 h-full ">
+      <SidebarGroup>
         <SidebarMenu>
           {items.map((item) => (
             <Collapsible
@@ -49,8 +48,7 @@ export const NavPlaylist = observer(
                   {item.icon && <item.icon />}
                   <span>{item.title}</span>
                 </SidebarMenuButton>
-                <ScrollArea className="h-[calc(100vh-280px)]">
-                  <SidebarMenu className="flex flex-col gap-3 mt-1 ">
+                  <SidebarMenu className="flex flex-col gap-3 mt-1">
                     {albums.map((album) => {
                       const isActive =
                         location.pathname === `/albums/${album._id}`;
@@ -77,12 +75,11 @@ export const NavPlaylist = observer(
                                 </p>
                               </div>
                             </Link>
-                          </SidebarMenuSubButton>
+                          </SidebarMenuSubButton>   
                         </SidebarMenuSubItem>
                       );
                     })}
                   </SidebarMenu>
-                </ScrollArea>
               </SidebarMenuItem>
             </Collapsible>
           ))}
