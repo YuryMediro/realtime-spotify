@@ -18,7 +18,7 @@ export const UserList = observer(() => {
   return (
     <div className="border-r border-zinc-800 md:block hidden">
       <div className="flex flex-col h-full">
-        <ScrollArea className="h-[calc(100vh-180px)] ">
+        <ScrollArea className="h-[calc(100vh-160px)] ">
           <div className="space-y-2">
             {isLoading ? (
               <UserListSkeleton />
@@ -30,7 +30,7 @@ export const UserList = observer(() => {
                   <Link
                     to={`/chat/${user.clerkId}`}
                     key={user._id}
-                    className="flex gap-2"
+                    className="flex flex-col gap-2"
                   >
                     <div
                       onClick={() => setSelectedUser(user)}

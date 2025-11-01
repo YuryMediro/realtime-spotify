@@ -17,7 +17,7 @@ export const UserListMobile = observer(() => {
   } = chatStore;
   return (
     <div className="flex flex-col h-full w-full">
-      <ScrollArea className="h-[calc(100vh-180px)] ">
+      <ScrollArea className="h-[calc(100vh-130px)] ">
         <div className="space-y-2">
           {isLoading ? (
             <UserListMobileSkeleton />
@@ -29,7 +29,7 @@ export const UserListMobile = observer(() => {
                   <Link
                     to={`/chat/${user.clerkId}`}
                     key={user._id}
-                    className="flex gap-2"
+                    className="flex flex-col gap-2"
                   >
                     <div
                       onClick={() => setSelectedUser(user)}

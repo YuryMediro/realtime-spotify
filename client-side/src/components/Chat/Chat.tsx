@@ -5,11 +5,11 @@ import { UserListMobile } from "./ui/UserListMobile";
 export const Chat = () => {
   return (
     <div className="h-full rounded-lg bg-gradient-to-b from-zinc-800 to-zinc-900 overflow-hidden">
-      <div className=" h-[calc(100vh-180px)] md:flex hidden">
+      <div className=" h-full lg:flex hidden">
         <UserList />
         <NoSelectedUser />
       </div>
-      <div className=" h-[calc(100vh-180px)] md:hidden flex">
+      <div className="h-full lg:hidden flex">
         <UserListMobile />
       </div>
     </div>
