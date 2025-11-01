@@ -9,7 +9,7 @@ export const Chat = () => {
         <UserList />
         <NoSelectedUser />
       </div>
-      <div className="h-full lg:hidden flex">
+      <div className="lg:hidden flex">
         <UserListMobile />
       </div>
     </div>
