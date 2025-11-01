@@ -18,7 +18,7 @@ export const UserList = observer(() => {
   return (
     <div className="border-r border-zinc-800 lg:block hidden">
       <div className="flex flex-col h-full">
-        <ScrollArea className="h-[calc(100vh-130px)] ">
+        <ScrollArea className="overflow-y-auto">
           <div className="space-y-2">
             {isLoading ? (
               <UserListSkeleton />

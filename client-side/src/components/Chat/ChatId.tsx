@@ -7,7 +7,7 @@ import { useEffect } from "react";
 
 export const ChatId = observer(() => {
   const { clerkId } = useParams<{ clerkId: string }>();
-  const { users, setSelectedUser} = chatStore;
+  const { users, setSelectedUser } = chatStore;
 
   useEffect(() => {
     if (clerkId && users.length > 0) {
@@ -27,4 +27,3 @@ export const ChatId = observer(() => {
     </div>
   );
 });
-
