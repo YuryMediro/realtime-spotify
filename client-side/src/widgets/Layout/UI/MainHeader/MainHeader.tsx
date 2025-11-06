@@ -1,18 +1,18 @@
 import { buttonVariants } from "@/components/kit/button";
 import { Separator } from "@/components/kit/separator";
 import { SidebarTrigger } from "@/components/kit/sidebar";
-import { adminStore } from "@/entities/store/admin-store";
 import { cn } from "@/shared/lib/utils";
 import { SignedOut, UserButton } from "@clerk/clerk-react";
 import { LayoutDashboardIcon } from "lucide-react";
-import { observer } from "mobx-react-lite";
 import { Link } from "react-router-dom";
 import { FaSpotify } from "react-icons/fa6";
 import { SingInButton } from "@/features/SingInButton/SingInButton";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/kit/tooltip";
+import { useAdmin } from "@/shared/hooks/useAdmin/useAdmin";
 
-export const MainHeader = observer(() => {
-  const { isAdmin } = adminStore;
+export const MainHeader = () => {
+  const {data: adminStatus} = useAdmin()
+  const isAdmin = adminStatus?.admin || false;
 
   return (
     <header className="sticky top-0 z-50 flex w-full items-center h-13 lg:h-18 rounded-md p-2 bg-background/70 backdrop-blur-md">
@@ -55,4 +55,4 @@ export const MainHeader = observer(() => {
       </div>
     </header>
   );
-});
+};

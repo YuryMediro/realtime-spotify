@@ -2,17 +2,16 @@ import { useAuth } from "@clerk/clerk-react";
 import { useEffect, useState } from "react";
 import { Loader } from "lucide-react";
 import { updateApiToken } from "../shared/api/axios";
-import { adminStore } from "@/entities/store/admin-store";
 import { observer } from "mobx-react-lite";
 import { chatStore } from "@/entities/store/chat-store";
 import { playerStore } from "@/entities/store/player-store";
+import { useAdmin } from "@/shared/hooks/useAdmin/useAdmin";
 
 const AuthProvider = observer(({ children }: { children: React.ReactNode }) => {
   const { getToken, userId } = useAuth();
   const [loading, setLoading] = useState(true);
-  const { checkAdminStatus } = adminStore;
   const { initSocket, disconnectSocket } = chatStore;
-
+  const {refetch: checkAdminStatus} = useAdmin()
   useEffect(() => {
     const initAuth = async () => {
       try {

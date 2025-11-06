@@ -1,13 +1,15 @@
-import { adminStore } from "@/entities/store/admin-store";
 import { HeaderAdmin } from "@/widgets/Layout/UI/HeaderAdmin/HeaderAdmin";
 import { observer } from "mobx-react-lite";
 import { Statistics } from "./Statistics/Statistics";
 import { musicStore } from "@/entities/store/music-store";
 import { useEffect } from "react";
 import { TabsAdmin } from "./TabsAdmin/TabsAdmin";
+import { useAdmin } from "@/shared/hooks/useAdmin/useAdmin";
 
 export const Admin = observer(() => {
-  const { isAdmin, isLoading } = adminStore;
+  const { data: adminStatus, isLoading } = useAdmin();
+  const isAdmin = adminStatus?.admin || false;
+
   const { fetchStatistics, fetchSongs, fetchAlbums } = musicStore;
 
   useEffect(() => {

@@ -5,8 +5,8 @@ import { observer } from "mobx-react-lite";
 import { playerStore } from "@/entities/store/player-store";
 import { Music, Plus } from "lucide-react";
 import { Button } from "@/components/kit/button";
-import { adminStore } from "@/entities/store/admin-store";
 import { Link } from "react-router-dom";
+import { useAdmin } from "@/shared/hooks/useAdmin/useAdmin";
 
 interface FeaturedSectionProps {
   featuredSongs: ISongs[];
@@ -15,9 +15,9 @@ interface FeaturedSectionProps {
 
 export const FeaturedSection = observer(
   ({ featuredSongs, isLoading }: FeaturedSectionProps) => {
-    if (isLoading) return <FeaturedSkeleton />;
+    const { data: adminStatus } = useAdmin();
+    const isAdmin = adminStatus?.admin || false;
 
-    const { isAdmin } = adminStore;
     const { currentSong } = playerStore;
 
     const handlePlayTrack = (song: ISongs) => {
@@ -27,6 +27,8 @@ export const FeaturedSection = observer(
         playerStore.setCurrentSong(song);
       }
     };
+
+    if (isLoading) return <FeaturedSkeleton />;
 
     if (featuredSongs.length === 0) {
       return (
