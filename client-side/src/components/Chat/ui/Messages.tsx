@@ -75,7 +75,6 @@ export const Messages = observer(() => {
         </Button>
         <div ref={messagesEndRef} />
       </ScrollArea>
-
       <MessageInput />
     </div>
   );
