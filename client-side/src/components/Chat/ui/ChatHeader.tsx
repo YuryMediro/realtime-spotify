@@ -13,7 +13,7 @@ export const ChatHeader = observer(() => {
   const isOnline = isUserOnline(selectedUser.clerkId);
 
   return (
-    <div className="py-1 lg:py-2.5 px-2 border-b border-zinc-800 bg-zinc-600 rounded-lg sticky top-0 z-2">
+    <div className="py-1 lg:py-2.5 px-2 border-b border-zinc-800 bg-zinc-600 rounded-lg">
       <div className="flex items-center gap-3">
         <Link to={"/chat"}>
           <Button variant="ghost">

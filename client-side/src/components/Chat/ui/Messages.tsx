@@ -7,6 +7,8 @@ import { ChatHeader } from "./ChatHeader";
 import { Avatar, AvatarImage } from "@/components/kit/avatar";
 import { Button } from "@/components/kit/button";
 import { ArrowDown } from "lucide-react";
+import { MessageInput } from "./MessageInput";
+import { ScrollArea } from "@/components/kit/scroll-area";
 
 export const Messages = observer(() => {
   const { user } = useUser();
@@ -33,7 +35,7 @@ export const Messages = observer(() => {
   return (
     <div className="flex flex-col h-full w-full flex-1 min-w-0">
       <ChatHeader />
-      {/* <ScrollArea className="overflow-y-auto flex-1"> */}
+      <ScrollArea className="overflow-y-auto flex-1">
       <div className="p-2 sm:p-4 space-y-4">
         {messages.map((message) => (
           <div
@@ -72,8 +74,8 @@ export const Messages = observer(() => {
         <ArrowDown className="text-white" />
       </Button>
       <div ref={messagesEndRef} />
-      {/* </ScrollArea> */}
-      {/* <MessageInput /> */}
+      </ScrollArea>
+      <MessageInput />
     </div>
   );
 });
