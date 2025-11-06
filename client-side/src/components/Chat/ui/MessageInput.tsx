@@ -22,7 +22,7 @@ export const MessageInput = observer(() => {
     setNewMessage("");
   };
   return (
-    <div className="p-2 mt-auto border-t border-zinc-800 sticky bottom-0">
+    <div className="p-2 mt-auto rounded-lg lg:border-t border-zinc-800 sticky bottom-0 z-2 bg-zinc-800">
       <div className="flex gap-2">
         <Input
           className="bg-zinc-800 border-none"
