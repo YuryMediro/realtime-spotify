@@ -1,11 +1,14 @@
-import { musicStore } from "@/entities/store/music-store";
-import { observer } from "mobx-react-lite";
+import useGetStats from "@/shared/hooks/ApiHooks/useStats/useStats";
 import { StatisticsItem } from "./StatisticsItem";
 import { Library, ListMusic, PlayCircle, Users2 } from "lucide-react";
+import { StatsSkeleton } from "@/shared/ui/skeleton/StatsSkelton";
 
-export const Statistics = observer(() => {
-  const { stats } = musicStore;
+export const Statistics = () => {
+  const { stats, isLoading } = useGetStats();
 
+  if (isLoading) return <StatsSkeleton />;
+  if (!stats) return null;
+  
   const statsItem = [
     {
       icon: ListMusic,
@@ -37,7 +40,7 @@ export const Statistics = observer(() => {
     },
   ];
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8 ">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
       {statsItem.map((stat) => (
         <StatisticsItem
           key={stat.title}
@@ -50,4 +53,4 @@ export const Statistics = observer(() => {
       ))}
     </div>
   );
-});
+};
