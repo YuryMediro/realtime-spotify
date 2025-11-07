@@ -6,7 +6,6 @@ export const musicApi = {
   getAlbumsById: (id: string): Promise<IAlbums> =>
     axiosInstance.get<IAlbums>(`/albums/${id}`).then((res) => res.data),
 
-
   // Песни
   getFeaturedSongs: (): Promise<ISongs[]> =>
     axiosInstance.get<ISongs[]>("/songs/featured").then((res) => res.data),
@@ -16,14 +15,6 @@ export const musicApi = {
 
   getTrendingSongs: (): Promise<ISongs[]> =>
     axiosInstance.get<ISongs[]>("/songs/trending").then((res) => res.data),
-
-  getMadeForYouSongsAll: (): Promise<ISongs[]> =>
-    axiosInstance
-      .get<ISongs[]>("/songs/made-for-you-all")
-      .then((res) => res.data),
-
-  getTrendingSongsAll: (): Promise<ISongs[]> =>
-    axiosInstance.get<ISongs[]>("/songs/trending-all").then((res) => res.data),
 
   getSongs: (): Promise<ISongs[]> =>
     axiosInstance.get<ISongs[]>("/songs").then((res) => res.data),
