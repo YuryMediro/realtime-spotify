@@ -1,34 +1,26 @@
 import { ScrollArea } from "../kit/scroll-area";
 import { FeaturedSection } from "./HomeContent/FeaturedSection";
-import { musicStore } from "@/entities/store/music-store";
 import { useEffect } from "react";
-import { observer } from "mobx-react-lite";
 import { SectionSongs } from "./HomeContent/SectionSongs";
 import { playerStore } from "@/entities/store/player-store";
+import {
+  useGetFeaturedSongs,
+  useGetMadeForYouSongs,
+  useGetTrendingSongs,
+} from "@/shared/hooks/ApiHooks/useSongs/useSongs";
 
-export const Home = observer(() => {
-  const {
-    fetchFeaturedSongs,
-    fetchMadeForYouSongs,
-    fetchTrendingSongs,
-    featuredSongs,
-    madeForYouSongs,
-    trendingSongs,
-    isLoading,
-  } = musicStore;
+export const Home = () => {
+  const { featuredSongs, isLoading: isLoadingFeatured } = useGetFeaturedSongs();
+  const { madeForYouSongs, isLoading: isLoadingMadeForYou } =
+    useGetMadeForYouSongs();
+  const { trendingSongs, isLoading: isLoadingTrending } = useGetTrendingSongs();
 
   const { initializeQueue } = playerStore;
-  useEffect(() => {
-    (fetchFeaturedSongs(), fetchMadeForYouSongs(), fetchTrendingSongs());
-  }, []);
-  useEffect(() => {
-    if (
-      madeForYouSongs.length > 0 &&
-      trendingSongs.length > 0 &&
-      featuredSongs.length > 0
-    ) {
-      const allSongs = [...madeForYouSongs, ...trendingSongs, ...featuredSongs];
 
+  useEffect(() => {
+    if (!madeForYouSongs || !trendingSongs || !featuredSongs) return;
+    const allSongs = [...madeForYouSongs, ...trendingSongs, ...featuredSongs];
+    if (allSongs.length > 0) {
       initializeQueue(allSongs);
     }
   }, [initializeQueue, madeForYouSongs, trendingSongs, featuredSongs]);
@@ -41,20 +33,20 @@ export const Home = observer(() => {
             Good afternoon
           </h1>
           <FeaturedSection
-            featuredSongs={featuredSongs}
-            isLoading={isLoading}
+            featuredSongs={featuredSongs || []}
+            isLoading={isLoadingFeatured}
           />
           <div className="space-y-8">
             <SectionSongs
-              songs={madeForYouSongs}
+              songs={madeForYouSongs || []}
               title={"Made For You"}
-              isLoading={isLoading}
+              isLoading={isLoadingMadeForYou}
               link={"/made-fo-you-songs"}
             />
             <SectionSongs
-              songs={trendingSongs}
+              songs={trendingSongs || []}
               title={"Trending"}
-              isLoading={isLoading}
+              isLoading={isLoadingTrending}
               link={"/trending-songs"}
             />
           </div>
@@ -62,4 +54,4 @@ export const Home = observer(() => {
       </ScrollArea>
     </main>
   );
-});
+};

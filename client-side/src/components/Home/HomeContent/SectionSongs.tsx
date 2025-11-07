@@ -25,7 +25,7 @@ export const SectionSongs = observer(
       }
     };
 
-    if (songs.length === 0) return null;
+    if (!songs || songs.length === 0) return null;
 
     return (
       <div className="mb-8">
@@ -45,7 +45,7 @@ export const SectionSongs = observer(
         ) : (
           <>
             <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-4 gap-4">
-              {songs.slice(0, 4).map((song) => (
+              {songs.map((song) => (
                 <div
                   key={song._id}
                   onClick={() => handlePlayTrack(song)}

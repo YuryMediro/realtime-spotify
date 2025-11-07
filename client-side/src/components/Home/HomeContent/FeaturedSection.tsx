@@ -30,7 +30,7 @@ export const FeaturedSection = observer(
 
     if (isLoading) return <FeaturedSkeleton />;
 
-    if (featuredSongs.length === 0) {
+    if (!featuredSongs || featuredSongs.length === 0) {
       return (
         <div className="flex flex-col items-center justify-center py-12 px-4 text-center mb-8">
           <div className="relative mb-8">
