@@ -1,7 +1,10 @@
 import axios from "axios";
+import { BASE_URL } from "./config/api.config";
 
 export const axiosInstance = axios.create({
-  baseURL: import.meta.env.MODE === "development" ? "http://localhost:5000/api" : "/api",
+  baseURL: BASE_URL,
+  withCredentials: true,
+  headers: { "Content-type": "application/json" },
 });
 
 export const updateApiToken = (token: string | null) => {

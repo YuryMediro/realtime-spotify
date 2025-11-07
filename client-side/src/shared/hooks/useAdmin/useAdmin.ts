@@ -1,9 +1,9 @@
-import { adminApi } from "@/entities/endpoints/admin-api";
+import { adminService } from "@/shared/api/service/admin.service";
 import { useQuery } from "@tanstack/react-query";
 
 export const useAdmin = () => {
   return useQuery({
     queryKey: ['admin', 'status'],
-    queryFn: () => adminApi.getAdmin()
+    queryFn: () => adminService.checkAdminStatus()
   });
 };
