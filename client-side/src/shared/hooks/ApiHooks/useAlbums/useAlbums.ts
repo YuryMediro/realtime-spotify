@@ -1,7 +1,6 @@
 import { albumService } from "@/shared/api/service/album.service";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
-import { useParams } from "react-router-dom";
 
 export const useGetAlbums = () => {
   const { data: albums, isLoading } = useQuery({
@@ -11,9 +10,7 @@ export const useGetAlbums = () => {
   return { albums, isLoading };
 };
 
-export const useGetAlbumsById = () => {
-  const { id } = useParams<{ id: string }>();
-
+export const useGetAlbumsById = (id:string) => {
   const { data: albums, isLoading } = useQuery({
     queryKey: ["get album by id", id],
     queryFn: () => albumService.getAlbumsById(id!),

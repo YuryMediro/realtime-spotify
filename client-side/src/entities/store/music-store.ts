@@ -5,7 +5,6 @@ import { makeAutoObservable } from "mobx";
 class MusicStore {
   songs: ISongs[] = [];
   albums: IAlbums[] = [];
-  currentAlbum: IAlbums | null = null;
   isLoading: boolean = false;
   error: string | null = null;
   featuredSongs: ISongs[] = [];
@@ -22,9 +21,7 @@ class MusicStore {
   setAlbums = (albums: IAlbums[]): void => {
     this.albums = albums;
   };
-  setCurrentAlbum = (album: IAlbums): void => {
-    this.currentAlbum = album;
-  };
+ 
   setLoading = (loading: boolean): void => {
     this.isLoading = loading;
   };
@@ -39,33 +36,6 @@ class MusicStore {
   };
   setTrendingSongs = (songs: ISongs[]): void => {
     this.trendingSongs = songs;
-  };
-
-  fetchAlbums = async (): Promise<void> => {
-    this.setLoading(true);
-    this.setError(null);
-    try {
-      const albums = await musicApi.getALbums();
-      this.setAlbums(albums);
-    } catch (error: any) {
-      this.setError(error.response?.data?.message || error.message);
-    } finally {
-      this.setLoading(false);
-    }
-  };
-
-  fetchAlbumsById = async (id: string): Promise<void> => {
-    this.setLoading(true);
-    this.setError(null);
-
-    try {
-      const album = await musicApi.getAlbumsById(id);
-      this.setCurrentAlbum(album);
-    } catch (error: any) {
-      this.setError(error.response?.data?.message || error.message);
-    } finally {
-      this.setLoading(false);
-    }
   };
 
   fetchSongs = async (): Promise<void> => {

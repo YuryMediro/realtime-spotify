@@ -1,10 +1,8 @@
-import { musicStore } from "@/entities/store/music-store";
 import { playerStore } from "@/entities/store/player-store";
-import type { ISongs } from "@/entities/types/type";
+import type { IAlbums, ISongs } from "@/entities/types/type";
 
 export const usePlayAlbum = () => {
-  const handlePlayAll = () => {
-    const { currentAlbum } = musicStore;
+  const handlePlayAll = (currentAlbum: IAlbums) => {
     const { currentSong } = playerStore;
     if (currentAlbum?.songs) {
       const isCurrentAlbumPlaying = currentAlbum.songs.some(

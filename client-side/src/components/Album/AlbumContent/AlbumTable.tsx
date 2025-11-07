@@ -14,7 +14,7 @@ import { playerStore } from "@/entities/store/player-store";
 import { usePlayTrackAlbum } from "@/shared/hooks/usePlaySong";
 
 interface AlbumTableProps {
-  currentAlbum: IAlbums | null;
+  currentAlbum: IAlbums 
 }
 
 export const AlbumTable = observer(({ currentAlbum }: AlbumTableProps) => {
@@ -34,7 +34,7 @@ export const AlbumTable = observer(({ currentAlbum }: AlbumTableProps) => {
         </TableRow>
       </TableHeader>
       <TableBody>
-        {currentAlbum?.songs.map((song, index) => {
+        {currentAlbum.songs.map((song, index) => {
           const isCurrentSong = currentSong?._id === song._id;
           return (
             <TableRow
