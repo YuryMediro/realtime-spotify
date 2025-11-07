@@ -1,22 +1,11 @@
 import { HeaderAdmin } from "@/widgets/Layout/UI/HeaderAdmin/HeaderAdmin";
-import { observer } from "mobx-react-lite";
 import { Statistics } from "./Statistics/Statistics";
-import { musicStore } from "@/entities/store/music-store";
-import { useEffect } from "react";
 import { TabsAdmin } from "./TabsAdmin/TabsAdmin";
 import { useAdmin } from "@/shared/hooks/ApiHooks/useAdmin/useAdmin";
 
-export const Admin = observer(() => {
+export const Admin = () => {
   const { data: adminStatus, isLoading } = useAdmin();
   const isAdmin = adminStatus?.admin || false;
-
-  const { fetchStatistics, fetchSongs, fetchAlbums } = musicStore;
-
-  useEffect(() => {
-    fetchStatistics();
-    fetchSongs();
-    fetchAlbums();
-  }, []);
 
   if (!isAdmin && !isLoading) return <div>You are not admin</div>;
   return (
@@ -29,4 +18,4 @@ export const Admin = observer(() => {
       <TabsAdmin />
     </div>
   );
-});
+};

@@ -8,12 +8,15 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/kit/table";
-import { musicStore } from "@/entities/store/music-store";
+import {
+  useDeleteSong,
+  useGetSongs,
+} from "@/shared/hooks/ApiHooks/useSongs/useSongs";
 import { Calendar, Trash2 } from "lucide-react";
-import { observer } from "mobx-react-lite";
 
-export const SongsTable = observer(() => {
-  const { songs, deleteSong, isLoading } = musicStore;
+export const SongsTable = () => {
+  const { songs } = useGetSongs();
+  const { deleteSong, isLoadingDelete } = useDeleteSong();
   return (
     <Table>
       <TableHeader>
@@ -26,7 +29,7 @@ export const SongsTable = observer(() => {
         </TableRow>
       </TableHeader>
       <TableBody>
-        {songs.map((song) => (
+        {songs?.map((song) => (
           <TableRow key={song._id} className="hover:bg-zinc-800/50">
             <TableCell className="flex items-center gap-2">
               <img
@@ -48,7 +51,7 @@ export const SongsTable = observer(() => {
                 <Button
                   variant={"ghost"}
                   size={"sm"}
-                  disabled={isLoading}
+                  disabled={isLoadingDelete}
                   className="text-red-400 hover:text-red-300 hover:bg-red-400/10"
                 >
                   <Trash2 className="size-4" />
@@ -60,4 +63,4 @@ export const SongsTable = observer(() => {
       </TableBody>
     </Table>
   );
-});
+};

@@ -194,24 +194,6 @@ class MusicStore {
     }
   };
 
-  deleteAlbumById = async (id: string): Promise<void> => {
-    this.setLoading(true);
-    this.setError(null);
-
-    try {
-      await musicApi.deleteAlbumById(id);
-      this.setAlbums(this.albums.filter((album) => album._id !== id));
-
-      await this.fetchStatistics();
-
-      toast.success("Album deleted successfully");
-    } catch (error: any) {
-      this.setError(error.response?.data?.message || error.message);
-      toast.error(error.message || "Error deleting album");
-    } finally {
-      this.setLoading(false);
-    }
-  };
 
   createAlbum = async (formData: FormData): Promise<void> => {
     this.setLoading(true);

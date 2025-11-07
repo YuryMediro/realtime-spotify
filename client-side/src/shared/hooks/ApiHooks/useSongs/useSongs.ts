@@ -60,6 +60,9 @@ export const useDeleteSong = () => {
       queryClient.invalidateQueries({
         queryKey: ["get songs"],
       });
+      queryClient.invalidateQueries({
+        queryKey: ["get stats"],
+      });
       toast.success("Song deleted successfully");
     },
     onError() {
@@ -78,6 +81,9 @@ export const useCreateSong = () => {
     onSuccess() {
       queryClient.invalidateQueries({
         queryKey: ["get songs"],
+      });
+      queryClient.invalidateQueries({
+        queryKey: ["get stats"],
       });
       toast.success("Song creating successfully");
     },

@@ -32,6 +32,9 @@ export const useDeleteAlbumById = () => {
       queryClient.invalidateQueries({
         queryKey: ["get albums"],
       });
+      queryClient.invalidateQueries({
+        queryKey: ["get stats"],
+      });
       toast.success("Album deleted successfully");
     },
     onError() {
@@ -50,6 +53,9 @@ export const useCreateAlbum = () => {
     onSuccess() {
       queryClient.invalidateQueries({
         queryKey: ["get albums"],
+      });
+      queryClient.invalidateQueries({
+        queryKey: ["get stats"],
       });
       toast.success("Album created successfully");
     },

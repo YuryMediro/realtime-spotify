@@ -8,12 +8,15 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/kit/table";
-import { musicStore } from "@/entities/store/music-store";
+import {
+  useDeleteAlbumById,
+  useGetAlbums,
+} from "@/shared/hooks/ApiHooks/useAlbums/useAlbums";
 import { Calendar, Music, Trash2 } from "lucide-react";
-import { observer } from "mobx-react-lite";
 
-export const AlbumsTable = observer(() => {
-  const { albums, deleteAlbumById, isLoading } = musicStore;
+export const AlbumsTable = () => {
+  const { albums } = useGetAlbums();
+  const { deleteAlbum, isLoadingDelete } = useDeleteAlbumById();
   return (
     <Table>
       <TableHeader>
@@ -27,7 +30,7 @@ export const AlbumsTable = observer(() => {
         </TableRow>
       </TableHeader>
       <TableBody>
-        {albums.map((album) => (
+        {albums?.map((album) => (
           <TableRow key={album._id} className="hover:bg-zinc-800/50">
             <TableCell className="flex items-center gap-2">
               <img
@@ -51,11 +54,11 @@ export const AlbumsTable = observer(() => {
               </span>
             </TableCell>
             <TableCell className="text-right">
-              <ConfirmModal handleClick={() => deleteAlbumById(album._id)}>
+              <ConfirmModal handleClick={() => deleteAlbum(album._id)}>
                 <Button
                   variant={"ghost"}
                   size={"sm"}
-                  disabled={isLoading}
+                  disabled={isLoadingDelete}
                   className="text-red-400 hover:text-red-300 hover:bg-red-400/10"
                 >
                   <Trash2 className="size-4" />
@@ -67,4 +70,4 @@ export const AlbumsTable = observer(() => {
       </TableBody>
     </Table>
   );
-});
+};
