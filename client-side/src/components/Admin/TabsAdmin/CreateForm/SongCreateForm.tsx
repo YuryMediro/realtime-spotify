@@ -19,14 +19,13 @@ import { AudioUpload } from "@/features/AudioUpload/AudioUpload";
 import { ImageUpload } from "@/features/ImageUpload/ImageUpload";
 import { useSongCreateForm } from "@/shared/hooks/useForm/useSongCreateForm";
 import { formatDuration } from "@/shared/lib/format/formatDuration";
-import { observer } from "mobx-react-lite";
 import { Controller } from "react-hook-form";
 
 interface SongCreateFormProps {
   onClose: () => void;
 }
 
-export const SongCreateForm = observer(({ onClose }: SongCreateFormProps) => {
+export const SongCreateForm = ({ onClose }: SongCreateFormProps) => {
   const { albums, audioUpload, form, imageUpload, isLoading, onSubmit } =
     useSongCreateForm(onClose);
 
@@ -160,4 +159,4 @@ export const SongCreateForm = observer(({ onClose }: SongCreateFormProps) => {
           </div>
     </form>
   );
-});
+};

@@ -75,7 +75,7 @@ export const useDeleteSong = () => {
 export const useCreateSong = () => {
   const queryClient = useQueryClient();
 
-  const { mutate: createSong, isPending: isLoadingCreate } = useMutation({
+  const { mutateAsync: createSong, isPending: isLoadingCreate } = useMutation({
     mutationKey: ["create song"],
     mutationFn: (formData: FormData) => songService.createSong(formData),
     onSuccess() {
@@ -84,6 +84,9 @@ export const useCreateSong = () => {
       });
       queryClient.invalidateQueries({
         queryKey: ["get stats"],
+      });
+      queryClient.invalidateQueries({
+        queryKey: ["get albums"],
       });
       toast.success("Song creating successfully");
     },

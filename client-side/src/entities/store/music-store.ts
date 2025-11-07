@@ -1,7 +1,6 @@
 import { musicApi } from "@/entities/endpoints/music-api";
-import type { IAlbums, ISongs, IStatistics } from "@/entities/types/type";
+import type { IAlbums, ISongs} from "@/entities/types/type";
 import { makeAutoObservable } from "mobx";
-import toast from "react-hot-toast";
 
 class MusicStore {
   songs: ISongs[] = [];
@@ -12,13 +11,7 @@ class MusicStore {
   featuredSongs: ISongs[] = [];
   madeForYouSongs: ISongs[] = [];
   trendingSongs: ISongs[] = [];
-  stats: IStatistics = {
-    totalSongs: 0,
-    totalAlbums: 0,
-    totalUsers: 0,
-    totalArtists: 0,
-  };
-
+ 
   constructor() {
     makeAutoObservable(this);
   }
@@ -46,9 +39,6 @@ class MusicStore {
   };
   setTrendingSongs = (songs: ISongs[]): void => {
     this.trendingSongs = songs;
-  };
-  setStatistics = (stats: IStatistics): void => {
-    this.stats = stats;
   };
 
   fetchAlbums = async (): Promise<void> => {
@@ -156,78 +146,6 @@ class MusicStore {
       this.setTrendingSongs(songs);
     } catch (error: any) {
       this.setError(error.response?.data?.message || error.message);
-    } finally {
-      this.setLoading(false);
-    }
-  };
-
-  fetchStatistics = async (): Promise<void> => {
-    this.setLoading(true);
-    this.setError(null);
-
-    try {
-      const stats = await musicApi.getStatistics();
-      this.setStatistics(stats);
-    } catch (error: any) {
-      this.setError(error.response?.data?.message || error.message);
-    } finally {
-      this.setLoading(false);
-    }
-  };
-
-  deleteSong = async (id: string): Promise<void> => {
-    this.setLoading(true);
-    this.setError(null);
-
-    try {
-      await musicApi.deleteSong(id);
-      this.setSongs(this.songs.filter((song) => song._id !== id));
-
-      await this.fetchStatistics();
-
-      toast.success("Song deleted successfully");
-    } catch (error: any) {
-      this.setError(error.response?.data?.message || error.message);
-      toast.error(error.message || "Error deleting song");
-    } finally {
-      this.setLoading(false);
-    }
-  };
-
-
-  createAlbum = async (formData: FormData): Promise<void> => {
-    this.setLoading(true);
-    this.setError(null);
-
-    try {
-      await musicApi.createAlbum(formData);
-
-      await this.fetchAlbums();
-      await this.fetchStatistics();
-
-      toast.success("Album created successfully");
-    } catch (error: any) {
-      this.setError(error.response?.data?.message || error.message);
-      toast.error(error.message || "Error creating album");
-    } finally {
-      this.setLoading(false);
-    }
-  };
-
-  createSong = async (formData: FormData): Promise<void> => {
-    this.setLoading(true);
-    this.setError(null);
-
-    try {
-      await musicApi.createSong(formData);
-
-      await this.fetchSongs();
-      await this.fetchStatistics();
-
-      toast.success("Song created successfully");
-    } catch (error: any) {
-      this.setError(error.response?.data?.message || error.message);
-      toast.error(error.message || "Error creating song");
     } finally {
       this.setLoading(false);
     }

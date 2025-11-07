@@ -5,36 +5,43 @@ import { StatsSkeleton } from "@/shared/ui/skeleton/StatsSkelton";
 
 export const Statistics = () => {
   const { stats, isLoading } = useGetStats();
-
-  if (isLoading) return <StatsSkeleton />;
-  if (!stats) return null;
   
+  if (isLoading) return <StatsSkeleton />;
+
+  const defaultStats = {
+    totalSongs: 0,
+    totalAlbums: 0,
+    totalArtists: 0,
+    totalUsers: 0,
+  };
+  const currentStats = stats || defaultStats;
+
   const statsItem = [
     {
       icon: ListMusic,
       title: "Total Songs",
-      value: stats.totalSongs.toString(),
+      value: currentStats.totalSongs.toString(),
       bgColor: "bg-emerald-500/10",
       iconColor: "text-emerald-500",
     },
     {
       icon: Library,
       title: "Total Albums",
-      value: stats.totalAlbums.toString(),
+      value: currentStats.totalAlbums.toString(),
       bgColor: "bg-violet-500/10",
       iconColor: "text-violet-500",
     },
     {
       icon: Users2,
       title: "Total Artists",
-      value: stats.totalArtists.toString(),
+      value: currentStats.totalArtists.toString(),
       bgColor: "bg-orange-500/10",
       iconColor: "text-orange-500",
     },
     {
       icon: PlayCircle,
       title: "Total Users",
-      value: stats.totalUsers.toString(),
+      value: currentStats.totalUsers.toString(),
       bgColor: "bg-sky-500/10",
       iconColor: "text-sky-500",
     },

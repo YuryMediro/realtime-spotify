@@ -47,7 +47,7 @@ export const useDeleteAlbumById = () => {
 export const useCreateAlbum = () => {
   const queryClient = useQueryClient();
 
-  const { mutate: createAlbum, isPending: isLoadingCreate } = useMutation({
+  const { mutateAsync: createAlbum, isPending: isLoadingCreate } = useMutation({
     mutationKey: ["create album"],
     mutationFn: (formData: FormData) => albumService.createAlbum(formData),
     onSuccess() {

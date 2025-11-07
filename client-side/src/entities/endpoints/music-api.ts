@@ -6,12 +6,6 @@ export const musicApi = {
   getAlbumsById: (id: string): Promise<IAlbums> =>
     axiosInstance.get<IAlbums>(`/albums/${id}`).then((res) => res.data),
 
-  createAlbum: (formData: FormData): Promise<IAlbums> =>
-    axiosInstance
-      .post<IAlbums>("/admin/albums", formData, {
-        headers: { "Content-Type": "multipart/form-data" },
-      })
-      .then((res) => res.data),
 
   // Песни
   getFeaturedSongs: (): Promise<ISongs[]> =>
@@ -34,15 +28,4 @@ export const musicApi = {
   getSongs: (): Promise<ISongs[]> =>
     axiosInstance.get<ISongs[]>("/songs").then((res) => res.data),
 
-  deleteSong: (id: string): Promise<ISongs[]> =>
-    axiosInstance
-      .delete<ISongs[]>(`/admin/songs/${id}`)
-      .then((res) => res.data),
-
-  createSong: (formData: FormData): Promise<ISongs> =>
-    axiosInstance
-      .post<ISongs>("/admin/songs", formData, {
-        headers: { "Content-Type": "multipart/form-data" },
-      })
-      .then((res) => res.data),
 };

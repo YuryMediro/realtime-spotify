@@ -9,14 +9,13 @@ import { Input } from "@/components/kit/input";
 import { ScrollArea } from "@/components/kit/scroll-area";
 import { ImageUpload } from "@/features/ImageUpload/ImageUpload";
 import { useAlbumCreateForm } from "@/shared/hooks/useForm/useAlbumCreateForm";
-import { observer } from "mobx-react-lite";
 import { Controller } from "react-hook-form";
 
 interface AlbumCreateFormProps {
   onClose: () => void;
 }
 
-export const AlbumCreateForm = observer(({ onClose }: AlbumCreateFormProps) => {
+export const AlbumCreateForm = ({ onClose }: AlbumCreateFormProps) => {
   const { form, isLoading, onSubmit, imageUpload } =
     useAlbumCreateForm(onClose);
 
@@ -92,23 +91,23 @@ export const AlbumCreateForm = observer(({ onClose }: AlbumCreateFormProps) => {
           />
         </FieldGroup>
       </ScrollArea>
-          <div className={"flex justify-end gap-3"}>
-            <Button
-              type="button"
-              variant="outline"
-              disabled={isLoading}
-              onClick={onClose}
-            >
-              Cancel
-            </Button>
-            <Button
-              type="submit"
-              className="bg-violet-500 hover:bg-violet-600 text-white"
-              disabled={isLoading}
-            >
-              {isLoading ? "Creating..." : "Save changes"}
-            </Button>
-          </div>
+      <div className={"flex justify-end gap-3"}>
+        <Button
+          type="button"
+          variant="outline"
+          disabled={isLoading}
+          onClick={onClose}
+        >
+          Cancel
+        </Button>
+        <Button
+          type="submit"
+          className="bg-violet-500 hover:bg-violet-600 text-white"
+          disabled={isLoading}
+        >
+          {isLoading ? "Creating..." : "Save changes"}
+        </Button>
+      </div>
     </form>
   );
-});
+};

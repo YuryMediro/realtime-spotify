@@ -1,4 +1,3 @@
-import { musicStore } from "@/entities/store/music-store";
 import { useImageUpload } from "../useImageUpload";
 import { useAudioUpload } from "../useAudioUpload";
 import { useForm } from "react-hook-form";
@@ -6,9 +5,12 @@ import { SongCreateSchema } from "@/features/ValidateSchema/SongCreateSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import toast from "react-hot-toast";
+import { useCreateSong } from "../ApiHooks/useSongs/useSongs";
+import { useGetAlbums } from "../ApiHooks/useAlbums/useAlbums";
 
 export const useSongCreateForm = (onClose: () => void) => {
-  const { isLoading, createSong, albums } = musicStore;
+  const {createSong,isLoadingCreate} = useCreateSong()
+  const {albums} = useGetAlbums()
   const imageUpload = useImageUpload();
   const audioUpload = useAudioUpload();
 
@@ -55,5 +57,12 @@ export const useSongCreateForm = (onClose: () => void) => {
     } catch (error) {}
   };
 
-  return { isLoading, albums, onSubmit, form, imageUpload, audioUpload };
+  return {
+    isLoading: isLoadingCreate,
+    albums: albums || [],
+    onSubmit,
+    form,
+    imageUpload,
+    audioUpload,
+  };
 };
