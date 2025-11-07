@@ -53,7 +53,7 @@ class SongService {
     return data;
   }
   async createSong(formData: FormData) {
-    const { data } = await axiosInstance<ISongs[]>({
+    const { data } = await axiosInstance<ISongs>({
       url: API_URL.adminSongs(),
       method: "POST",
       data: formData,
