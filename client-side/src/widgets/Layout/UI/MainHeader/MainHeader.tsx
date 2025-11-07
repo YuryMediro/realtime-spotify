@@ -7,11 +7,15 @@ import { LayoutDashboardIcon } from "lucide-react";
 import { Link } from "react-router-dom";
 import { FaSpotify } from "react-icons/fa6";
 import { SingInButton } from "@/features/SingInButton/SingInButton";
-import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/kit/tooltip";
-import { useAdmin } from "@/shared/hooks/useAdmin/useAdmin";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/kit/tooltip";
+import { useAdmin } from "@/shared/hooks/ApiHooks/useAdmin/useAdmin";
 
 export const MainHeader = () => {
-  const {data: adminStatus} = useAdmin()
+  const { data: adminStatus } = useAdmin();
   const isAdmin = adminStatus?.admin || false;
 
   return (

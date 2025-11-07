@@ -6,7 +6,7 @@ import { playerStore } from "@/entities/store/player-store";
 import { Music, Plus } from "lucide-react";
 import { Button } from "@/components/kit/button";
 import { Link } from "react-router-dom";
-import { useAdmin } from "@/shared/hooks/useAdmin/useAdmin";
+import { useAdmin } from "@/shared/hooks/ApiHooks/useAdmin/useAdmin";
 
 interface FeaturedSectionProps {
   featuredSongs: ISongs[];

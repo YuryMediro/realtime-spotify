@@ -5,13 +5,13 @@ import { updateApiToken } from "../shared/api/axios";
 import { observer } from "mobx-react-lite";
 import { chatStore } from "@/entities/store/chat-store";
 import { playerStore } from "@/entities/store/player-store";
-import { useAdmin } from "@/shared/hooks/useAdmin/useAdmin";
+import { useAdmin } from "@/shared/hooks/ApiHooks/useAdmin/useAdmin";
 
 const AuthProvider = observer(({ children }: { children: React.ReactNode }) => {
   const { getToken, userId } = useAuth();
   const [loading, setLoading] = useState(true);
   const { initSocket, disconnectSocket } = chatStore;
-  const {refetch: checkAdminStatus} = useAdmin()
+  const { refetch: checkAdminStatus } = useAdmin();
   useEffect(() => {
     const initAuth = async () => {
       try {

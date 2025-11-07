@@ -4,7 +4,7 @@ import { Statistics } from "./Statistics/Statistics";
 import { musicStore } from "@/entities/store/music-store";
 import { useEffect } from "react";
 import { TabsAdmin } from "./TabsAdmin/TabsAdmin";
-import { useAdmin } from "@/shared/hooks/useAdmin/useAdmin";
+import { useAdmin } from "@/shared/hooks/ApiHooks/useAdmin/useAdmin";
 
 export const Admin = observer(() => {
   const { data: adminStatus, isLoading } = useAdmin();
