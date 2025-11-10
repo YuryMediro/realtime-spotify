@@ -3,24 +3,21 @@ import { ScrollArea } from "@/components/kit/scroll-area";
 import { chatStore } from "@/entities/store/chat-store";
 import { useUser } from "@clerk/clerk-react";
 import { Music, User } from "lucide-react";
-import { useEffect } from "react";
 import { observer } from "mobx-react-lite";
 import { LoginMessage } from "./LoginMessage";
 import { Sidebar } from "@/components/kit/sidebar";
 import { Link } from "react-router-dom";
+import { useGetUser } from "@/shared/hooks/ApiHooks/useChat/useChat";
+import { FriendsSkeleton } from "@/shared/ui/skeleton/FriendsSkeleton";
 
 export const FriendsSidebar = observer(() => {
-  const { users, fetchUsers, isUserOnline, getUserActivity, setSelectedUser } =
-    chatStore;
-  const { user } = useUser();
+  const { users, isLoading } = useGetUser();
+  const { isUserOnline, getUserActivity, setSelectedUser } = chatStore;
+  const { user: currentUser } = useUser();
+  const otherUsers =
+    users?.filter((userItem) => userItem.clerkId !== currentUser?.id) || [];
 
-  useEffect(() => {
-    if (user) fetchUsers();
-  }, [user, fetchUsers]);
-
-  const otherUsers = users.filter((userItem) => userItem.clerkId !== user?.id);
-
-  return !user ? (
+  return !currentUser ? (
     <Sidebar collapsible="none" className="h-svh hidden xl:flex bg-zinc-900">
       <div className=" bg-zinc-900 flex flex-col">
         <div className="p-4 flex justify-between items-center border-b border-zinc-800">
@@ -42,7 +39,9 @@ export const FriendsSidebar = observer(() => {
           </div>
         </div>
         <ScrollArea className="h-[calc(100vh-70px)]">
-          {otherUsers.length === 0 ? (
+          {isLoading ? (
+            <FriendsSkeleton />
+          ) : otherUsers.length === 0 ? (
             <div className="flex flex-col items-center justify-center min-h-ful text-center p-4">
               <User className="size-8 text-zinc-600 mb-2" />
               <p className="text-zinc-400 text-sm">No friends yet</p>
