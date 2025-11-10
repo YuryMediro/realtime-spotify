@@ -1,13 +1,12 @@
 import { makeAutoObservable } from "mobx";
 import type { IMessage, IUser } from "../types/type";
-import { chatApi } from "@/entities/endpoints/chat-api";
 import { Socket, io } from "socket.io-client";
+import { chatService } from "@/shared/api/service/chat.service";
 
 const URL =
   import.meta.env.MODE === "development" ? "http://localhost:5000" : "/";
 
 class ChatStore {
-  users: IUser[] = [];
   messages: IMessage[] = [];
   selectedUser: IUser | null = null;
   isLoading: boolean = false;
@@ -34,9 +33,7 @@ class ChatStore {
       }
     
   };
-  setUsers = (users: IUser[]): void => {
-    this.users = users;
-  };
+  
   setLoading = (loading: boolean): void => {
     this.isLoading = loading;
   };
@@ -77,39 +74,25 @@ class ChatStore {
     this.userActivities.set(userId, activity);
   };
 
-  getLastMessageForUser = (userId: string): IMessage | null => {
-    const userMessages = this.messages.filter(
-      (message) => message.senderId === userId || message.receiverId === userId,
-    );
+  // getLastMessageForUser = (userId: string): IMessage | null => {
+  //   const userMessages = this.messages.filter(
+  //     (message) => message.senderId === userId || message.receiverId === userId,
+  //   );
 
-    if (userMessages.length === 0) return null;
+  //   if (userMessages.length === 0) return null;
 
-    return userMessages.sort(
-      (a, b) =>
-        new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
-    )[0];
-  };
-
-  fetchUsers = async (): Promise<void> => {
-    this.setLoading(true);
-    this.setError(null);
-
-    try {
-      const users = await chatApi.getUsers();
-      this.setUsers(users);
-    } catch (error: any) {
-      this.setError(error.response?.data?.message || error.message);
-    } finally {
-      this.setLoading(false);
-    }
-  };
+  //   return userMessages.sort(
+  //     (a, b) =>
+  //       new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
+  //   )[0];
+  // };
 
   fetchMessage = async (userId: string): Promise<void> => {
     this.setLoading(true);
     this.setError(null);
 
     try {
-      const message = await chatApi.getMessages(userId);
+      const message = await chatService.getMessages(userId);
       this.setMessage(message);
     } catch (error: any) {
       this.setError(error.response?.data?.message || error.message);
@@ -215,7 +198,7 @@ class ChatStore {
 
   cleanup = (): void => {
     this.disconnectSocket();
-    this.setUsers([]);
+   
     this.setMessage([]);
     this.setSelectedUser(null);
   };

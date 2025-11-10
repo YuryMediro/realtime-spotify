@@ -4,13 +4,15 @@ import { UserList } from "./ui/UserList";
 import { useParams } from "react-router-dom";
 import { chatStore } from "@/entities/store/chat-store";
 import { useEffect } from "react";
+import { useGetUser } from "@/shared/hooks/ApiHooks/useChat/useChat";
 
 export const ChatId = observer(() => {
   const { clerkId } = useParams<{ clerkId: string }>();
-  const { users, setSelectedUser } = chatStore;
+  const {users} = useGetUser()
+  const { setSelectedUser } = chatStore;
 
   useEffect(() => {
-    if (clerkId && users.length > 0) {
+    if (clerkId && users && users.length > 0) {
       const user = users.find((user) => user.clerkId === clerkId);
       if (user) {
         setSelectedUser(user);

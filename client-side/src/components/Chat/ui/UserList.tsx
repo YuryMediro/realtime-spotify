@@ -8,13 +8,9 @@ import { observer } from "mobx-react-lite";
 import { Link } from "react-router-dom";
 
 export const UserList = observer(() => {
-  const {users, isLoading} = useGetUser()
-  const { 
-    isUserOnline,
-    selectedUser,
-    setSelectedUser,
-    getLastMessageForUser,
-  } = chatStore;
+  const { users, isLoading } = useGetUser();
+  const { isUserOnline, selectedUser, setSelectedUser } =
+    chatStore;
   return (
     <div className="border-r border-zinc-800 lg:block hidden">
       <div className="flex flex-col h-full">
@@ -25,7 +21,7 @@ export const UserList = observer(() => {
             ) : (
               users?.map((user) => {
                 const isOnline = isUserOnline(user.clerkId);
-                const lastMessage = getLastMessageForUser(user.clerkId);
+                // const lastMessage = getLastMessageForUser(user.clerkId);
                 return (
                   <Link
                     to={`/chat/${user.clerkId}`}
@@ -59,14 +55,16 @@ export const UserList = observer(() => {
                             {user.fullName}
                           </span>
 
-                          {lastMessage && (
+                          {user.lastMessage && (
                             <span className="text-xs text-zinc-400 whitespace-nowrap flex-shrink-0">
-                              {formatTimeChat(lastMessage.createdAt)}
+                              {formatTimeChat(user.lastMessage.createdAt)}
                             </span>
                           )}
                         </div>
                         <div className="text-xs text-zinc-400 truncate">
-                          {lastMessage ? lastMessage.content : "No messages"}
+                          {user.lastMessage
+                            ? user.lastMessage.content
+                            : "No messages"}
                         </div>
                       </div>
                     </div>

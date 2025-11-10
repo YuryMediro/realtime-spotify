@@ -24,6 +24,7 @@ export interface IUser {
   fullName: string;
   imageUrl: string;
   clerkId: string;
+  lastMessage: IMessage | null;
 }
 
 export interface IStatistics {
