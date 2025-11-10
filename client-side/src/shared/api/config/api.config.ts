@@ -20,5 +20,8 @@ export const API_URL = {
   madeForYouSongsAll: () => API_URL.root("/songs/made-for-you-all"),
   trendingSongsAll: () => API_URL.root("/songs/trending-all"),
 
-  stats: () => API_URL.root('/stats')
+  stats: () => API_URL.root("/stats"),
+
+  user: () => API_URL.root("/users"),
+  usersMessages: (url = "") => API_URL.root(`/users/messages${url}`),
 };
