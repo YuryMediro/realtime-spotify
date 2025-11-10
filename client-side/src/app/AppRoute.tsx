@@ -16,6 +16,7 @@ import {
 } from "./LazyRoute";
 import { SignInPage } from "@/pages/AuthPage/SignInPage";
 import { SignUpPage } from "@/pages/AuthPage/SignUpPage";
+import { LayoutChatId } from "@/widgets/LayoutChatId/LayoutChatId";
 
 export const AppRoute = () => {
   return (
@@ -69,16 +70,7 @@ export const AppRoute = () => {
             </Suspense>
           }
         />
-        <Route
-          path="/chat/:userId"
-          element={
-            <Suspense fallback={<PageLoader />}>
-              <Protect fallback={<Navigate to="/sign-in" />}>
-                <ChatIdPage />
-              </Protect>
-            </Suspense>
-          }
-        />
+
         <Route
           path="/made-fo-you-songs"
           element={
@@ -92,6 +84,18 @@ export const AppRoute = () => {
           element={
             <Suspense fallback={<PageLoader />}>
               <TrendingSongsPage />
+            </Suspense>
+          }
+        />
+      </Route>
+      <Route element={<LayoutChatId />}>
+        <Route
+          path="/chat/:userId"
+          element={
+            <Suspense fallback={<PageLoader />}>
+              <Protect fallback={<Navigate to="/sign-in" />}>
+                <ChatIdPage />
+              </Protect>
             </Suspense>
           }
         />

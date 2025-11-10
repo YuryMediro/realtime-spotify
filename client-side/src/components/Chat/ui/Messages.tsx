@@ -30,7 +30,9 @@ export const Messages = observer(() => {
 
   return (
     <div className="flex flex-col h-full w-full flex-1 min-w-0">
-      <ChatHeader />
+      <div className='lg:block hidden'>
+        <ChatHeader />
+      </div>
       <ScrollArea className="overflow-y-auto flex-1">
         <div className="p-2 sm:p-4 space-y-4">
           {messages.map((message) => (
@@ -71,7 +73,9 @@ export const Messages = observer(() => {
         </Button>
         <div ref={messagesEndRef} />
       </ScrollArea>
+      <div className="lg:block hidden">
       <MessageInput />
+      </div>
     </div>
   );
 });
