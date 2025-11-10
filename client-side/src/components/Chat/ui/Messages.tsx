@@ -66,7 +66,7 @@ export const Messages = observer(() => {
         <Button
           type="button"
           size="icon"
-          className="absolute bottom-4 right-4 size-10 rounded-full p-2 shadow-lg bg-zinc-700/90 hover:bg-zinc-600/90 z-10"
+          className="fixed bottom-35 right-4 lg:absolute lg:bottom-4 lg:right-4 size-10 rounded-full p-2 shadow-lg bg-zinc-700/90 hover:bg-zinc-600/90 z-10"
           onClick={scrollToBottom}
         >
           <ArrowDown className="text-white" />

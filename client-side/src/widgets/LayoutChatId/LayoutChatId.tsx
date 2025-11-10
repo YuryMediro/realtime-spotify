@@ -1,6 +1,7 @@
 import { Outlet } from "react-router-dom";
 import {
   SidebarFooter,
+  SidebarHeader,
   SidebarInset,
   SidebarProvider,
 } from "@/components/kit/sidebar";
@@ -16,16 +17,18 @@ export const LayoutChatId = () => {
       <SidebarProvider>
         <LeftSidebar />
         <SidebarInset>
-          <AudioPlayer/>
-          <HeaderChatId/>
-          <div className="flex flex-1 flex-col gap-4 mx-0 lg:mx-4 mb-2 lg:mb-3">
+          <AudioPlayer />
+          <SidebarHeader className="p-0 z-1 sticky top-0 bg-background/80 backdrop-blur-md">
+            <HeaderChatId />
+          </SidebarHeader>
+          <div className="flex flex-1 flex-col gap-4 mx-0 lg:mx-4 mb-0 lg:mb-3">
             <Outlet />
           </div>
           <SidebarFooter className="p-0 sticky bottom-0 bg-background/70 backdrop-blur-md">
-            <FooterChatId/>
+            <FooterChatId />
           </SidebarFooter>
         </SidebarInset>
-        <FriendsSidebar/>
+        <FriendsSidebar />
       </SidebarProvider>
     </>
   );

@@ -21,8 +21,8 @@ export const ChatId = observer(() => {
   }, [clerkId, users, setSelectedUser]);
 
   return (
-    <div className="h-full rounded-lg bg-gradient-to-b from-zinc-800 to-zinc-900 overflow-hidden">
-      <div className="h-[calc(100vh-240px)] lg:h-[calc(100vh-155px)] flex">
+    <div className="h-full lg:rounded-lg bg-gradient-to-b from-zinc-800 to-zinc-900 overflow-hidden">
+      <div className="h-full lg:h-[calc(100vh-155px)] flex">
         <UserList />
         <Messages />
       </div>

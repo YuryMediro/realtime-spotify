@@ -3,6 +3,7 @@ import { AudioFooter } from "./UI/AudioFooter/AudioFooter";
 import { AudioPlayer } from "@/features/AudioPlayer/AudioPlayer";
 import {
   SidebarFooter,
+  SidebarHeader,
   SidebarInset,
   SidebarProvider,
 } from "@/components/kit/sidebar";
@@ -13,11 +14,13 @@ import { FriendsSidebar } from "./UI/FriendsSidebar/FriendsSidebar";
 export const Layout = () => {
   return (
     <>
-      <SidebarProvider >
+      <SidebarProvider>
         <LeftSidebar />
         <SidebarInset>
           <AudioPlayer />
-          <MainHeader />
+          <SidebarHeader className="p-0 z-1 sticky top-0 bg-background/70 backdrop-blur-md">
+            <MainHeader />
+          </SidebarHeader>
           <div className="flex flex-1 flex-col gap-4 mx-0 lg:mx-4 mb-2 lg:mb-3">
             <Outlet />
           </div>

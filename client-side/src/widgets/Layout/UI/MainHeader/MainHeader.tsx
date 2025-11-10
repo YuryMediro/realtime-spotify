@@ -19,7 +19,7 @@ export const MainHeader = () => {
   const isAdmin = adminStatus?.admin || false;
 
   return (
-    <header className="sticky top-0 z-50 flex w-full items-center h-13 lg:h-18 rounded-md p-2 bg-background/70 backdrop-blur-md">
+    <header className="flex w-full items-center h-13 lg:h-18 rounded-md p-2 ">
       <div className="flex items-center gap-2 px-4 w-full">
         <Tooltip>
           <TooltipTrigger asChild>
