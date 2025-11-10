@@ -1,17 +1,17 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/kit/avatar";
 import { ScrollArea } from "@/components/kit/scroll-area";
 import { chatStore } from "@/entities/store/chat-store";
+import { useGetUser } from "@/shared/hooks/ApiHooks/useChat/useChat";
 import { formatTimeChat } from "@/shared/lib/format/formatTimeChat";
 import { UserListSkeleton } from "@/shared/ui/skeleton/UserListSkeleton";
 import { observer } from "mobx-react-lite";
 import { Link } from "react-router-dom";
 
 export const UserList = observer(() => {
-  const {
-    users,
+  const {users, isLoading} = useGetUser()
+  const { 
     isUserOnline,
     selectedUser,
-    isLoading,
     setSelectedUser,
     getLastMessageForUser,
   } = chatStore;
@@ -23,7 +23,7 @@ export const UserList = observer(() => {
             {isLoading ? (
               <UserListSkeleton />
             ) : (
-              users.map((user) => {
+              users?.map((user) => {
                 const isOnline = isUserOnline(user.clerkId);
                 const lastMessage = getLastMessageForUser(user.clerkId);
                 return (
