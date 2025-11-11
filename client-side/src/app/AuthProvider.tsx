@@ -6,21 +6,25 @@ import { observer } from "mobx-react-lite";
 import { chatStore } from "@/entities/store/chat-store";
 import { playerStore } from "@/entities/store/player-store";
 import { useAdmin } from "@/shared/hooks/ApiHooks/useAdmin/useAdmin";
+import { useTokenRefresh } from "@/shared/hooks/useSession";
 
 const AuthProvider = observer(({ children }: { children: React.ReactNode }) => {
   const { getToken, userId } = useAuth();
   const [loading, setLoading] = useState(true);
   const { initSocket, disconnectSocket } = chatStore;
   const { refetch: checkAdminStatus } = useAdmin();
+
+  useTokenRefresh()
+
   useEffect(() => {
     const initAuth = async () => {
       try {
         const token = await getToken();
         updateApiToken(token);
-        if (token) {
+        if (token && userId) {
           await checkAdminStatus();
-          if (userId) initSocket(userId);
-          if (userId) playerStore.setUserId(userId);
+          initSocket(userId);
+          playerStore.setUserId(userId);
         }
       } catch (error) {
         updateApiToken(null);

@@ -1,5 +1,11 @@
 import { Button } from "@/components/kit/button";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/kit/sheet";
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/kit/sheet";
 import { Slider } from "@/components/kit/slider";
 import { playerStore } from "@/entities/store/player-store";
 import { useDominantColor } from "@/shared/hooks/useDominantColor";
@@ -90,12 +96,14 @@ export const MobileSheetFooter = observer(() => {
                 </>
               )}
             </div>
-
             <div className="flex items-center gap-4">
               <Button
                 size="icon"
                 className="bg-green-500 hover:bg-green-600 text-black rounded-full h-10 w-10"
-                onClick={togglePlay}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  togglePlay();
+                }}
                 disabled={!currentSong}
               >
                 {isPlaying ? (
@@ -119,7 +127,8 @@ export const MobileSheetFooter = observer(() => {
             backgroundImage: `linear-gradient(135deg, ${dominantColor} 0%, rgba(24, 24, 27, 0.9) 100%)`,
           }}
         >
-          <div className="flex flex-col">
+          <SheetTitle className="sr-only">Now Playing:</SheetTitle>
+          <SheetDescription className="flex flex-col">
             {currentSong && (
               <>
                 <img
@@ -128,7 +137,7 @@ export const MobileSheetFooter = observer(() => {
                   className="w-full object-cover rounded-xl shadow-2xl mb-4"
                 />
                 <div className="mb-8">
-                  <h2 className="font-medium text-lg truncate hover:underline cursor-pointer">
+                  <h2 className="font-medium text-lg text-zinc-100 truncate hover:underline cursor-pointer">
                     {currentSong?.title}
                   </h2>
                   <p className="text-base text-zinc-400 truncate hover:underline cursor-pointer">
@@ -205,7 +214,7 @@ export const MobileSheetFooter = observer(() => {
                 <Repeat className="h-6 w-6" />
               </Button>
             </div>
-          </div>
+          </SheetDescription>
         </div>
       </SheetContent>
     </Sheet>
