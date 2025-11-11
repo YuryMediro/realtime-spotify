@@ -1,1 +1,1 @@
-<h1>✨ Fullstack RealTime Spotify & Chat App ✨</h1>
+<h1 align="center">✨ Fullstack RealTime Spotify & Chat App ✨</h1>
